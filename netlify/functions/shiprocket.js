@@ -1,11 +1,14 @@
 // Hidden Backend Server: netlify/functions/shiprocket.js
-// Handles: 1) Razorpay Order Creation, 2) Razorpay Payment Verification, 3) Shiprocket Automated Dispatch
+// Handles: 1) Razorpay Order & Verification, 2) Shiprocket Dispatch & Cancellation, 3) Live Shiprocket Webhooks
 const crypto = require("crypto");
+
+const SUPABASE_URL = "https://fwzjswlkfwepgfqvapkm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_JhilDbcHlGIoj5Hvae3wmw_u2HHPeaQ";
 
 exports.handler = async (event) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, x-api-key",
     "Content-Type": "application/json"
   };
 
@@ -16,9 +19,53 @@ exports.handler = async (event) => {
   try {
     const body = JSON.parse(event.body || "{}");
 
-    // ====================================================
-    // ACTION 1: CREATE RAZORPAY ORDER (FOR ONLINE PAYMENT)
-    // ====================================================
+    // ====================================================================
+    // 1. INCOMING SHIPROCKET WEBHOOK LISTENER (AUTO-UPDATES SUPABASE)
+    // ====================================================================
+    if (!body.action && (body.current_status || body.shipment_status)) {
+      const rawStatus = (body.current_status || body.shipment_status || "").toUpperCase();
+      const srOrderId = String(body.order_id || "");
+
+      let mappedStage = "Confirmed";
+      if (rawStatus.includes("PICKED") || rawStatus.includes("PACKED") || rawStatus.includes("MANIFEST")) {
+        mappedStage = "Packed";
+      } else if (rawStatus.includes("TRANSIT") || rawStatus.includes("SHIPPED") || rawStatus.includes("OUT FOR DELIVERY")) {
+        mappedStage = "Shipped";
+      } else if (rawStatus.includes("DELIVERED")) {
+        mappedStage = "Delivered";
+      } else if (rawStatus.includes("CANCEL") || rawStatus.includes("RTO")) {
+        mappedStage = "Cancelled";
+      }
+
+      // Extract numeric Supabase order ID if formatted as GKART-<id>
+      if (srOrderId.startsWith("GKART-")) {
+        const dbOrderId = srOrderId.replace("GKART-", "").split("-")[0];
+        if (!isNaN(dbOrderId)) {
+          await fetch(`${SUPABASE_URL}/rest/v1/orders?id=eq.${dbOrderId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: SUPABASE_KEY,
+              Authorization: `Bearer ${SUPABASE_KEY}`
+            },
+            body: JSON.stringify({
+              lifecycle_stage: mappedStage,
+              order_status: `Courier Status: ${rawStatus} (AWB: ${body.awb || "Assigned"})`
+            })
+          });
+        }
+      }
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ received: true, updated_stage: mappedStage })
+      };
+    }
+
+    // ====================================================================
+    // 2. CREATE RAZORPAY ORDER (FOR ONLINE PAYMENT)
+    // ====================================================================
     if (body.action === "create_razorpay_order") {
       const rzpKeyId = process.env.RAZORPAY_KEY_ID;
       const rzpKeySecret = process.env.RAZORPAY_KEY_SECRET;
@@ -28,7 +75,7 @@ exports.handler = async (event) => {
           statusCode: 400,
           headers,
           body: JSON.stringify({
-            error: "Razorpay keys missing! Please add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in Netlify Environment Variables."
+            error: "Razorpay keys missing in Netlify Environment Variables."
           })
         };
       }
@@ -50,7 +97,6 @@ exports.handler = async (event) => {
       });
 
       const rzpOrder = await rzpRes.json();
-
       if (!rzpOrder.id) {
         return {
           statusCode: 400,
@@ -70,9 +116,9 @@ exports.handler = async (event) => {
       };
     }
 
-    // ====================================================
-    // SHIPROCKET AUTHENTICATION (FOR PINCODE & ORDERS)
-    // ====================================================
+    // ====================================================================
+    // 3. SHIPROCKET AUTHENTICATION
+    // ====================================================================
     const email = process.env.SHIPROCKET_EMAIL;
     const password = process.env.SHIPROCKET_PASSWORD;
 
@@ -101,9 +147,9 @@ exports.handler = async (event) => {
 
     const token = authData.token;
 
-    // ====================================================
-    // ACTION 2: CHECK PINCODE SERVICEABILITY
-    // ====================================================
+    // ====================================================================
+    // 4. CHECK PINCODE SERVICEABILITY
+    // ====================================================================
     if (body.action === "check_pincode") {
       const pickupPin = body.pickup_pincode || "411035";
       const deliveryPin = body.delivery_pincode;
@@ -127,18 +173,17 @@ exports.handler = async (event) => {
             rate: fastest.rate
           })
         };
-      } else {
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({ serviceable: false })
-        };
       }
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ serviceable: false })
+      };
     }
 
-    // ====================================================
-    // ACTION 3: VERIFY PAYMENT & CREATE SHIPROCKET ORDER
-    // ====================================================
+    // ====================================================================
+    // 5. CREATE SHIPROCKET ORDER
+    // ====================================================================
     if (body.action === "create_order") {
       if (body.payment_method === "Prepaid" && body.razorpay_payment_id) {
         const rzpSecret = process.env.RAZORPAY_KEY_SECRET;
@@ -168,8 +213,10 @@ exports.handler = async (event) => {
         }
       } catch (e) {}
 
+      const customOrderRef = body.db_order_id ? `GKART-${body.db_order_id}` : `GKART-${Date.now()}`;
+
       const orderPayload = {
-        order_id: "GKART-" + Date.now(),
+        order_id: customOrderRef,
         order_date: new Date().toISOString().split("T")[0],
         pickup_location: pickupLocation,
         billing_customer_name: body.customer_name,
@@ -184,7 +231,7 @@ exports.handler = async (event) => {
         shipping_is_billing: true,
         order_items: body.items.map((item, idx) => ({
           name: item.name,
-          sku: `GKART-SKU-${item.id || idx + 1}`,
+          sku: item.sku || `GKART-SKU-${item.id || idx + 1}`,
           units: item.qty || 1,
           selling_price: item.price
         })),
@@ -206,11 +253,30 @@ exports.handler = async (event) => {
       });
 
       const orderData = await orderRes.json();
-      console.log("SHIPROCKET ORDER RESPONSE:", JSON.stringify(orderData));
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify(orderData)
+      };
+    }
+
+    // ====================================================================
+    // 6. CANCEL SHIPROCKET ORDER WHEN CUSTOMER CANCELS ON WEBSITE
+    // ====================================================================
+    if (body.action === "cancel_order" && body.shiprocket_order_id) {
+      const cancelRes = await fetch("https://apiv2.shiprocket.in/v1/external/orders/cancel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ ids: [Number(body.shiprocket_order_id)] })
+      });
+      const cancelData = await cancelRes.json();
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(cancelData)
       };
     }
 
@@ -220,7 +286,6 @@ exports.handler = async (event) => {
       body: JSON.stringify({ error: "Invalid action" })
     };
   } catch (err) {
-    console.error("BACKEND ERROR:", err.message);
     return {
       statusCode: 500,
       headers,
