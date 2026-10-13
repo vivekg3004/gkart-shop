@@ -130,6 +130,7 @@
     /* SELLER HUB */
     .seller-item-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px; border: 1px solid var(--fk-border); border-radius: 4px; margin-bottom: 10px; background: #fafafa; }
     .btn-delete-prod { background: #dc2626; color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .btn-delete-prod:hover { background: #b91c1c; }
 
     /* MODAL & TOAST */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
@@ -216,9 +217,9 @@
       <div class="carousel-box">
         <div class="slide">
           <div class="slide-content">
-            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">FLIPKART OFFICIAL STORE</span>
+            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">100% SUPABASE CLOUD STORE</span>
             <h2>Big Saving Days Are Live</h2>
-            <p>Mandatory Verified Customer Checkout • Shiprocket Express</p>
+            <p>Verified Razorpay Checkout • Real-Time Shiprocket Express</p>
             <button class="slide-btn" onclick="openCategory('All')">Shop All Deals</button>
           </div>
           <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:185px; border-radius:8px;" />
@@ -324,9 +325,8 @@
               <button type="button" id="step1ChangeBtn" style="display:none; background:#fff; color:var(--fk-blue); border:1px solid #e0e0e0; padding:6px 16px; font-weight:700; cursor:pointer;" onclick="changeStep1Account()">CHANGE</button>
             </div>
             <div class="step-body" id="step1Body">
-              <!-- When logged out, this form is shown -->
               <div id="checkoutInlineAuth">
-                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, Flipkart requires you to log in or create an account:</p>
+                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, please log in or create your G Kart account:</p>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
                   <input type="text" id="chkAuthName" class="fk-input" placeholder="Your Full Name (e.g. Vivek Gurav)" />
                   <input type="email" id="chkAuthEmail" class="fk-input" placeholder="Email Address *" required />
@@ -338,7 +338,6 @@
                   <button type="button" class="fk-btn-blue" style="flex:1; background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleCheckoutAuth('signup')">CREATE NEW ACCOUNT</button>
                 </div>
               </div>
-              <!-- When logged in, summary is shown -->
               <div id="checkoutLoggedInSummary" style="display:none;">
                 <p style="font-size:15px;">Name: <strong id="step1UserName"></strong></p>
                 <p style="font-size:14px; color:#555;">Email: <strong id="step1UserEmail"></strong></p>
@@ -362,7 +361,7 @@
                 </div>
                 <div>
                   <label style="font-size:12px; font-weight:700;">10-Digit Mobile Number *</label>
-                  <input type="tel" id="chkPhone" class="fk-input" placeholder="Mobile number" />
+                  <input type="tel" id="chkPhone" class="fk-input" placeholder="Mobile number" maxlength="10" />
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
@@ -424,7 +423,7 @@
                   <div>
                     <span>Cash on Delivery (COD — Pay at Doorstep)</span>
                     <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Pay cash to the courier boy when the box arrives
+                      Pay cash to the courier partner when the parcel arrives
                     </div>
                   </div>
                 </label>
@@ -442,11 +441,11 @@
       </div>
     </div>
 
-    <!-- VIEW 6: MY ORDERS -->
+    <!-- VIEW 6: MY ORDERS (100% SUPABASE CLOUD) -->
     <div id="view-orders" class="view-section">
       <div style="background:#fff; padding:24px; box-shadow:0 1px 2px rgba(0,0,0,.12);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-          <h2>My Orders & Live Shiprocket Tracking</h2>
+          <h2>My Orders & Live Shiprocket Tracking (Supabase Cloud)</h2>
           <button class="fk-btn-blue" onclick="navigateTo('home')">+ Continue Shopping</button>
         </div>
         <div id="ordersListContainer"></div>
@@ -461,10 +460,10 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SELLER HUB -->
+    <!-- VIEW 8: SELLER HUB (100% SUPABASE CLOUD) -->
     <div id="view-seller" class="view-section">
       <div style="background:#fff; padding:24px; max-width:820px; margin:0 auto; box-shadow:0 1px 2px rgba(0,0,0,.12);">
-        <h2 style="margin-bottom:12px; color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add New Product</h2>
+        <h2 style="margin-bottom:12px; color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add New Product to Supabase Cloud</h2>
         <form onsubmit="sellerAddProduct(event)" style="margin-bottom:28px; padding-bottom:24px; border-bottom:2px solid var(--fk-border);">
           <input type="text" id="sellName" class="fk-input" placeholder="Product Title *" required />
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
@@ -481,13 +480,13 @@
           </div>
           <input type="url" id="sellImg" class="fk-input" placeholder="Image URL (https://...) *" required />
           <textarea id="sellDesc" class="fk-input" rows="2" placeholder="Product Highlights *" required></textarea>
-          <button type="submit" class="fk-btn-blue" style="padding:12px 24px;">+ Publish Product Now</button>
+          <button type="submit" class="fk-btn-blue" style="padding:12px 24px;">+ Publish Product to Cloud</button>
         </form>
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h3>Manage Existing Products (<span id="sellerTotalCount">0</span>)</h3>
+          <h3>Manage Cloud Products (<span id="sellerTotalCount">0</span>)</h3>
           <button type="button" class="fk-btn-blue" style="background:#4b5563; font-size:12px; padding:6px 12px;" onclick="restoreDefaultCatalog()">
-            Restore Demo Catalog
+            Seed Demo Products to Cloud
           </button>
         </div>
         <div id="sellerProductsManageList"></div>
@@ -503,10 +502,10 @@
         <div>
           <h2 style="font-size:26px; margin-bottom:12px;" id="authTitle">Login / Sign Up</h2>
           <p style="font-size:14px; line-height:1.6; color:#dbeafe;">
-            Sign in to access your Orders, Wishlist, and place verified Shiprocket shipments.
+            Sign in to access your Cloud Orders, Wishlist, and place verified Shiprocket shipments.
           </p>
         </div>
-        <div style="font-size:12px; opacity:0.9;">✓ Verified Customer Portal</div>
+        <div style="font-size:12px; opacity:0.9;">✓ Powered by Supabase Cloud</div>
       </div>
       <div class="fk-auth-right">
         <button onclick="closeAuthModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
@@ -538,12 +537,7 @@
   <script>
     const SUPABASE_URL = 'https://fwzjswlkfwepgfqvapkm.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_JhilDbcHlGIoj5Hvae3wmw_u2HHPeaQ';
-    let supabaseClient = null;
-    try {
-      if (window.supabase) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      }
-    } catch (e) {}
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     function showToast(msg) {
       const t = document.getElementById('toastBanner');
@@ -552,37 +546,25 @@
       setTimeout(() => { t.style.display = 'none'; }, 3500);
     }
 
-    const baseProducts = [
-      { id: 101, name: 'APPLE iPhone 15 (Black, 128 GB)', category: 'Mobiles', price: 65999, mrp: 79900, rating: 4.6, assured: true, img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500', desc: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Chip' },
-      { id: 102, name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)', category: 'Mobiles', price: 34999, mrp: 79999, rating: 4.4, assured: true, img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500', desc: '8 GB RAM | 128 GB ROM | 50MP Flagship Camera | 4500 mAh Battery' },
-      { id: 103, name: 'Sony WH-CH720N Noise Cancelling Headphones', category: 'Electronics', price: 7990, mrp: 14990, rating: 4.5, assured: true, img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500', desc: 'Up to 50 Hours Battery | Multipoint Bluetooth | Integrated V1 Processor' },
-      { id: 104, name: 'Noise ColorFit Icon 2 1.8" Calling Smartwatch', category: 'Electronics', price: 1199, mrp: 5999, rating: 4.2, assured: true, img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', desc: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof' },
-      { id: 105, name: 'PUMA Men Running Sports Shoes', category: 'Fashion', price: 1649, mrp: 3999, rating: 4.3, assured: true, img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500', desc: 'Breathable Mesh Upper | High-Traction Outsole' }
+    const demoSeedProducts = [
+      { name: 'APPLE iPhone 15 (Black, 128 GB)', category: 'Mobiles', price: 65999, mrp: 79900, rating: 4.6, image_url: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500', description: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Chip' },
+      { name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)', category: 'Mobiles', price: 34999, mrp: 79999, rating: 4.4, image_url: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500', description: '8 GB RAM | 128 GB ROM | 50MP Flagship Camera | 4500 mAh Battery' },
+      { name: 'Sony WH-CH720N Noise Cancelling Headphones', category: 'Electronics', price: 7990, mrp: 14990, rating: 4.5, image_url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500', description: 'Up to 50 Hours Battery | Multipoint Bluetooth | Integrated V1 Processor' },
+      { name: 'Noise ColorFit Icon 2 1.8" Calling Smartwatch', category: 'Electronics', price: 1199, mrp: 5999, rating: 4.2, image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', description: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof' },
+      { name: 'PUMA Men Running Sports Shoes', category: 'Fashion', price: 1649, mrp: 3999, rating: 4.3, image_url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500', description: 'Breathable Mesh Upper | High-Traction Outsole' }
     ];
 
-    let deletedIds = JSON.parse(localStorage.getItem('gkart_deleted_ids') || '[]');
     let allProducts = [];
     let cart = JSON.parse(localStorage.getItem('gkart_cart') || '[]');
     let wishlist = JSON.parse(localStorage.getItem('gkart_wish') || '[]');
-    let localReviews = JSON.parse(localStorage.getItem('gkart_reviews') || '[]');
-    let localOrders = JSON.parse(localStorage.getItem('gkart_orders') || '[]');
     let currentUser = JSON.parse(localStorage.getItem('gkart_user') || 'null');
     let currentSort = 'popular';
     let adminUnlocked = sessionStorage.getItem('gkart_admin_ok') === 'true';
 
-    function rebuildProductsArray(dbProds = []) {
-      const customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
-      const combined = [...customLocal, ...dbProds, ...baseProducts];
-      const seen = new Set();
-      allProducts = combined.filter(p => {
-        if (deletedIds.includes(Number(p.id))) return false;
-        if (seen.has(Number(p.id))) return false;
-        seen.add(Number(p.id));
-        return true;
-      });
-    }
-
-    function updateAuthUI() {
+    // =========================================================
+    // 1. AUTHENTICATION & CLOUD ORDER COUNT SYNC
+    // =========================================================
+    async function updateAuthUI() {
       const label = document.getElementById('authUserLabel');
       const logoutBtn = document.getElementById('logoutBtn');
       const menuLogin = document.getElementById('menuLoginItem');
@@ -591,10 +573,23 @@
         label.textContent = currentUser.name || currentUser.email.split('@')[0];
         logoutBtn.style.display = 'flex';
         menuLogin.style.display = 'none';
+        refreshCloudOrderCount();
       } else {
         label.textContent = 'Login';
         logoutBtn.style.display = 'none';
         menuLogin.style.display = 'flex';
+        document.getElementById('orderCountMenu').textContent = '0';
+      }
+    }
+
+    async function refreshCloudOrderCount() {
+      if (!currentUser) return;
+      const { count } = await supabaseClient
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .ilike('customer_email', currentUser.email);
+      if (count !== null) {
+        document.getElementById('orderCountMenu').textContent = count;
       }
     }
 
@@ -619,55 +614,68 @@
         return;
       }
 
-      if (supabaseClient) {
-        try {
-          if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
-          else await supabaseClient.auth.signInWithPassword({ email, password });
-        } catch (e) {}
-      }
+      try {
+        if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
+        else await supabaseClient.auth.signInWithPassword({ email, password });
+      } catch (e) {}
 
       currentUser = { name, email };
       localStorage.setItem('gkart_user', JSON.stringify(currentUser));
-      updateAuthUI();
+      await updateAuthUI();
       showToast(`✓ Logged in as ${name}`);
       closeAuthModal();
       if (document.getElementById('view-checkout').classList.contains('active')) {
         renderFlipkartCheckout();
       }
+      if (document.getElementById('view-orders').classList.contains('active')) {
+        loadMyOrders();
+      }
     }
 
     async function handleLogout() {
-      if (supabaseClient) { try { await supabaseClient.auth.signOut(); } catch (e) {} }
+      try { await supabaseClient.auth.signOut(); } catch (e) {}
       currentUser = null;
       localStorage.removeItem('gkart_user');
-      updateAuthUI();
+      await updateAuthUI();
       showToast('Logged out successfully');
       if (document.getElementById('view-checkout').classList.contains('active')) {
         renderFlipkartCheckout();
       }
+      if (document.getElementById('view-orders').classList.contains('active')) {
+        loadMyOrders();
+      }
     }
 
+    // =========================================================
+    // 2. 100% SUPABASE CLOUD PRODUCTS SYNC
+    // =========================================================
     async function syncSupabaseProducts() {
-      let dbProds = [];
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.from('products').select('*').order('id', { ascending: false });
-          if (!error && data && data.length > 0) {
-            dbProds = data.map(p => ({
-              id: p.id,
-              name: p.name,
-              category: p.category || 'Electronics',
-              price: Number(p.price),
-              mrp: Number(p.mrp || Math.round(Number(p.price) * 1.4)),
-              rating: 4.5,
-              assured: true,
-              img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
-              desc: p.description || '1 Year Warranty | G Kart Assured'
-            }));
-          }
-        } catch (e) {}
+      const { data, error } = await supabaseClient
+        .from('products')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (!error && data) {
+        if (data.length === 0 && !localStorage.getItem('gkart_cloud_seeded')) {
+          // Auto-seed initial catalog into Supabase Cloud once if table is empty
+          localStorage.setItem('gkart_cloud_seeded', 'true');
+          await supabaseClient.from('products').insert(demoSeedProducts);
+          return syncSupabaseProducts();
+        }
+
+        allProducts = data.map(p => ({
+          id: Number(p.id),
+          name: p.name,
+          category: p.category || 'Electronics',
+          price: Number(p.price),
+          mrp: Number(p.mrp || Math.round(Number(p.price) * 1.35)),
+          rating: Number(p.rating || 4.5),
+          assured: true,
+          img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
+          desc: p.description || '1 Year Warranty | G Kart Assured'
+        }));
       }
-      rebuildProductsArray(dbProds);
+
       renderHomeStrips();
       updateBadges();
       updateAuthUI();
@@ -696,7 +704,7 @@
     }
 
     function createCardHTML(p) {
-      const disc = Math.round(((p.mrp - p.price) / p.mrp) * 100);
+      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
       const wished = wishlist.includes(p.id);
       return `
         <div class="p-card" onclick="openPDP(${p.id})">
@@ -721,10 +729,13 @@
       document.getElementById('homeElecGrid').innerHTML = allProducts.filter(p => p.category === 'Mobiles' || p.category === 'Electronics').slice(0, 5).map(createCardHTML).join('');
     }
 
+    // =========================================================
+    // 3. PRODUCT DETAIL PAGE & 100% CLOUD REVIEWS
+    // =========================================================
     function openPDP(productId) {
-      const p = allProducts.find(i => i.id === productId);
+      const p = allProducts.find(i => i.id === Number(productId));
       if (!p) return;
-      const disc = Math.round(((p.mrp - p.price) / p.mrp) * 100);
+      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
       const defaultReviewer = currentUser ? currentUser.name : '';
 
       document.getElementById('pdpContent').innerHTML = `
@@ -757,7 +768,7 @@
             <p style="font-size:14px; line-height:1.6; margin-bottom:20px;"><strong>Highlights:</strong> ${p.desc}</p>
 
             <div style="border-top:2px solid var(--fk-border); padding-top:18px;">
-              <h3 style="margin-bottom:12px;">Ratings & Customer Reviews</h3>
+              <h3 style="margin-bottom:12px;">Ratings & Customer Reviews (Supabase Cloud)</h3>
               <form onsubmit="submitProductReview(event, ${p.id})" style="background:#f9fafb; padding:14px; border:1px solid var(--fk-border); border-radius:4px; margin-bottom:16px;">
                 <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
                   <input type="text" id="revName" placeholder="Your Name *" value="${defaultReviewer}" required style="padding:9px; border:1px solid #ccc; flex:1;" />
@@ -813,43 +824,51 @@
 
     async function loadProductReviews(productId) {
       const box = document.getElementById('pdpReviewsList');
-      let combined = localReviews.filter(r => Number(r.product_id) === Number(productId));
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.from('reviews').select('*').eq('product_id', productId).order('id', { ascending: false });
-          if (!error && data && data.length > 0) combined = [...data, ...combined];
-        } catch (e) {}
+      box.innerHTML = `<p style="color:var(--fk-muted); font-size:13px;">Loading cloud reviews...</p>`;
+      const { data, error } = await supabaseClient
+        .from('reviews')
+        .select('*')
+        .eq('product_id', Number(productId))
+        .order('id', { ascending: false });
+
+      if (error || !data || data.length === 0) {
+        box.innerHTML = `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet. Be the first to review this product!</p>`;
+        return;
       }
-      box.innerHTML = combined.length === 0
-        ? `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet. Write the first review above!</p>`
-        : combined.map(r => `
-          <div style="border-bottom:1px solid #e5e7eb; padding:12px 0; font-size:14px;">
-            <span class="green-star-pill">${r.rating} ★</span> <strong>${r.customer_name}</strong>
-            <p style="color:#333; margin-top:4px;">${r.comment}</p>
-          </div>
-        `).join('');
+
+      box.innerHTML = data.map(r => `
+        <div style="border-bottom:1px solid #e5e7eb; padding:12px 0; font-size:14px;">
+          <span class="green-star-pill">${r.rating} ★</span> <strong>${r.customer_name}</strong>
+          <p style="color:#333; margin-top:4px;">${r.comment}</p>
+        </div>
+      `).join('');
     }
 
     async function submitProductReview(e, productId) {
       e.preventDefault();
-      const newRev = {
+      const { error } = await supabaseClient.from('reviews').insert([{
         product_id: Number(productId),
         customer_name: document.getElementById('revName').value.trim(),
         rating: Number(document.getElementById('revRating').value),
         comment: document.getElementById('revComment').value.trim()
-      };
-      localReviews.unshift(newRev);
-      localStorage.setItem('gkart_reviews', JSON.stringify(localReviews));
-      if (supabaseClient) { try { await supabaseClient.from('reviews').insert([newRev]); } catch (err) {} }
+      }]);
+
+      if (error) {
+        alert('Supabase Review Error: ' + error.message);
+        return;
+      }
       document.getElementById('revComment').value = '';
-      showToast('✓ Review posted!');
+      showToast('✓ Review saved to Supabase Cloud!');
       loadProductReviews(productId);
     }
 
+    // =========================================================
+    // 4. CART & FLIPKART 4-STEP MANDATORY LOGIN CHECKOUT
+    // =========================================================
     function addItemToCart(productId, goCheckout) {
-      const prod = allProducts.find(p => p.id === productId);
+      const prod = allProducts.find(p => p.id === Number(productId));
       if (!prod) return;
-      const existing = cart.find(i => i.id === productId);
+      const existing = cart.find(i => i.id === Number(productId));
       if (existing) existing.qty += 1;
       else cart.push({ ...prod, qty: 1 });
       saveState();
@@ -871,10 +890,10 @@
     }
 
     function changeQty(id, delta) {
-      const item = cart.find(i => i.id === id);
+      const item = cart.find(i => i.id === Number(id));
       if (!item) return;
       item.qty += delta;
-      if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      if (item.qty <= 0) cart = cart.filter(i => i.id !== Number(id));
       saveState();
       renderCartView();
     }
@@ -912,12 +931,8 @@
       document.getElementById('summaryTotal').textContent = '₹' + pay.toLocaleString('en-IN');
     }
 
-    // =========================================================
-    // FLIPKART 4-STEP MANDATORY AUTHENTICATED CHECKOUT ENGINE
-    // =========================================================
     function renderFlipkartCheckout() {
       updateAuthUI();
-      const step1Box = document.getElementById('step1Box');
       const step1Header = document.getElementById('step1Header');
       const step1ChangeBtn = document.getElementById('step1ChangeBtn');
       const inlineAuth = document.getElementById('checkoutInlineAuth');
@@ -929,7 +944,6 @@
       const step4Box = document.getElementById('step4Box');
 
       if (!currentUser) {
-        // MUST LOG IN FIRST - Step 1 is active, Steps 2, 3, 4 are strictly locked
         step1Header.className = 'step-header active';
         document.getElementById('step1Title').textContent = '1. LOGIN OR SIGNUP';
         step1ChangeBtn.style.display = 'none';
@@ -940,7 +954,6 @@
         step3Box.className = 'step-box locked';
         step4Box.className = 'step-box locked';
       } else {
-        // Logged In: Step 1 completed, Step 2 is unlocked
         step1Header.className = 'step-header done';
         document.getElementById('step1Title').textContent = '1. LOGIN ✓';
         step1ChangeBtn.style.display = 'block';
@@ -949,17 +962,14 @@
         document.getElementById('step1UserName').textContent = currentUser.name || 'Valued Customer';
         document.getElementById('step1UserEmail').textContent = currentUser.email;
 
-        // Auto pre-fill Step 2 Delivery Name
         if (!document.getElementById('chkName').value) {
           document.getElementById('chkName').value = currentUser.name || '';
         }
 
-        // Unlock Step 2
         step2Box.className = 'step-box';
         step2Header.className = 'step-header active';
       }
 
-      // Populate Step 3 Order Summary
       const summaryEl = document.getElementById('checkoutOrderSummary');
       const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       summaryEl.innerHTML = cart.map(i => `
@@ -982,16 +992,14 @@
       }
       err.textContent = 'Authenticating...';
 
-      if (supabaseClient) {
-        try {
-          if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
-          else await supabaseClient.auth.signInWithPassword({ email, password });
-        } catch (e) {}
-      }
+      try {
+        if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
+        else await supabaseClient.auth.signInWithPassword({ email, password });
+      } catch (e) {}
 
       currentUser = { name, email };
       localStorage.setItem('gkart_user', JSON.stringify(currentUser));
-      updateAuthUI();
+      await updateAuthUI();
       err.textContent = '';
       showToast(`✓ Logged in as ${name}`);
       renderFlipkartCheckout();
@@ -1015,7 +1023,6 @@
         return;
       }
 
-      // Mark Step 2 Done, Unlock Step 3
       document.getElementById('step2Header').className = 'step-header done';
       document.getElementById('step3Box').className = 'step-box';
       document.getElementById('step3Header').className = 'step-header active';
@@ -1023,7 +1030,6 @@
     }
 
     function confirmStep3Summary() {
-      // Mark Step 3 Done, Unlock Step 4
       document.getElementById('step3Header').className = 'step-header done';
       document.getElementById('step4Box').className = 'step-box';
       document.getElementById('step4Header').className = 'step-header active';
@@ -1031,7 +1037,7 @@
     }
 
     // =========================================================
-    // COMPLETE ORDER (STRICTLY PROHIBITS GUEST ORDERS)
+    // 5. 100% SUPABASE CLOUD ORDER SAVING & RAZORPAY + SHIPROCKET
     // =========================================================
     async function completeFlipkartOrder() {
       if (!currentUser) {
@@ -1095,7 +1101,7 @@
             theme: { color: '#2874f0' },
             handler: async function (response) {
               statusMsg.style.color = 'var(--fk-green)';
-              statusMsg.textContent = '✓ Payment Verified! Creating Shiprocket Prepaid Shipment...';
+              statusMsg.textContent = '✓ Payment Verified! Saving to Supabase Cloud & Shiprocket...';
               await finalizeOrderToBackend({
                 name, phone, pincode, city, state, address, total_amount,
                 payment_method: 'Prepaid',
@@ -1121,7 +1127,7 @@
         return;
       }
 
-      statusMsg.textContent = 'Creating COD Order in Shiprocket...';
+      statusMsg.textContent = 'Saving COD Order to Supabase Cloud & Shiprocket...';
       await finalizeOrderToBackend({
         name, phone, pincode, city, state, address, total_amount,
         payment_method: 'COD',
@@ -1161,8 +1167,8 @@
         }
       } catch (e) {}
 
-      const newOrderObj = {
-        id: Math.floor(1000 + Math.random() * 9000),
+      // Save 100% to Supabase Cloud Table
+      const { error } = await supabaseClient.from('orders').insert([{
         customer_name: details.name,
         customer_email: currentUser.email,
         customer_phone: details.phone,
@@ -1170,61 +1176,50 @@
         pincode: details.pincode,
         total_amount: details.total_amount,
         order_status: `${details.payment_label} • ${shiprocketTag}`
-      };
+      }]);
 
-      localOrders.unshift(newOrderObj);
-      localStorage.setItem('gkart_orders', JSON.stringify(localOrders));
-
-      if (supabaseClient) {
-        try {
-          await supabaseClient.from('orders').insert([{
-            customer_name: newOrderObj.customer_name,
-            customer_email: newOrderObj.customer_email,
-            customer_phone: newOrderObj.customer_phone,
-            shipping_address: newOrderObj.shipping_address,
-            pincode: newOrderObj.pincode,
-            total_amount: newOrderObj.total_amount,
-            order_status: newOrderObj.order_status
-          }]);
-        } catch (e) {}
+      if (error) {
+        statusMsg.style.color = 'red';
+        statusMsg.textContent = 'Supabase Cloud Error: ' + error.message;
+        return;
       }
 
       cart = [];
       saveState();
       statusMsg.textContent = '';
-      showToast('🎉 Order Confirmed & Sent to Shiprocket!');
+      await refreshCloudOrderCount();
+      showToast('🎉 Order Saved to Supabase Cloud & Shiprocket!');
       navigateTo('orders');
     }
 
     async function loadMyOrders() {
       const box = document.getElementById('ordersListContainer');
-      let allOrders = [...localOrders];
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.from('orders').select('*').order('id', { ascending: false });
-          if (!error && data && data.length > 0) {
-            data.forEach(dbOrd => {
-              if (!allOrders.some(loc => loc.shipping_address === dbOrd.shipping_address && Number(loc.total_amount) === Number(dbOrd.total_amount))) {
-                allOrders.push(dbOrd);
-              }
-            });
-          }
-        } catch (e) {}
+      box.innerHTML = `<p style="padding:20px 0; color:var(--fk-blue); font-weight:700;">Loading live orders from Supabase Cloud...</p>`;
+
+      if (!currentUser) {
+        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">Please <a style="color:var(--fk-blue); cursor:pointer; font-weight:700;" onclick="openAuthModal()">Log In</a> to view your cloud orders.</p>`;
+        return;
       }
 
-      // Filter orders strictly for current logged-in customer (like Flipkart)
-      if (currentUser) {
-        allOrders = allOrders.filter(o => !o.customer_email || o.customer_email.toLowerCase() === currentUser.email.toLowerCase());
+      const { data: cloudOrders, error } = await supabaseClient
+        .from('orders')
+        .select('*')
+        .ilike('customer_email', currentUser.email)
+        .order('id', { ascending: false });
+
+      if (error) {
+        box.innerHTML = `<p style="color:red; padding:20px 0;">Error loading cloud orders: ${error.message}</p>`;
+        return;
       }
 
-      document.getElementById('orderCountMenu').textContent = allOrders.length;
+      document.getElementById('orderCountMenu').textContent = cloudOrders ? cloudOrders.length : 0;
 
-      box.innerHTML = allOrders.length === 0
-        ? `<p style="color:var(--fk-muted); padding:20px 0;">No orders found for this account.</p>`
-        : allOrders.map(o => `
+      box.innerHTML = (!cloudOrders || cloudOrders.length === 0)
+        ? `<p style="color:var(--fk-muted); padding:20px 0;">No orders found in Supabase Cloud for <strong>${currentUser.email}</strong>.</p>`
+        : cloudOrders.map(o => `
           <div style="border:1px solid var(--fk-border); padding:16px; margin-bottom:14px; border-radius:4px; background:#fff;">
             <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px;">
-              <strong>Order #GK-${o.id} • Customer: ${o.customer_name} (📞 ${o.customer_phone})</strong>
+              <strong>Order #GK-${1000 + Number(o.id)} • Customer: ${o.customer_name} (📞 ${o.customer_phone})</strong>
               <strong style="font-size:17px; color:var(--fk-blue);">₹${Number(o.total_amount).toLocaleString('en-IN')}</strong>
             </div>
             <div style="font-size:13px; color:#444; margin-bottom:6px;">
@@ -1241,6 +1236,9 @@
         `).join('');
     }
 
+    // =========================================================
+    // 6. FILTERS, WISHLIST & 100% CLOUD SELLER HUB
+    // =========================================================
     function openCategory(cat) {
       document.getElementById('filterCatSelect').value = cat;
       navigateTo('catalog');
@@ -1288,7 +1286,8 @@
 
     function toggleWishlist(e, id) {
       e.stopPropagation();
-      wishlist = wishlist.includes(id) ? wishlist.filter(x => x !== id) : [...wishlist, id];
+      const numId = Number(id);
+      wishlist = wishlist.includes(numId) ? wishlist.filter(x => x !== numId) : [...wishlist, numId];
       saveState();
       renderHomeStrips();
     }
@@ -1300,32 +1299,26 @@
 
     async function sellerAddProduct(e) {
       e.preventDefault();
-      const newP = {
-        id: Date.now(),
+      const newProd = {
         name: document.getElementById('sellName').value.trim(),
         price: Number(document.getElementById('sellPrice').value),
         mrp: Number(document.getElementById('sellMrp').value),
         category: document.getElementById('sellCat').value,
         rating: 4.5,
-        assured: true,
-        img: document.getElementById('sellImg').value.trim(),
-        desc: document.getElementById('sellDesc').value.trim()
+        image_url: document.getElementById('sellImg').value.trim(),
+        description: document.getElementById('sellDesc').value.trim()
       };
-      const customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
-      customLocal.unshift(newP);
-      localStorage.setItem('gkart_custom_prods', JSON.stringify(customLocal));
-      allProducts.unshift(newP);
-      if (supabaseClient) {
-        try {
-          await supabaseClient.from('products').insert([{
-            name: newP.name, price: newP.price, category: newP.category, image_url: newP.img, description: newP.desc
-          }]);
-        } catch (err) {}
+
+      const { error } = await supabaseClient.from('products').insert([newProd]);
+      if (error) {
+        alert('Supabase Cloud Error: ' + error.message);
+        return;
       }
+
       e.target.reset();
-      renderHomeStrips();
+      await syncSupabaseProducts();
       renderSellerProductList();
-      showToast('✓ Product published!');
+      showToast('✓ Product published to Supabase Cloud!');
     }
 
     function renderSellerProductList() {
@@ -1333,7 +1326,7 @@
       document.getElementById('sellerTotalCount').textContent = allProducts.length;
 
       if (allProducts.length === 0) {
-        listEl.innerHTML = `<p style="color:var(--fk-muted); padding:12px 0;">No products in your store. Use the form above to add a product!</p>`;
+        listEl.innerHTML = `<p style="color:var(--fk-muted); padding:12px 0;">No products in Supabase Cloud. Click "Seed Demo Products to Cloud" or add a product above!</p>`;
         return;
       }
 
@@ -1356,37 +1349,32 @@
     async function sellerDeleteProduct(productId) {
       const target = allProducts.find(p => Number(p.id) === Number(productId));
       if (!target) return;
-      if (!confirm(`Are you sure you want to delete "${target.name}"?`)) return;
+      if (!confirm(`Delete "${target.name}" permanently from Supabase Cloud?`)) return;
 
-      if (!deletedIds.includes(Number(productId))) {
-        deletedIds.push(Number(productId));
-        localStorage.setItem('gkart_deleted_ids', JSON.stringify(deletedIds));
+      const { error } = await supabaseClient.from('products').delete().eq('id', Number(productId));
+      if (error) {
+        alert('Supabase Delete Error: ' + error.message);
+        return;
       }
 
-      let customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
-      customLocal = customLocal.filter(p => Number(p.id) !== Number(productId));
-      localStorage.setItem('gkart_custom_prods', JSON.stringify(customLocal));
-
-      allProducts = allProducts.filter(p => Number(p.id) !== Number(productId));
       cart = cart.filter(i => Number(i.id) !== Number(productId));
       wishlist = wishlist.filter(id => Number(id) !== Number(productId));
       saveState();
 
-      if (supabaseClient) {
-        try { await supabaseClient.from('products').delete().eq('id', productId); } catch (e) {}
-      }
-
-      renderHomeStrips();
+      await syncSupabaseProducts();
       renderSellerProductList();
-      showToast('🗑️ Product deleted from store!');
+      showToast('🗑️ Product deleted from Supabase Cloud!');
     }
 
-    function restoreDefaultCatalog() {
-      deletedIds = [];
-      localStorage.removeItem('gkart_deleted_ids');
-      syncSupabaseProducts();
-      setTimeout(renderSellerProductList, 300);
-      showToast('✓ Default demo products restored!');
+    async function restoreDefaultCatalog() {
+      const { error } = await supabaseClient.from('products').insert(demoSeedProducts);
+      if (error) {
+        alert('Error seeding products: ' + error.message);
+        return;
+      }
+      await syncSupabaseProducts();
+      renderSellerProductList();
+      showToast('✓ Demo products added to Supabase Cloud!');
     }
 
     function saveState() {
@@ -1398,7 +1386,6 @@
     function updateBadges() {
       document.getElementById('headerCartCount').textContent = cart.reduce((s, i) => s + i.qty, 0);
       document.getElementById('wishCountMenu').textContent = wishlist.length;
-      document.getElementById('orderCountMenu').textContent = localOrders.length;
     }
 
     syncSupabaseProducts();
