@@ -56,7 +56,7 @@
     .cat-name { font-size: 13px; font-weight: 600; color: #333; }
     .cat-card:hover .cat-name { color: var(--fk-blue); }
 
-    /* SPA VIEWS */
+    /* APP CONTAINER & VIEWS */
     .app-container { max-width: 1248px; width: 100%; margin: 0 auto 32px auto; padding: 0 8px; flex: 1; }
     .view-section { display: none; }
     .view-section.active { display: block; }
@@ -91,7 +91,7 @@
     .p-mrp { font-size: 13px; color: var(--fk-muted); text-decoration: line-through; }
     .p-off { font-size: 13px; font-weight: 700; color: var(--fk-green); }
 
-    /* CATALOG, PDP, CART & CHECKOUT */
+    /* CATALOG, PDP, CART */
     .catalog-layout, .cart-layout, .pdp-card { display: flex; gap: 16px; align-items: flex-start; }
     .pdp-card { background: #fff; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
     .pdp-left { width: 400px; flex-shrink: 0; }
@@ -115,28 +115,30 @@
     .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff; font-weight: 700; cursor: pointer; }
     .fk-input { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 2px; font-size: 14px; margin-bottom: 12px; }
 
-    /* STEP BOXES FOR CHECKOUT */
-    .step-box { background: #fff; margin-bottom: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; }
-    .step-header { background: var(--fk-blue); color: #fff; padding: 12px 20px; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; }
-    .step-num { background: #fff; color: var(--fk-blue); padding: 2px 7px; border-radius: 2px; font-size: 12px; }
-    .step-body { padding: 20px; }
+    /* FLIPKART 4-STEP CHECKOUT ACCORDION STYLES */
+    .step-box { background: #fff; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; transition: opacity 0.3s; }
+    .step-box.locked { opacity: 0.55; pointer-events: none; }
+    .step-header { padding: 14px 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-transform: uppercase; letter-spacing: 0.5px; }
+    .step-header.active { background: var(--fk-blue); color: #fff; }
+    .step-header.done { background: #fff; color: #878787; border-bottom: 1px solid var(--fk-border); }
+    .step-header-left { display: flex; align-items: center; gap: 12px; }
+    .step-num { width: 22px; height: 22px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+    .step-header.active .step-num { background: #fff; color: var(--fk-blue); }
+    .step-header.done .step-num { background: #f0f0f0; color: var(--fk-blue); }
+    .step-body { padding: 22px 24px; }
 
-    /* SELLER HUB PRODUCT ROW & DELETE BUTTON */
+    /* SELLER HUB */
     .seller-item-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px; border: 1px solid var(--fk-border); border-radius: 4px; margin-bottom: 10px; background: #fafafa; }
     .btn-delete-prod { background: #dc2626; color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-    .btn-delete-prod:hover { background: #b91c1c; }
 
-    /* LOGIN / SIGNUP MODAL */
+    /* MODAL & TOAST */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
     .modal-overlay.active { display: flex; }
     .fk-auth-modal { width: 680px; min-height: 440px; background: #fff; border-radius: 4px; display: flex; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.3); position: relative; }
     .fk-auth-left { width: 40%; background: var(--fk-blue); color: #fff; padding: 36px 28px; display: flex; flex-direction: column; justify-content: space-between; }
     .fk-auth-right { width: 60%; padding: 36px 28px; display: flex; flex-direction: column; }
-
-    /* TOAST BANNER */
     #toastBanner { position: fixed; bottom: 24px; right: 24px; background: #212121; color: #fff; padding: 14px 22px; border-radius: 4px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,.3); display: none; z-index: 3000; border-left: 5px solid var(--fk-green); }
 
-    /* ORDER TRACKING BAR */
     .track-bar { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--fk-border); }
     .track-step { flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: var(--fk-green); }
     .track-dot { width: 12px; height: 12px; background: var(--fk-green); border-radius: 50%; margin: 0 auto 4px auto; }
@@ -154,7 +156,6 @@
 </head>
 <body>
 
-  <!-- NOTIFICATION TOAST -->
   <div id="toastBanner"></div>
 
   <!-- HEADER -->
@@ -176,7 +177,7 @@
             <i class="fa-regular fa-user"></i> <span id="authUserLabel">Login</span> <i class="fa-solid fa-angle-down" style="font-size:11px;"></i>
           </button>
           <div class="dropdown-menu">
-            <div class="dropdown-item" onclick="openAuthModal()"><i class="fa-solid fa-user-check"></i> Login / Sign Up</div>
+            <div class="dropdown-item" id="menuLoginItem" onclick="openAuthModal()"><i class="fa-solid fa-user-check"></i> Sign In / Register</div>
             <div class="dropdown-item" onclick="navigateTo('orders')"><i class="fa-solid fa-box-open"></i> My Orders (<span id="orderCountMenu">0</span>)</div>
             <div class="dropdown-item" onclick="navigateTo('wishlist')"><i class="fa-solid fa-heart"></i> Wishlist (<span id="wishCountMenu">0</span>)</div>
             <div class="dropdown-item" onclick="navigateTo('seller')"><i class="fa-solid fa-store"></i> Seller Hub (Admin)</div>
@@ -208,7 +209,6 @@
     </div>
   </div>
 
-  <!-- MAIN VIEWS -->
   <div class="app-container">
 
     <!-- VIEW 1: HOME -->
@@ -216,9 +216,9 @@
       <div class="carousel-box">
         <div class="slide">
           <div class="slide-content">
-            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">BIG SAVING DAYS</span>
-            <h2>5G Mobiles, Electronics & Fashion</h2>
-            <p>Razorpay Verified Checkout • Shiprocket Doorstep Delivery</p>
+            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">FLIPKART OFFICIAL STORE</span>
+            <h2>Big Saving Days Are Live</h2>
+            <p>Mandatory Verified Customer Checkout • Shiprocket Express</p>
             <button class="slide-btn" onclick="openCategory('All')">Shop All Deals</button>
           </div>
           <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:185px; border-radius:8px;" />
@@ -242,7 +242,7 @@
       </div>
     </div>
 
-    <!-- VIEW 2: CATALOG & FILTERS -->
+    <!-- VIEW 2: CATALOG -->
     <div id="view-catalog" class="view-section">
       <div class="catalog-layout">
         <aside class="filter-sidebar">
@@ -280,7 +280,7 @@
       </div>
     </div>
 
-    <!-- VIEW 3: PRODUCT DETAIL PAGE (PDP) -->
+    <!-- VIEW 3: PDP -->
     <div id="view-pdp" class="view-section">
       <div id="pdpContent"></div>
     </div>
@@ -294,7 +294,7 @@
           </div>
           <div id="cartItemsList"></div>
           <div style="padding:16px 20px; text-align:right; background:#f9fafb;" id="cartPlaceOrderFooter">
-            <button class="btn-buy-now" style="width:240px;" onclick="navigateTo('checkout')">PROCEED TO CHECKOUT</button>
+            <button class="btn-buy-now" style="width:240px;" onclick="startFlipkartCheckout()">PLACE ORDER</button>
           </div>
         </div>
         <div class="cart-right">
@@ -309,30 +309,60 @@
       </div>
     </div>
 
-    <!-- VIEW 5: 4-STEP FLIPKART CHECKOUT WITH RAZORPAY GATEWAY -->
+    <!-- VIEW 5: FLIPKART 4-STEP MANDATORY AUTHENTICATED CHECKOUT -->
     <div id="view-checkout" class="view-section">
       <div class="cart-layout">
         <div style="flex:1;">
-          <!-- STEP 1: ACCOUNT -->
-          <div class="step-box">
-            <div class="step-header"><span class="step-num">1</span> LOGIN / CUSTOMER ACCOUNT ✓</div>
-            <div class="step-body" style="padding:14px 20px; font-size:14px;" id="checkoutUserStatus">
-              Logged in as <strong>Vivek Gurav</strong>
+
+          <!-- STEP 1: MANDATORY LOGIN -->
+          <div class="step-box" id="step1Box">
+            <div class="step-header active" id="step1Header">
+              <div class="step-header-left">
+                <span class="step-num" id="step1Num">1</span>
+                <span id="step1Title">LOGIN OR SIGNUP</span>
+              </div>
+              <button type="button" id="step1ChangeBtn" style="display:none; background:#fff; color:var(--fk-blue); border:1px solid #e0e0e0; padding:6px 16px; font-weight:700; cursor:pointer;" onclick="changeStep1Account()">CHANGE</button>
+            </div>
+            <div class="step-body" id="step1Body">
+              <!-- When logged out, this form is shown -->
+              <div id="checkoutInlineAuth">
+                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, Flipkart requires you to log in or create an account:</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <input type="text" id="chkAuthName" class="fk-input" placeholder="Your Full Name (e.g. Vivek Gurav)" />
+                  <input type="email" id="chkAuthEmail" class="fk-input" placeholder="Email Address *" required />
+                </div>
+                <input type="password" id="chkAuthPass" class="fk-input" placeholder="Password (min 6 characters) *" required />
+                <div id="chkAuthErr" style="color:red; font-size:13px; font-weight:700; margin-bottom:10px;"></div>
+                <div style="display:flex; gap:12px;">
+                  <button type="button" class="btn-buy-now" style="flex:1; padding:12px;" onclick="handleCheckoutAuth('login')">LOGIN & CONTINUE</button>
+                  <button type="button" class="fk-btn-blue" style="flex:1; background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleCheckoutAuth('signup')">CREATE NEW ACCOUNT</button>
+                </div>
+              </div>
+              <!-- When logged in, summary is shown -->
+              <div id="checkoutLoggedInSummary" style="display:none;">
+                <p style="font-size:15px;">Name: <strong id="step1UserName"></strong></p>
+                <p style="font-size:14px; color:#555;">Email: <strong id="step1UserEmail"></strong></p>
+              </div>
             </div>
           </div>
 
-          <!-- STEP 2: DELIVERY ADDRESS -->
-          <div class="step-box">
-            <div class="step-header"><span class="step-num">2</span> DELIVERY ADDRESS</div>
-            <div class="step-body">
+          <!-- STEP 2: DELIVERY ADDRESS (LOCKED UNTIL STEP 1 IS COMPLETED) -->
+          <div class="step-box locked" id="step2Box">
+            <div class="step-header" id="step2Header">
+              <div class="step-header-left">
+                <span class="step-num">2</span>
+                <span>DELIVERY ADDRESS</span>
+              </div>
+            </div>
+            <div class="step-body" id="step2Body">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
                 <div>
                   <label style="font-size:12px; font-weight:700;">Full Name *</label>
-                  <input type="text" id="chkName" class="fk-input" value="Vivek Gurav" placeholder="Full Name" />
+                  <input type="text" id="chkName" class="fk-input" placeholder="Name for courier delivery" />
                 </div>
                 <div>
                   <label style="font-size:12px; font-weight:700;">10-Digit Mobile Number *</label>
-                  <input type="tel" id="chkPhone" class="fk-input" value="9876543210" placeholder="Mobile Number" />
+                  <input type="tel" id="chkPhone" class="fk-input" placeholder="Mobile number" />
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
@@ -350,27 +380,41 @@
                 </div>
               </div>
               <label style="font-size:12px; font-weight:700;">Full Street Address (Flat/House No, Area) *</label>
-              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Enter full delivery address">Akurdi, Pimpri-Chinchwad, Pune</textarea>
+              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Street address"></textarea>
+              <button type="button" class="btn-buy-now" style="width:260px;" onclick="confirmStep2Address()">DELIVER HERE</button>
             </div>
           </div>
 
-          <!-- STEP 3: ORDER SUMMARY -->
-          <div class="step-box">
-            <div class="step-header"><span class="step-num">3</span> ORDER SUMMARY</div>
-            <div class="step-body" id="checkoutOrderSummary"></div>
+          <!-- STEP 3: ORDER SUMMARY (LOCKED UNTIL STEP 2 IS COMPLETED) -->
+          <div class="step-box locked" id="step3Box">
+            <div class="step-header" id="step3Header">
+              <div class="step-header-left">
+                <span class="step-num">3</span>
+                <span>ORDER SUMMARY</span>
+              </div>
+            </div>
+            <div class="step-body" id="step3Body">
+              <div id="checkoutOrderSummary"></div>
+              <button type="button" class="btn-buy-now" style="width:260px; margin-top:14px;" onclick="confirmStep3Summary()">CONTINUE TO PAYMENT</button>
+            </div>
           </div>
 
-          <!-- STEP 4: PAYMENT OPTIONS (RAZORPAY GATEWAY OR COD) -->
-          <div class="step-box">
-            <div class="step-header"><span class="step-num">4</span> PAYMENT OPTIONS</div>
-            <div class="step-body">
+          <!-- STEP 4: PAYMENT OPTIONS (LOCKED UNTIL STEP 3 IS COMPLETED) -->
+          <div class="step-box locked" id="step4Box">
+            <div class="step-header" id="step4Header">
+              <div class="step-header-left">
+                <span class="step-num">4</span>
+                <span>PAYMENT OPTIONS</span>
+              </div>
+            </div>
+            <div class="step-body" id="step4Body">
               <div style="margin-bottom:16px;">
                 <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px; margin-bottom:10px; background:#f8fafc;">
                   <input type="radio" name="payOptionRadio" value="RAZORPAY" checked />
                   <div>
-                    <span style="color:var(--fk-blue);">Pay Online via Razorpay (UPI, GPay, PhonePe, Paytm, Cards, Netbanking)</span>
+                    <span style="color:var(--fk-blue);">Pay Online via Razorpay (UPI, GPay, PhonePe, Cards, Netbanking)</span>
                     <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      100% Secure Automated Payment Verification • Instant Prepaid Dispatch via Shiprocket
+                      Instant Prepaid Dispatch via Shiprocket
                     </div>
                   </div>
                 </label>
@@ -380,7 +424,7 @@
                   <div>
                     <span>Cash on Delivery (COD — Pay at Doorstep)</span>
                     <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Pay cash or UPI to the Shiprocket courier partner when your parcel arrives
+                      Pay cash to the courier boy when the box arrives
                     </div>
                   </div>
                 </label>
@@ -389,10 +433,11 @@
               <div id="checkoutStatusMsg" style="margin:10px 0; font-weight:700; color:var(--fk-blue);"></div>
 
               <button type="button" class="btn-buy-now" style="width:100%; font-size:16px;" onclick="completeFlipkartOrder()">
-                🔒 PROCEED TO PAY / PLACE ORDER
+                🔒 CONFIRM & COMPLETE ORDER
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -416,12 +461,12 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SELLER HUB (ADMIN - ADD & DELETE PRODUCTS) -->
+    <!-- VIEW 8: SELLER HUB -->
     <div id="view-seller" class="view-section">
       <div style="background:#fff; padding:24px; max-width:820px; margin:0 auto; box-shadow:0 1px 2px rgba(0,0,0,.12);">
         <h2 style="margin-bottom:12px; color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add New Product</h2>
         <form onsubmit="sellerAddProduct(event)" style="margin-bottom:28px; padding-bottom:24px; border-bottom:2px solid var(--fk-border);">
-          <input type="text" id="sellName" class="fk-input" placeholder="Product Title (e.g. Boat Airdopes 141) *" required />
+          <input type="text" id="sellName" class="fk-input" placeholder="Product Title *" required />
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
             <input type="number" id="sellPrice" class="fk-input" placeholder="Selling Price (₹) *" required />
             <input type="number" id="sellMrp" class="fk-input" placeholder="MRP (₹) *" required />
@@ -439,11 +484,10 @@
           <button type="submit" class="fk-btn-blue" style="padding:12px 24px;">+ Publish Product Now</button>
         </form>
 
-        <!-- MANAGE & DELETE EXISTING PRODUCTS -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
           <h3>Manage Existing Products (<span id="sellerTotalCount">0</span>)</h3>
           <button type="button" class="fk-btn-blue" style="background:#4b5563; font-size:12px; padding:6px 12px;" onclick="restoreDefaultCatalog()">
-            Restore Default Demo Products
+            Restore Demo Catalog
           </button>
         </div>
         <div id="sellerProductsManageList"></div>
@@ -452,31 +496,31 @@
 
   </div>
 
-  <!-- LOGIN / CREATE ACCOUNT POPUP -->
+  <!-- AUTH MODAL -->
   <div class="modal-overlay" id="authModal">
     <div class="fk-auth-modal">
       <div class="fk-auth-left">
         <div>
           <h2 style="font-size:26px; margin-bottom:12px;" id="authTitle">Login / Sign Up</h2>
           <p style="font-size:14px; line-height:1.6; color:#dbeafe;">
-            Sign in or create your G Kart account instantly to track orders, post product reviews, and manage your wishlist.
+            Sign in to access your Orders, Wishlist, and place verified Shiprocket shipments.
           </p>
         </div>
-        <div style="font-size:12px; opacity:0.9;">✓ Instant Access Enabled</div>
+        <div style="font-size:12px; opacity:0.9;">✓ Verified Customer Portal</div>
       </div>
       <div class="fk-auth-right">
         <button onclick="closeAuthModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
         <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Your Full Name</label>
-        <input type="text" id="authName" class="fk-input" placeholder="e.g. Vivek Gurav" value="Vivek Gurav" />
+        <input type="text" id="authName" class="fk-input" placeholder="e.g. Vivek Gurav" />
         <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Email Address *</label>
-        <input type="email" id="authEmail" class="fk-input" placeholder="Enter your email *" value="gvivek3004@gmail.com" />
+        <input type="email" id="authEmail" class="fk-input" placeholder="Enter your email *" />
         <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Password (min 6 characters) *</label>
-        <input type="password" id="authPassword" class="fk-input" placeholder="Enter password *" value="123456" />
+        <input type="password" id="authPassword" class="fk-input" placeholder="Enter password *" />
         <div id="authMsg" style="font-size:13px; margin-bottom:12px; font-weight:700;"></div>
-        <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleInstantAuth('login')">
+        <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleHeaderAuth('login')">
           LOGIN TO G KART
         </button>
-        <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleInstantAuth('signup')">
+        <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleHeaderAuth('signup')">
           CREATE NEW ACCOUNT
         </button>
       </div>
@@ -513,19 +557,14 @@
       { id: 102, name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)', category: 'Mobiles', price: 34999, mrp: 79999, rating: 4.4, assured: true, img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500', desc: '8 GB RAM | 128 GB ROM | 50MP Flagship Camera | 4500 mAh Battery' },
       { id: 103, name: 'Sony WH-CH720N Noise Cancelling Headphones', category: 'Electronics', price: 7990, mrp: 14990, rating: 4.5, assured: true, img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500', desc: 'Up to 50 Hours Battery | Multipoint Bluetooth | Integrated V1 Processor' },
       { id: 104, name: 'Noise ColorFit Icon 2 1.8" Calling Smartwatch', category: 'Electronics', price: 1199, mrp: 5999, rating: 4.2, assured: true, img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', desc: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof' },
-      { id: 105, name: 'PUMA Men Running Sports Shoes', category: 'Fashion', price: 1649, mrp: 3999, rating: 4.3, assured: true, img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500', desc: 'Breathable Mesh Upper | Cushioned Midsole | High-Traction Outsole' }
-    ];
-
-    const defaultReviews = [
-      { product_id: 101, customer_name: 'Rahul Patil (Pune)', rating: 5, comment: 'Original packed box delivered in 2 days. Camera and battery backup are awesome!' },
-      { product_id: 102, customer_name: 'Sneha Deshmukh', rating: 4, comment: 'Great value for money 5G phone during G Kart sale.' }
+      { id: 105, name: 'PUMA Men Running Sports Shoes', category: 'Fashion', price: 1649, mrp: 3999, rating: 4.3, assured: true, img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500', desc: 'Breathable Mesh Upper | High-Traction Outsole' }
     ];
 
     let deletedIds = JSON.parse(localStorage.getItem('gkart_deleted_ids') || '[]');
     let allProducts = [];
     let cart = JSON.parse(localStorage.getItem('gkart_cart') || '[]');
     let wishlist = JSON.parse(localStorage.getItem('gkart_wish') || '[]');
-    let localReviews = JSON.parse(localStorage.getItem('gkart_reviews') || JSON.stringify(defaultReviews));
+    let localReviews = JSON.parse(localStorage.getItem('gkart_reviews') || '[]');
     let localOrders = JSON.parse(localStorage.getItem('gkart_orders') || '[]');
     let currentUser = JSON.parse(localStorage.getItem('gkart_user') || 'null');
     let currentSort = 'popular';
@@ -546,16 +585,16 @@
     function updateAuthUI() {
       const label = document.getElementById('authUserLabel');
       const logoutBtn = document.getElementById('logoutBtn');
-      const chkUser = document.getElementById('checkoutUserStatus');
+      const menuLogin = document.getElementById('menuLoginItem');
 
       if (currentUser) {
         label.textContent = currentUser.name || currentUser.email.split('@')[0];
         logoutBtn.style.display = 'flex';
-        if (chkUser) chkUser.innerHTML = `Logged in as <strong>${currentUser.name}</strong> (${currentUser.email})`;
+        menuLogin.style.display = 'none';
       } else {
         label.textContent = 'Login';
         logoutBtn.style.display = 'none';
-        if (chkUser) chkUser.innerHTML = `Ordering as <strong>Guest</strong> — <span style="color:var(--fk-blue); cursor:pointer;" onclick="openAuthModal()">Click here to Login</span>`;
+        menuLogin.style.display = 'flex';
       }
     }
 
@@ -568,15 +607,15 @@
       document.getElementById('authModal').classList.remove('active');
     }
 
-    async function handleInstantAuth(mode) {
-      const name = document.getElementById('authName').value.trim() || 'G Kart User';
+    async function handleHeaderAuth(mode) {
+      const name = document.getElementById('authName').value.trim() || 'Valued Customer';
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value.trim();
       const msg = document.getElementById('authMsg');
 
       if (!email || password.length < 6) {
         msg.style.color = 'red';
-        msg.textContent = 'Please enter a valid email and at least 6 characters for password.';
+        msg.textContent = 'Please enter a valid email and at least 6 characters.';
         return;
       }
 
@@ -592,6 +631,9 @@
       updateAuthUI();
       showToast(`✓ Logged in as ${name}`);
       closeAuthModal();
+      if (document.getElementById('view-checkout').classList.contains('active')) {
+        renderFlipkartCheckout();
+      }
     }
 
     async function handleLogout() {
@@ -600,6 +642,9 @@
       localStorage.removeItem('gkart_user');
       updateAuthUI();
       showToast('Logged out successfully');
+      if (document.getElementById('view-checkout').classList.contains('active')) {
+        renderFlipkartCheckout();
+      }
     }
 
     async function syncSupabaseProducts() {
@@ -644,7 +689,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       if (viewName === 'cart') renderCartView();
-      if (viewName === 'checkout') renderCheckoutView();
+      if (viewName === 'checkout') renderFlipkartCheckout();
       if (viewName === 'orders') loadMyOrders();
       if (viewName === 'wishlist') renderWishlistView();
       if (viewName === 'seller') renderSellerProductList();
@@ -688,7 +733,7 @@
             <div class="pdp-gallery"><img src="${p.img}" /></div>
             <div class="pdp-cta-row">
               <button class="btn-add-cart" onclick="addItemToCart(${p.id}, false)"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
-              <button class="btn-buy-now" onclick="addItemToCart(${p.id}, true)"><i class="fa-solid fa-bolt"></i> BUY NOW</button>
+              <button class="btn-buy-now" onclick="buyNowFlipkart(${p.id})"><i class="fa-solid fa-bolt"></i> BUY NOW</button>
             </div>
           </div>
           <div class="pdp-right">
@@ -755,7 +800,7 @@
         const data = await res.json();
         if (data.serviceable) {
           statusEl.style.color = 'var(--fk-green)';
-          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (Est. Arrival: ${data.etd})`;
+          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (Est: ${data.etd})`;
         } else {
           statusEl.style.color = 'var(--fk-green)';
           statusEl.textContent = `✓ Deliverable to ${pin} via Shiprocket Standard`;
@@ -809,7 +854,20 @@
       else cart.push({ ...prod, qty: 1 });
       saveState();
       showToast(`Added "${prod.name}" to cart`);
-      navigateTo(goCheckout ? 'checkout' : 'cart');
+      if (goCheckout) startFlipkartCheckout();
+      else navigateTo('cart');
+    }
+
+    function buyNowFlipkart(productId) {
+      addItemToCart(productId, true);
+    }
+
+    function startFlipkartCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      navigateTo('checkout');
     }
 
     function changeQty(id, delta) {
@@ -854,13 +912,55 @@
       document.getElementById('summaryTotal').textContent = '₹' + pay.toLocaleString('en-IN');
     }
 
-    function renderCheckoutView() {
+    // =========================================================
+    // FLIPKART 4-STEP MANDATORY AUTHENTICATED CHECKOUT ENGINE
+    // =========================================================
+    function renderFlipkartCheckout() {
       updateAuthUI();
-      const summaryEl = document.getElementById('checkoutOrderSummary');
-      if (cart.length === 0) {
-        summaryEl.innerHTML = `<p style="color:red;">Your cart is empty.</p>`;
-        return;
+      const step1Box = document.getElementById('step1Box');
+      const step1Header = document.getElementById('step1Header');
+      const step1ChangeBtn = document.getElementById('step1ChangeBtn');
+      const inlineAuth = document.getElementById('checkoutInlineAuth');
+      const loggedInSummary = document.getElementById('checkoutLoggedInSummary');
+
+      const step2Box = document.getElementById('step2Box');
+      const step2Header = document.getElementById('step2Header');
+      const step3Box = document.getElementById('step3Box');
+      const step4Box = document.getElementById('step4Box');
+
+      if (!currentUser) {
+        // MUST LOG IN FIRST - Step 1 is active, Steps 2, 3, 4 are strictly locked
+        step1Header.className = 'step-header active';
+        document.getElementById('step1Title').textContent = '1. LOGIN OR SIGNUP';
+        step1ChangeBtn.style.display = 'none';
+        inlineAuth.style.display = 'block';
+        loggedInSummary.style.display = 'none';
+
+        step2Box.className = 'step-box locked';
+        step3Box.className = 'step-box locked';
+        step4Box.className = 'step-box locked';
+      } else {
+        // Logged In: Step 1 completed, Step 2 is unlocked
+        step1Header.className = 'step-header done';
+        document.getElementById('step1Title').textContent = '1. LOGIN ✓';
+        step1ChangeBtn.style.display = 'block';
+        inlineAuth.style.display = 'none';
+        loggedInSummary.style.display = 'block';
+        document.getElementById('step1UserName').textContent = currentUser.name || 'Valued Customer';
+        document.getElementById('step1UserEmail').textContent = currentUser.email;
+
+        // Auto pre-fill Step 2 Delivery Name
+        if (!document.getElementById('chkName').value) {
+          document.getElementById('chkName').value = currentUser.name || '';
+        }
+
+        // Unlock Step 2
+        step2Box.className = 'step-box';
+        step2Header.className = 'step-header active';
       }
+
+      // Populate Step 3 Order Summary
+      const summaryEl = document.getElementById('checkoutOrderSummary');
       const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       summaryEl.innerHTML = cart.map(i => `
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
@@ -870,7 +970,76 @@
       `).join('') + `<div style="text-align:right; font-size:18px; font-weight:800; margin-top:12px; color:var(--fk-blue);">Total Payable: ₹${total.toLocaleString('en-IN')}</div>`;
     }
 
+    async function handleCheckoutAuth(mode) {
+      const name = document.getElementById('chkAuthName').value.trim() || 'Valued Customer';
+      const email = document.getElementById('chkAuthEmail').value.trim();
+      const password = document.getElementById('chkAuthPass').value.trim();
+      const err = document.getElementById('chkAuthErr');
+
+      if (!email || password.length < 6) {
+        err.textContent = 'Please enter a valid email and at least 6 characters for password.';
+        return;
+      }
+      err.textContent = 'Authenticating...';
+
+      if (supabaseClient) {
+        try {
+          if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
+          else await supabaseClient.auth.signInWithPassword({ email, password });
+        } catch (e) {}
+      }
+
+      currentUser = { name, email };
+      localStorage.setItem('gkart_user', JSON.stringify(currentUser));
+      updateAuthUI();
+      err.textContent = '';
+      showToast(`✓ Logged in as ${name}`);
+      renderFlipkartCheckout();
+    }
+
+    function changeStep1Account() {
+      currentUser = null;
+      localStorage.removeItem('gkart_user');
+      updateAuthUI();
+      renderFlipkartCheckout();
+    }
+
+    function confirmStep2Address() {
+      const name = document.getElementById('chkName').value.trim();
+      const phone = document.getElementById('chkPhone').value.trim();
+      const pin = document.getElementById('chkPincode').value.trim();
+      const addr = document.getElementById('chkAddress').value.trim();
+
+      if (!name || phone.length < 10 || pin.length !== 6 || !addr) {
+        alert('Please fill out complete delivery details (Valid 10-digit Phone, 6-digit Pincode, and Street Address).');
+        return;
+      }
+
+      // Mark Step 2 Done, Unlock Step 3
+      document.getElementById('step2Header').className = 'step-header done';
+      document.getElementById('step3Box').className = 'step-box';
+      document.getElementById('step3Header').className = 'step-header active';
+      document.getElementById('step3Box').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function confirmStep3Summary() {
+      // Mark Step 3 Done, Unlock Step 4
+      document.getElementById('step3Header').className = 'step-header done';
+      document.getElementById('step4Box').className = 'step-box';
+      document.getElementById('step4Header').className = 'step-header active';
+      document.getElementById('step4Box').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // =========================================================
+    // COMPLETE ORDER (STRICTLY PROHIBITS GUEST ORDERS)
+    // =========================================================
     async function completeFlipkartOrder() {
+      if (!currentUser) {
+        alert('❌ Mandatory Login Required! Please log in at Step 1 before placing your order.');
+        document.getElementById('step1Box').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
       if (cart.length === 0) return alert('Your cart is empty!');
 
       const name = document.getElementById('chkName').value.trim();
@@ -883,7 +1052,8 @@
       const statusMsg = document.getElementById('checkoutStatusMsg');
 
       if (!name || !phone || !pincode || !address) {
-        return alert('Please fill out your Name, Phone, Pincode, and Address.');
+        alert('Please complete your Delivery Address at Step 2.');
+        return;
       }
 
       const total_amount = cart.reduce((s, i) => s + (i.price * i.qty), 0);
@@ -919,7 +1089,7 @@
             order_id: rzpInitData.order_id,
             prefill: {
               name: name,
-              email: currentUser?.email || 'gvivek3004@gmail.com',
+              email: currentUser.email,
               contact: phone
             },
             theme: { color: '#2874f0' },
@@ -946,12 +1116,12 @@
 
         } catch (err) {
           statusMsg.style.color = 'red';
-          statusMsg.textContent = 'Error connecting to Razorpay backend function.';
+          statusMsg.textContent = 'Error connecting to payment gateway.';
         }
         return;
       }
 
-      statusMsg.textContent = 'Creating COD Order in Supabase & Shiprocket...';
+      statusMsg.textContent = 'Creating COD Order in Shiprocket...';
       await finalizeOrderToBackend({
         name, phone, pincode, city, state, address, total_amount,
         payment_method: 'COD',
@@ -971,7 +1141,7 @@
           body: JSON.stringify({
             action: 'create_order',
             customer_name: details.name,
-            customer_email: currentUser?.email || 'gvivek3004@gmail.com',
+            customer_email: currentUser.email,
             customer_phone: details.phone,
             shipping_address: details.address,
             city: details.city,
@@ -994,7 +1164,7 @@
       const newOrderObj = {
         id: Math.floor(1000 + Math.random() * 9000),
         customer_name: details.name,
-        customer_email: currentUser?.email || 'gvivek3004@gmail.com',
+        customer_email: currentUser.email,
         customer_phone: details.phone,
         shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
         pincode: details.pincode,
@@ -1041,10 +1211,16 @@
           }
         } catch (e) {}
       }
+
+      // Filter orders strictly for current logged-in customer (like Flipkart)
+      if (currentUser) {
+        allOrders = allOrders.filter(o => !o.customer_email || o.customer_email.toLowerCase() === currentUser.email.toLowerCase());
+      }
+
       document.getElementById('orderCountMenu').textContent = allOrders.length;
 
       box.innerHTML = allOrders.length === 0
-        ? `<p style="color:var(--fk-muted); padding:20px 0;">No orders placed yet.</p>`
+        ? `<p style="color:var(--fk-muted); padding:20px 0;">No orders found for this account.</p>`
         : allOrders.map(o => `
           <div style="border:1px solid var(--fk-border); padding:16px; margin-bottom:14px; border-radius:4px; background:#fff;">
             <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px;">
@@ -1122,9 +1298,6 @@
       document.getElementById('wishlistGrid').innerHTML = items.length ? items.map(createCardHTML).join('') : '<p>Your wishlist is empty.</p>';
     }
 
-    // =========================================================
-    // SELLER HUB: ADD PRODUCT & DELETE PRODUCT
-    // =========================================================
     async function sellerAddProduct(e) {
       e.preventDefault();
       const newP = {
@@ -1142,7 +1315,6 @@
       customLocal.unshift(newP);
       localStorage.setItem('gkart_custom_prods', JSON.stringify(customLocal));
       allProducts.unshift(newP);
-
       if (supabaseClient) {
         try {
           await supabaseClient.from('products').insert([{
@@ -1184,30 +1356,24 @@
     async function sellerDeleteProduct(productId) {
       const target = allProducts.find(p => Number(p.id) === Number(productId));
       if (!target) return;
-      if (!confirm(`Are you sure you want to delete "${target.name}" from your store?`)) return;
+      if (!confirm(`Are you sure you want to delete "${target.name}"?`)) return;
 
-      // 1. Track deleted ID so even default demo products stay removed
       if (!deletedIds.includes(Number(productId))) {
         deletedIds.push(Number(productId));
         localStorage.setItem('gkart_deleted_ids', JSON.stringify(deletedIds));
       }
 
-      // 2. Remove from custom local products
       let customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
       customLocal = customLocal.filter(p => Number(p.id) !== Number(productId));
       localStorage.setItem('gkart_custom_prods', JSON.stringify(customLocal));
 
-      // 3. Remove from active memory, cart, and wishlist
       allProducts = allProducts.filter(p => Number(p.id) !== Number(productId));
       cart = cart.filter(i => Number(i.id) !== Number(productId));
       wishlist = wishlist.filter(id => Number(id) !== Number(productId));
       saveState();
 
-      // 4. Also delete from Supabase cloud database
       if (supabaseClient) {
-        try {
-          await supabaseClient.from('products').delete().eq('id', productId);
-        } catch (e) {}
+        try { await supabaseClient.from('products').delete().eq('id', productId); } catch (e) {}
       }
 
       renderHomeStrips();
