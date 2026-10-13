@@ -123,10 +123,18 @@
     .sort-tab.active { color: var(--fk-blue); border-bottom-color: var(--fk-blue); font-weight: 700; }
 
     .cart-left { flex: 1; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-    .cart-right { width: 350px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); padding: 16px 20px; }
+    .cart-right { width: 360px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); padding: 16px 20px; }
     .cart-item-row { padding: 18px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 18px; align-items: center; }
     .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff; font-weight: 700; cursor: pointer; }
     .fk-input { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 2px; font-size: 14px; margin-bottom: 12px; }
+
+    /* PROMO COUPON BOX STYLES */
+    .coupon-box { background: #f8fafc; border: 1px dashed var(--fk-blue); padding: 12px; border-radius: 4px; margin: 14px 0; }
+    .coupon-input-row { display: flex; gap: 8px; margin-top: 6px; }
+    .coupon-input-row input { flex: 1; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 2px; font-size: 13px; text-transform: uppercase; font-weight: 700; outline: none; }
+    .coupon-tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .coupon-pill { background: #eff6ff; color: var(--fk-blue); border: 1px solid #bfdbfe; padding: 3px 8px; font-size: 11px; font-weight: 700; border-radius: 3px; cursor: pointer; }
+    .coupon-pill:hover { background: var(--fk-blue); color: #fff; }
 
     /* CHECKOUT ACCORDION */
     .step-box { background: #fff; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; transition: opacity 0.3s; }
@@ -233,9 +241,9 @@
       <div class="carousel-box">
         <div class="slide">
           <div class="slide-content">
-            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">G KART OFFICIAL STORE</span>
+            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">USE CODE: WELCOME10 OR DIWALI20</span>
             <h2>Big Saving Days Are Live</h2>
-            <p>7-Day Easy Return & Replacement • Razorpay & Shiprocket Express</p>
+            <p>Extra Up to ₹5,000 Coupon Discount • Razorpay & Shiprocket Express</p>
             <button class="slide-btn" onclick="openCategory('All')">Shop All Deals</button>
           </div>
           <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:185px; border-radius:8px;" />
@@ -302,7 +310,7 @@
       <div id="pdpContent"></div>
     </div>
 
-    <!-- VIEW 4: CART -->
+    <!-- VIEW 4: CART (WITH PROMO CODE / COUPON BOX) -->
     <div id="view-cart" class="view-section">
       <div class="cart-layout">
         <div class="cart-left">
@@ -314,19 +322,43 @@
             <button class="btn-buy-now" style="width:240px;" onclick="startFlipkartCheckout()">PLACE ORDER</button>
           </div>
         </div>
+
         <div class="cart-right">
           <div style="color:var(--fk-muted); font-weight:700; padding-bottom:10px; border-bottom:1px solid var(--fk-border);">PRICE DETAILS</div>
-          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Total MRP</span><span id="summaryMrp">₹0</span></div>
-          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Discount</span><span style="color:var(--fk-green); font-weight:700;" id="summaryDisc">− ₹0</span></div>
-          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Shiprocket Delivery</span><span style="color:var(--fk-green); font-weight:700;">FREE</span></div>
+
+          <!-- PROMO CODE BOX ON CART PAGE -->
+          <div class="coupon-box">
+            <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">
+              <i class="fa-solid fa-ticket"></i> APPLY PROMO CODE / COUPON
+            </div>
+            <div class="coupon-input-row">
+              <input type="text" id="cartCouponInput" placeholder="e.g. WELCOME10" />
+              <button type="button" class="fk-btn-blue" style="padding:8px 14px;" onclick="applyCouponCode('cart')">APPLY</button>
+            </div>
+            <div class="coupon-tag-row">
+              <span class="coupon-pill" onclick="quickApplyCoupon('WELCOME10')">WELCOME10 (10% Off)</span>
+              <span class="coupon-pill" onclick="quickApplyCoupon('DIWALI20')">DIWALI20 (20% Off)</span>
+              <span class="coupon-pill" onclick="quickApplyCoupon('FLAT500')">FLAT500 (₹500 Off)</span>
+            </div>
+            <div id="cartCouponStatus" style="margin-top:8px; font-size:12px; font-weight:700;"></div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Total MRP</span><span id="summaryMrp">₹0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Product Discount</span><span style="color:var(--fk-green); font-weight:700;" id="summaryDisc">− ₹0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:12px 0;" id="summaryCouponRow">
+            <span>Coupon Discount <span id="summaryCouponBadge" style="font-size:11px; color:var(--fk-blue); font-weight:700;"></span></span>
+            <span style="color:var(--fk-green); font-weight:700;" id="summaryCouponAmt">− ₹0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Shiprocket Delivery</span><span style="color:var(--fk-green); font-weight:700;">FREE</span></div>
           <div style="display:flex; justify-content:space-between; padding:14px 0; border-top:1px dashed var(--fk-border); font-size:18px; font-weight:700;">
             <span>Total Payable</span><span id="summaryTotal">₹0</span>
           </div>
+          <div id="summaryTotalSavingsText" style="font-size:13px; color:var(--fk-green); font-weight:700; text-align:center; padding-top:4px;"></div>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 5: 4-STEP MANDATORY CHECKOUT -->
+    <!-- VIEW 5: 4-STEP MANDATORY CHECKOUT (WITH COUPON IN STEP 3) -->
     <div id="view-checkout" class="view-section">
       <div class="cart-layout">
         <div style="flex:1;">
@@ -400,16 +432,35 @@
             </div>
           </div>
 
-          <!-- STEP 3: ORDER SUMMARY -->
+          <!-- STEP 3: ORDER SUMMARY & CHECKOUT PROMO CODE -->
           <div class="step-box locked" id="step3Box">
             <div class="step-header" id="step3Header">
               <div class="step-header-left">
                 <span class="step-num">3</span>
-                <span>ORDER SUMMARY</span>
+                <span>ORDER SUMMARY & PROMO DISCOUNTS</span>
               </div>
             </div>
             <div class="step-body" id="step3Body">
               <div id="checkoutOrderSummary"></div>
+
+              <!-- PROMO CODE BOX INSIDE CHECKOUT -->
+              <div class="coupon-box" style="max-width:460px; margin-top:16px;">
+                <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">
+                  <i class="fa-solid fa-tag"></i> HAVE A PROMO CODE?
+                </div>
+                <div class="coupon-input-row">
+                  <input type="text" id="chkCouponInput" placeholder="Enter WELCOME10 / DIWALI20 / FLAT500" />
+                  <button type="button" class="fk-btn-blue" style="padding:8px 16px;" onclick="applyCouponCode('checkout')">APPLY</button>
+                  <button type="button" id="removeCouponBtn" style="display:none; background:#fee2e2; color:var(--fk-red); border:1px solid #fecaca; padding:8px 12px; font-size:12px; font-weight:700; cursor:pointer; border-radius:2px;" onclick="removeCoupon()">REMOVE</button>
+                </div>
+                <div class="coupon-tag-row">
+                  <span class="coupon-pill" onclick="quickApplyCoupon('WELCOME10')">WELCOME10</span>
+                  <span class="coupon-pill" onclick="quickApplyCoupon('DIWALI20')">DIWALI20</span>
+                  <span class="coupon-pill" onclick="quickApplyCoupon('FLAT500')">FLAT500</span>
+                </div>
+                <div id="chkCouponStatus" style="margin-top:8px; font-size:12px; font-weight:700;"></div>
+              </div>
+
               <button type="button" class="btn-buy-now" style="width:260px; margin-top:14px;" onclick="confirmStep3Summary()">CONTINUE TO PAYMENT</button>
             </div>
           </div>
@@ -439,7 +490,7 @@
                   <div>
                     <span>Cash on Delivery (COD — Pay at Doorstep)</span>
                     <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Pay cash to the courier boy when the box arrives
+                      Pay cash to the courier partner when the box arrives
                     </div>
                   </div>
                 </label>
@@ -679,6 +730,107 @@
       setTimeout(() => { t.style.display = 'none'; }, 3800);
     }
 
+    // =========================================================
+    // PROMO COUPON DEFINITIONS & CALCULATOR
+    // =========================================================
+    const COUPON_RULES = {
+      WELCOME10: { code: 'WELCOME10', type: 'percent', value: 10, minOrder: 1, maxDisc: 2000, desc: '10% Instant Discount (Up to ₹2,000)' },
+      DIWALI20:  { code: 'DIWALI20',  type: 'percent', value: 20, minOrder: 1500, maxDisc: 5000, desc: '20% Festive Discount (Up to ₹5,000)' },
+      FLAT500:   { code: 'FLAT500',   type: 'flat',    value: 500, minOrder: 2500, maxDisc: 500, desc: 'Flat ₹500 Off on Orders Above ₹2,500' }
+    };
+
+    let activeCouponCode = localStorage.getItem('gkart_coupon') || '';
+
+    function calculateCartPricing() {
+      const mrp = cart.reduce((s, i) => s + (i.mrp * i.qty), 0);
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const productDisc = Math.max(0, mrp - subtotal);
+
+      let couponDisc = 0;
+      let validCoupon = null;
+      let couponMessage = '';
+
+      if (activeCouponCode && COUPON_RULES[activeCouponCode]) {
+        const rule = COUPON_RULES[activeCouponCode];
+        if (subtotal >= rule.minOrder) {
+          validCoupon = rule;
+          if (rule.type === 'percent') {
+            couponDisc = Math.min(rule.maxDisc, Math.round((subtotal * rule.value) / 100));
+          } else {
+            couponDisc = rule.value;
+          }
+          couponMessage = `✓ ${rule.code} applied! You saved ₹${couponDisc.toLocaleString('en-IN')} (${rule.desc})`;
+        } else {
+          couponMessage = `⚠️ Add ₹${(rule.minOrder - subtotal).toLocaleString('en-IN')} more to use ${rule.code}`;
+        }
+      }
+
+      const finalPayable = Math.max(0, subtotal - couponDisc);
+      return { mrp, subtotal, productDisc, couponDisc, validCoupon, couponMessage, finalPayable };
+    }
+
+    function applyCouponCode(source) {
+      const inputEl = document.getElementById(source === 'cart' ? 'cartCouponInput' : 'chkCouponInput');
+      const code = (inputEl.value || '').trim().toUpperCase();
+
+      if (!code) {
+        showToast('Please enter a coupon code');
+        return;
+      }
+
+      if (!COUPON_RULES[code]) {
+        activeCouponCode = '';
+        localStorage.removeItem('gkart_coupon');
+        showToast(`❌ Invalid Coupon Code: ${code}`);
+        renderCartView();
+        renderFlipkartCheckout();
+        const statusEl = document.getElementById(source === 'cart' ? 'cartCouponStatus' : 'chkCouponStatus');
+        if (statusEl) {
+          statusEl.style.color = 'var(--fk-red)';
+          statusEl.textContent = `❌ "${code}" is not a valid promo code. Try WELCOME10, DIWALI20, or FLAT500.`;
+        }
+        return;
+      }
+
+      const subtotal = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const rule = COUPON_RULES[code];
+      if (subtotal < rule.minOrder) {
+        const statusEl = document.getElementById(source === 'cart' ? 'cartCouponStatus' : 'chkCouponStatus');
+        if (statusEl) {
+          statusEl.style.color = 'var(--fk-red)';
+          statusEl.textContent = `⚠️ Minimum order of ₹${rule.minOrder.toLocaleString('en-IN')} required for ${code}.`;
+        }
+        showToast(`Minimum order ₹${rule.minOrder} required for ${code}`);
+        return;
+      }
+
+      activeCouponCode = code;
+      localStorage.setItem('gkart_coupon', code);
+      renderCartView();
+      renderFlipkartCheckout();
+      const pricing = calculateCartPricing();
+      showToast(`🎉 Coupon ${code} Applied! Saved ₹${pricing.couponDisc.toLocaleString('en-IN')}`);
+    }
+
+    function quickApplyCoupon(code) {
+      const cartInput = document.getElementById('cartCouponInput');
+      const chkInput = document.getElementById('chkCouponInput');
+      if (cartInput) cartInput.value = code;
+      if (chkInput) chkInput.value = code;
+      const isCheckout = document.getElementById('view-checkout').classList.contains('active');
+      applyCouponCode(isCheckout ? 'checkout' : 'cart');
+    }
+
+    function removeCoupon() {
+      activeCouponCode = '';
+      localStorage.removeItem('gkart_coupon');
+      if (document.getElementById('cartCouponInput')) document.getElementById('cartCouponInput').value = '';
+      if (document.getElementById('chkCouponInput')) document.getElementById('chkCouponInput').value = '';
+      renderCartView();
+      renderFlipkartCheckout();
+      showToast('Coupon removed');
+    }
+
     const demoSeedProducts = [
       {
         name: 'APPLE iPhone 15 (Black, 128 GB)',
@@ -736,6 +888,7 @@
     let currentUser = null;
     let currentSort = 'popular';
     let adminUnlocked = sessionStorage.getItem('gkart_admin_ok') === 'true';
+    let cachedUserOrders = [];
 
     // 1. AUTHENTICATION & SESSION TRACKING
     async function initAuthSession() {
@@ -1170,7 +1323,7 @@
       loadProductReviews(productId);
     }
 
-    // 4. CART & 4-STEP CHECKOUT
+    // 4. CART & 4-STEP CHECKOUT WITH COUPON ENGINE
     function addItemToCart(productId, goCheckout) {
       const prod = allProducts.find(p => p.id === Number(productId));
       if (!prod || prod.stock <= 0) return showToast('Item out of stock');
@@ -1233,11 +1386,27 @@
         `).join('');
       }
 
-      const mrp = cart.reduce((s, i) => s + (i.mrp * i.qty), 0);
-      const pay = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-      document.getElementById('summaryMrp').textContent = '₹' + mrp.toLocaleString('en-IN');
-      document.getElementById('summaryDisc').textContent = '− ₹' + (mrp - pay).toLocaleString('en-IN');
-      document.getElementById('summaryTotal').textContent = '₹' + pay.toLocaleString('en-IN');
+      const pricing = calculateCartPricing();
+      if (document.getElementById('cartCouponInput')) {
+        document.getElementById('cartCouponInput').value = activeCouponCode || '';
+      }
+
+      const cartStatusEl = document.getElementById('cartCouponStatus');
+      if (cartStatusEl) {
+        cartStatusEl.style.color = pricing.validCoupon ? 'var(--fk-green)' : '#d97706';
+        cartStatusEl.textContent = pricing.couponMessage;
+      }
+
+      document.getElementById('summaryMrp').textContent = '₹' + pricing.mrp.toLocaleString('en-IN');
+      document.getElementById('summaryDisc').textContent = '− ₹' + pricing.productDisc.toLocaleString('en-IN');
+      document.getElementById('summaryCouponBadge').textContent = pricing.validCoupon ? `(${pricing.validCoupon.code})` : '';
+      document.getElementById('summaryCouponAmt').textContent = '− ₹' + pricing.couponDisc.toLocaleString('en-IN');
+      document.getElementById('summaryTotal').textContent = '₹' + pricing.finalPayable.toLocaleString('en-IN');
+
+      const totalSaved = pricing.productDisc + pricing.couponDisc;
+      document.getElementById('summaryTotalSavingsText').textContent = totalSaved > 0
+        ? `You will save ₹${totalSaved.toLocaleString('en-IN')} on this order!`
+        : '';
     }
 
     function renderFlipkartCheckout() {
@@ -1278,14 +1447,32 @@
         step2Header.className = 'step-header active';
       }
 
+      const pricing = calculateCartPricing();
+      if (document.getElementById('chkCouponInput')) {
+        document.getElementById('chkCouponInput').value = activeCouponCode || '';
+      }
+      if (document.getElementById('removeCouponBtn')) {
+        document.getElementById('removeCouponBtn').style.display = activeCouponCode ? 'inline-block' : 'none';
+      }
+      const chkStatusEl = document.getElementById('chkCouponStatus');
+      if (chkStatusEl) {
+        chkStatusEl.style.color = pricing.validCoupon ? 'var(--fk-green)' : '#d97706';
+        chkStatusEl.textContent = pricing.couponMessage;
+      }
+
       const summaryEl = document.getElementById('checkoutOrderSummary');
-      const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
       summaryEl.innerHTML = cart.map(i => `
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
           <span><strong>${i.name}</strong> (Qty: ${i.qty})</span>
           <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
         </div>
-      `).join('') + `<div style="text-align:right; font-size:18px; font-weight:800; margin-top:12px; color:var(--fk-blue);">Total: ₹${total.toLocaleString('en-IN')}</div>`;
+      `).join('') + `
+        <div style="margin-top:12px; padding-top:10px; font-size:14px; text-align:right; line-height:1.8;">
+          <div>Cart Subtotal: <strong>₹${pricing.subtotal.toLocaleString('en-IN')}</strong></div>
+          ${pricing.couponDisc > 0 ? `<div style="color:var(--fk-green); font-weight:700;">Promo Code (${pricing.validCoupon.code}): − ₹${pricing.couponDisc.toLocaleString('en-IN')}</div>` : ''}
+          <div style="font-size:19px; font-weight:800; color:var(--fk-blue); margin-top:4px;">Final Payable Amount: ₹${pricing.finalPayable.toLocaleString('en-IN')}</div>
+        </div>
+      `;
     }
 
     function confirmStep2Address() {
@@ -1328,7 +1515,9 @@
       const selectedMode = document.querySelector('input[name="payOptionRadio"]:checked').value;
       const statusMsg = document.getElementById('checkoutStatusMsg');
 
-      const total_amount = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const pricing = calculateCartPricing();
+      const total_amount = pricing.finalPayable;
+      const couponTag = pricing.validCoupon ? ` [Coupon ${pricing.validCoupon.code}: -₹${pricing.couponDisc}]` : '';
 
       if (selectedMode === 'RAZORPAY') {
         statusMsg.style.color = 'var(--fk-blue)';
@@ -1353,7 +1542,7 @@
             amount: rzpInitData.amount,
             currency: 'INR',
             name: 'G Kart Store',
-            description: 'Order Payment',
+            description: 'Order Payment' + couponTag,
             order_id: rzpInitData.order_id,
             prefill: { name, email: currentUser.email, contact: phone },
             theme: { color: '#2874f0' },
@@ -1363,7 +1552,7 @@
               await finalizeOrderToBackend({
                 name, phone, pincode, city, state, address, total_amount,
                 payment_method: 'Prepaid',
-                payment_label: `Prepaid (Razorpay ID: ${response.razorpay_payment_id})`,
+                payment_label: `Prepaid (Razorpay ID: ${response.razorpay_payment_id})${couponTag}`,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_signature: response.razorpay_signature
@@ -1384,7 +1573,7 @@
       await finalizeOrderToBackend({
         name, phone, pincode, city, state, address, total_amount,
         payment_method: 'COD',
-        payment_label: 'Cash on Delivery (COD)'
+        payment_label: `Cash on Delivery (COD)${couponTag}`
       });
     }
 
@@ -1392,13 +1581,36 @@
       const statusMsg = document.getElementById('checkoutStatusMsg');
       const itemNames = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
 
-      let shiprocketTag = 'Direct Courier Pending';
+      // 1. Insert Order in Supabase first to get database ID for Webhook mapping
+      const { data: insertedRows, error } = await supabaseClient.from('orders').insert([{
+        user_id: currentUser.id,
+        customer_name: details.name,
+        customer_email: currentUser.email,
+        customer_phone: details.phone,
+        shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
+        pincode: details.pincode,
+        total_amount: details.total_amount,
+        order_status: `${details.payment_label} • Syncing Shiprocket...`,
+        lifecycle_stage: 'Confirmed'
+      }]).select();
+
+      if (error) {
+        statusMsg.style.color = 'var(--fk-red)';
+        statusMsg.textContent = 'Failed to persist order: ' + error.message;
+        return;
+      }
+
+      const dbOrderId = insertedRows && insertedRows[0] ? insertedRows[0].id : null;
+
+      // 2. Push to Shiprocket with GKART-<dbOrderId> so webhooks map back automatically
+      let shiprocketTag = 'Shiprocket Dispatched';
       try {
         const srRes = await fetch('/.netlify/functions/shiprocket', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'create_order',
+            db_order_id: dbOrderId,
             customer_name: details.name,
             customer_email: currentUser.email,
             customer_phone: details.phone,
@@ -1415,28 +1627,19 @@
           })
         });
         const srData = await srRes.json();
-        if (srData.order_id) shiprocketTag = `Shiprocket Order #${srData.order_id}`;
+        if (srData.order_id) {
+          shiprocketTag = `Shiprocket Order #${srData.order_id}`;
+          if (dbOrderId) {
+            await supabaseClient.from('orders').update({
+              order_status: `${details.payment_label} • ${shiprocketTag}`
+            }).eq('id', dbOrderId);
+          }
+        }
       } catch (e) {}
 
-      const { error } = await supabaseClient.from('orders').insert([{
-        user_id: currentUser.id,
-        customer_name: details.name,
-        customer_email: currentUser.email,
-        customer_phone: details.phone,
-        shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
-        pincode: details.pincode,
-        total_amount: details.total_amount,
-        order_status: `${details.payment_label} • ${shiprocketTag}`,
-        lifecycle_stage: 'Confirmed'
-      }]);
-
-      if (error) {
-        statusMsg.style.color = 'var(--fk-red)';
-        statusMsg.textContent = 'Failed to persist order: ' + error.message;
-        return;
-      }
-
       cart = [];
+      activeCouponCode = '';
+      localStorage.removeItem('gkart_coupon');
       saveState();
       statusMsg.textContent = '';
       await refreshCloudOrderCount();
@@ -1444,7 +1647,7 @@
       navigateTo('orders');
     }
 
-    // 5. PRIVATE ORDERS & LIFECYCLE
+    // 5. PRIVATE ORDERS, LIFECYCLE & TAX INVOICE PDF
     async function loadMyOrders() {
       const box = document.getElementById('ordersListContainer');
       if (!currentUser || !currentUser.id) {
@@ -1465,14 +1668,15 @@
         return;
       }
 
-      document.getElementById('orderCountMenu').textContent = cloudOrders ? cloudOrders.length : 0;
+      cachedUserOrders = cloudOrders || [];
+      document.getElementById('orderCountMenu').textContent = cachedUserOrders.length;
 
-      if (!cloudOrders || cloudOrders.length === 0) {
+      if (cachedUserOrders.length === 0) {
         box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">No active orders found.</p>`;
         return;
       }
 
-      box.innerHTML = cloudOrders.map(o => {
+      box.innerHTML = cachedUserOrders.map(o => {
         const stage = o.lifecycle_stage || 'Confirmed';
         const isPreDelivery = ['Confirmed', 'Packed', 'Shipped'].includes(stage);
         const isDelivered = stage === 'Delivered';
@@ -1503,6 +1707,10 @@
             </div>
 
             <div style="margin-top:14px; padding-top:12px; border-top:1px solid #f0f0f0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <button class="btn-order-action" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;" onclick="downloadTaxInvoice(${o.id})">
+                <i class="fa-solid fa-file-pdf"></i> Download Tax Invoice (PDF)
+              </button>
+
               ${isPreDelivery ? `
                 <button class="btn-order-action" style="background:#fef2f2; color:var(--fk-red); border-color:#fecaca;" onclick="openOrderActionModal(${o.id}, 'Cancel')">
                   <i class="fa-solid fa-ban"></i> Cancel Order
@@ -1524,6 +1732,114 @@
           </div>
         `;
       }).join('');
+    }
+
+    function downloadTaxInvoice(orderId) {
+      const o = cachedUserOrders.find(x => Number(x.id) === Number(orderId));
+      if (!o) return;
+
+      const invNo = `GK-INV-2026-${1000 + Number(o.id)}`;
+      const orderDate = o.created_at ? new Date(o.created_at).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN');
+      const total = Number(o.total_amount);
+      const taxableValue = (total / 1.18).toFixed(2);
+      const gstAmount = (total - Number(taxableValue)).toFixed(2);
+
+      const parts = (o.shipping_address || '').split('| Items:');
+      const cleanAddress = parts[0] || o.shipping_address;
+      const itemsText = parts[1] ? parts[1].trim() : 'G Kart Merchandise';
+
+      const win = window.open('', '_blank', 'width=850,height=700');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Tax Invoice - ${invNo}</title>
+          <style>
+            body { font-family: Arial, sans-serif; color: #111; padding: 32px; max-width: 800px; margin: 0 auto; }
+            .inv-header { display: flex; justify-content: space-between; border-bottom: 2px solid #2874f0; padding-bottom: 16px; margin-bottom: 20px; }
+            .brand { font-size: 26px; font-weight: 800; color: #2874f0; font-style: italic; }
+            .grid { display: flex; justify-content: space-between; gap: 24px; margin-bottom: 24px; font-size: 13px; line-height: 1.6; }
+            .box { flex: 1; border: 1px solid #d1d5db; padding: 12px; border-radius: 4px; background: #f9fafb; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 13px; }
+            th, td { border: 1px solid #d1d5db; padding: 10px; text-align: left; }
+            th { background: #eff6ff; font-weight: 700; }
+            .totals { text-align: right; font-size: 14px; line-height: 1.8; }
+            .footer { margin-top: 40px; border-top: 1px dashed #9ca3af; padding-top: 14px; display: flex; justify-content: space-between; font-size: 12px; color: #555; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom:16px; text-align:right;">
+            <button onclick="window.print()" style="background:#2874f0; color:#fff; border:none; padding:10px 20px; font-weight:700; border-radius:4px; cursor:pointer;">
+              🖨️ Print / Save as PDF
+            </button>
+          </div>
+          <div class="inv-header">
+            <div>
+              <div class="brand">G Kart Official Store</div>
+              <div style="font-size:12px; color:#555;">Tax Invoice / Bill of Supply / Cash Memo</div>
+            </div>
+            <div style="text-align:right; font-size:13px;">
+              <strong>Invoice No:</strong> ${invNo}<br/>
+              <strong>Order ID:</strong> #GK-${1000 + Number(o.id)}<br/>
+              <strong>Invoice Date:</strong> ${orderDate}
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="box">
+              <strong>Sold By (Authorized Merchant):</strong><br/>
+              G Kart Retail & Logistics<br/>
+              Akurdi, Pimpri-Chinchwad, Pune<br/>
+              Maharashtra - 411035, India<br/>
+              Support: gvivek3004@gmail.com
+            </div>
+            <div class="box">
+              <strong>Billing & Shipping Address:</strong><br/>
+              <strong>${o.customer_name}</strong><br/>
+              ${cleanAddress}<br/>
+              Pincode: <strong>${o.pincode}</strong><br/>
+              Phone: ${o.customer_phone} | Email: ${o.customer_email}
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Description of Goods</th>
+                <th>Taxable Value</th>
+                <th>IGST / CGST+SGST (18%)</th>
+                <th>Net Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>${itemsText}</strong><br/><span style="font-size:11px; color:#555;">${o.order_status}</span></td>
+                <td>₹${Number(taxableValue).toLocaleString('en-IN')}</td>
+                <td>₹${Number(gstAmount).toLocaleString('en-IN')}</td>
+                <td><strong>₹${total.toLocaleString('en-IN')}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="totals">
+            <div>Taxable Subtotal: ₹${Number(taxableValue).toLocaleString('en-IN')}</div>
+            <div>Total GST Included (18%): ₹${Number(gstAmount).toLocaleString('en-IN')}</div>
+            <div>Shiprocket Courier Charges: FREE (₹0.00)</div>
+            <div style="font-size:18px; font-weight:800; color:#2874f0; margin-top:6px;">
+              Grand Total Paid / Payable: ₹${total.toLocaleString('en-IN')}
+            </div>
+          </div>
+
+          <div class="footer">
+            <div>* This is a computer-generated tax invoice and does not require a physical signature.</div>
+            <div><strong>Authorized Signatory — G Kart Store</strong></div>
+          </div>
+          <script>setTimeout(() => window.print(), 400);<\/script>
+        </body>
+        </html>
+      `);
+      win.document.close();
     }
 
     function openOrderActionModal(orderId, actionType) {
