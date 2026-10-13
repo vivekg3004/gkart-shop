@@ -56,7 +56,7 @@
     .cat-name { font-size: 13px; font-weight: 600; color: #333; }
     .cat-card:hover .cat-name { color: var(--fk-blue); }
 
-    /* APP CONTAINER & VIEWS */
+    /* VIEW MANAGEMENT */
     .app-container { max-width: 1248px; width: 100%; margin: 0 auto 32px auto; padding: 0 8px; flex: 1; }
     .view-section { display: none; }
     .view-section.active { display: block; }
@@ -68,7 +68,7 @@
     .slide-content p { font-size: 16px; color: var(--fk-yellow); font-weight: 600; margin-bottom: 16px; }
     .slide-btn { background: #fff; color: var(--fk-blue); border: none; padding: 10px 24px; font-weight: 700; border-radius: 2px; cursor: pointer; font-size: 14px; }
 
-    /* PRODUCT STRIPS & CARDS */
+    /* PRODUCT CARDS */
     .strip-card { background: #fff; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
     .strip-header { padding: 14px 20px; border-bottom: 1px solid var(--fk-border); display: flex; align-items: center; justify-content: space-between; }
     .strip-title { font-size: 19px; font-weight: 700; }
@@ -92,7 +92,7 @@
     .p-mrp { font-size: 13px; color: var(--fk-muted); text-decoration: line-through; }
     .p-off { font-size: 13px; font-weight: 700; color: var(--fk-green); }
 
-    /* CATALOG, PDP, CART */
+    /* PDP LAYOUT */
     .catalog-layout, .cart-layout, .pdp-card { display: flex; gap: 16px; align-items: flex-start; }
     .pdp-card { background: #fff; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
     .pdp-left { width: 420px; flex-shrink: 0; position: sticky; top: 72px; }
@@ -107,7 +107,7 @@
     .btn-disabled { background: #9ca3af !important; cursor: not-allowed !important; }
     .pdp-right { flex: 1; }
 
-    /* FLIPKART SPECS TABLE */
+    /* SPECIFICATIONS TABLE */
     .specs-box { border: 1px solid var(--fk-border); border-radius: 2px; margin: 20px 0; }
     .specs-header { padding: 14px 18px; font-size: 18px; font-weight: 700; border-bottom: 1px solid var(--fk-border); background: #f9fafb; }
     .specs-row { display: flex; padding: 12px 18px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
@@ -128,7 +128,7 @@
     .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff; font-weight: 700; cursor: pointer; }
     .fk-input { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 2px; font-size: 14px; margin-bottom: 12px; }
 
-    /* FLIPKART 4-STEP CHECKOUT ACCORDION */
+    /* CHECKOUT ACCORDION */
     .step-box { background: #fff; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; transition: opacity 0.3s; }
     .step-box.locked { opacity: 0.5; pointer-events: none; }
     .step-header { padding: 14px 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-transform: uppercase; }
@@ -140,13 +140,13 @@
     .step-header.done .step-num { background: #f0f0f0; color: var(--fk-blue); }
     .step-body { padding: 20px 24px; }
 
-    /* SELLER HUB & ACTION BUTTONS */
+    /* SELLER & ACTION BUTTONS */
     .seller-item-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px; border: 1px solid var(--fk-border); border-radius: 4px; margin-bottom: 10px; background: #fafafa; flex-wrap: wrap; }
     .btn-edit-prod { background: var(--fk-blue); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
     .btn-delete-prod { background: var(--fk-red); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
     .btn-order-action { padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; border: 1px solid; display: inline-flex; align-items: center; gap: 6px; }
 
-    /* MODALS & TOAST */
+    /* MODALS & NOTIFICATIONS */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
     .modal-overlay.active { display: flex; }
     .fk-auth-modal { width: 680px; min-height: 440px; background: #fff; border-radius: 4px; display: flex; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.3); position: relative; }
@@ -194,7 +194,7 @@
             <i class="fa-regular fa-user"></i> <span id="authUserLabel">Login</span> <i class="fa-solid fa-angle-down" style="font-size:11px;"></i>
           </button>
           <div class="dropdown-menu">
-            <div class="dropdown-item" id="menuLoginItem" onclick="openAuthModal()"><i class="fa-solid fa-user-check"></i> Sign In / Create Account</div>
+            <div class="dropdown-item" id="menuLoginItem" onclick="openAuthModal()"><i class="fa-solid fa-user-check"></i> Sign In / Register</div>
             <div class="dropdown-item" onclick="navigateTo('orders')"><i class="fa-solid fa-box-open"></i> My Orders (<span id="orderCountMenu">0</span>)</div>
             <div class="dropdown-item" onclick="navigateTo('wishlist')"><i class="fa-solid fa-heart"></i> Wishlist (<span id="wishCountMenu">0</span>)</div>
             <div class="dropdown-item" onclick="navigateTo('seller')"><i class="fa-solid fa-store"></i> Seller Hub (Admin)</div>
@@ -297,7 +297,7 @@
       </div>
     </div>
 
-    <!-- VIEW 3: FULL FLIPKART PRODUCT DETAIL PAGE (PDP) -->
+    <!-- VIEW 3: FULL FLIPKART PDP -->
     <div id="view-pdp" class="view-section">
       <div id="pdpContent"></div>
     </div>
@@ -326,7 +326,7 @@
       </div>
     </div>
 
-    <!-- VIEW 5: 4-STEP MANDATORY AUTHENTICATED CHECKOUT -->
+    <!-- VIEW 5: 4-STEP MANDATORY CHECKOUT -->
     <div id="view-checkout" class="view-section">
       <div class="cart-layout">
         <div style="flex:1;">
@@ -342,9 +342,9 @@
             </div>
             <div class="step-body" id="step1Body">
               <div id="checkoutInlineAuth">
-                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, please log in with your registered account or create a new account:</p>
+                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, please log in with your account or create a new one:</p>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-                  <input type="text" id="chkAuthName" class="fk-input" placeholder="Full Name (for new account)" />
+                  <input type="text" id="chkAuthName" class="fk-input" placeholder="Full Name (for new signups)" />
                   <input type="email" id="chkAuthEmail" class="fk-input" placeholder="Email Address *" required />
                 </div>
                 <input type="password" id="chkAuthPass" class="fk-input" placeholder="Password (min 6 characters) *" required />
@@ -356,7 +356,7 @@
               </div>
               <div id="checkoutLoggedInSummary" style="display:none;">
                 <p style="font-size:15px;">Logged in Customer: <strong id="step1UserName"></strong></p>
-                <p style="font-size:14px; color:#555;">Verified Account Email: <strong id="step1UserEmail"></strong></p>
+                <p style="font-size:14px; color:#555;">Account Email: <strong id="step1UserEmail"></strong></p>
               </div>
             </div>
           </div>
@@ -373,11 +373,11 @@
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
                 <div>
                   <label style="font-size:12px; font-weight:700;">Recipient Full Name *</label>
-                  <input type="text" id="chkName" class="fk-input" placeholder="Name for courier delivery" />
+                  <input type="text" id="chkName" class="fk-input" placeholder="Name for delivery" />
                 </div>
                 <div>
                   <label style="font-size:12px; font-weight:700;">10-Digit Mobile Number *</label>
-                  <input type="tel" id="chkPhone" class="fk-input" placeholder="10-digit mobile number" maxlength="10" />
+                  <input type="tel" id="chkPhone" class="fk-input" placeholder="10-digit mobile" maxlength="10" />
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
@@ -394,8 +394,8 @@
                   <input type="text" id="chkState" class="fk-input" value="Maharashtra" />
                 </div>
               </div>
-              <label style="font-size:12px; font-weight:700;">Full Street Address (Flat/House No, Area, Landmark) *</label>
-              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Enter complete street address"></textarea>
+              <label style="font-size:12px; font-weight:700;">Full Street Address (House No, Street, Landmark) *</label>
+              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Full street address"></textarea>
               <button type="button" class="btn-buy-now" style="width:260px;" onclick="confirmStep2Address()">DELIVER HERE</button>
             </div>
           </div>
@@ -439,7 +439,7 @@
                   <div>
                     <span>Cash on Delivery (COD — Pay at Doorstep)</span>
                     <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Pay cash or UPI to the courier partner when the parcel arrives
+                      Pay cash to the courier boy when the box arrives
                     </div>
                   </div>
                 </label>
@@ -457,13 +457,13 @@
       </div>
     </div>
 
-    <!-- VIEW 6: STRICTLY PRIVATE MY ORDERS (WITH CANCEL, RETURN & REPLACE) -->
+    <!-- VIEW 6: STRICTLY PRIVATE ORDERS -->
     <div id="view-orders" class="view-section">
       <div style="background:#fff; padding:24px; box-shadow:0 1px 2px rgba(0,0,0,.12);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
           <div>
-            <h2>My Private Orders & Post-Purchase Service</h2>
-            <p style="font-size:13px; color:var(--fk-muted); margin-top:4px;">Only orders belonging to your authenticated account are visible here.</p>
+            <h2>My Orders & Post-Purchase Services</h2>
+            <p style="font-size:13px; color:var(--fk-muted); margin-top:4px;">Secure view: Only orders belonging to your authenticated account are visible.</p>
           </div>
           <button class="fk-btn-blue" onclick="navigateTo('home')">+ Continue Shopping</button>
         </div>
@@ -479,13 +479,13 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SELLER HUB (ADD, EDIT, DELETE, BULK CSV UPLOAD & ORDER MANAGER) -->
+    <!-- VIEW 8: SELLER HUB -->
     <div id="view-seller" class="view-section">
       <div style="background:#fff; padding:24px; max-width:980px; margin:0 auto; box-shadow:0 1px 2px rgba(0,0,0,.12);">
 
-        <!-- 8A: ADD OR EDIT SINGLE PRODUCT FORM -->
+        <!-- 8A: ADD / EDIT PRODUCT FORM -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h2 id="sellerFormHeading" style="color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add New Flipkart Product</h2>
+          <h2 id="sellerFormHeading" style="color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add Flipkart Product</h2>
           <button type="button" id="cancelEditBtn" style="display:none; background:#6b7280; color:#fff; border:none; padding:8px 14px; border-radius:3px; cursor:pointer; font-weight:700;" onclick="resetSellerForm()">Cancel Edit</button>
         </div>
 
@@ -498,7 +498,7 @@
             </div>
             <div>
               <label style="font-size:12px; font-weight:700;">Brand Name *</label>
-              <input type="text" id="sellBrand" class="fk-input" placeholder="e.g. APPLE / Sony / PUMA" required />
+              <input type="text" id="sellBrand" class="fk-input" placeholder="e.g. APPLE / Sony" required />
             </div>
             <div>
               <label style="font-size:12px; font-weight:700;">Category *</label>
@@ -523,23 +523,23 @@
               <input type="number" id="sellMrp" class="fk-input" placeholder="e.g. 79900" required />
             </div>
             <div>
-              <label style="font-size:12px; font-weight:700;">Available Stock Qty *</label>
+              <label style="font-size:12px; font-weight:700;">Stock Quantity *</label>
               <input type="number" id="sellStock" class="fk-input" value="15" required />
             </div>
             <div>
-              <label style="font-size:12px; font-weight:700;">Model / SKU Code *</label>
+              <label style="font-size:12px; font-weight:700;">SKU / Model Code *</label>
               <input type="text" id="sellSku" class="fk-input" placeholder="e.g. GK-IPH15-BLK" required />
             </div>
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
             <div>
-              <label style="font-size:12px; font-weight:700;">Primary Image URL (Main Photo) *</label>
+              <label style="font-size:12px; font-weight:700;">Primary Image URL *</label>
               <input type="url" id="sellImg" class="fk-input" placeholder="https://..." required />
             </div>
             <div>
-              <label style="font-size:12px; font-weight:700;">Additional Gallery Image URLs (Comma-separated)</label>
-              <input type="text" id="sellExtraImgs" class="fk-input" placeholder="https://img2.jpg, https://img3.jpg, https://img4.jpg" />
+              <label style="font-size:12px; font-weight:700;">Additional Image URLs (Comma-separated)</label>
+              <input type="text" id="sellExtraImgs" class="fk-input" placeholder="https://img2.jpg, https://img3.jpg" />
             </div>
           </div>
 
@@ -555,48 +555,48 @@
           </div>
 
           <label style="font-size:12px; font-weight:700;">Key Highlights (Pipe | separated) *</label>
-          <input type="text" id="sellDesc" class="fk-input" placeholder="e.g. 128 GB ROM | 6.1 inch Display | 48MP Camera | A16 Bionic Chip" required />
+          <input type="text" id="sellDesc" class="fk-input" placeholder="e.g. 128 GB ROM | 6.1 inch Display | 48MP Camera" required />
 
-          <label style="font-size:12px; font-weight:700;">Flipkart Technical Specifications (Format: Key: Value | Key: Value)</label>
-          <textarea id="sellSpecs" class="fk-input" rows="2" placeholder="In The Box: Handset, USB-C Cable | Model Name: iPhone 15 | Color: Black | SIM Type: Dual SIM | Weight: 171 g"></textarea>
+          <label style="font-size:12px; font-weight:700;">Specifications (Format: Key: Value | Key: Value)</label>
+          <textarea id="sellSpecs" class="fk-input" rows="2" placeholder="In The Box: Handset, Cable | Model Name: iPhone 15 | Color: Black | Weight: 171 g"></textarea>
 
           <button type="submit" id="sellerSubmitBtn" class="fk-btn-blue" style="padding:12px 28px; font-size:14px;">+ Publish Product to Cloud</button>
         </form>
 
-        <!-- 8B: BULK PRODUCT UPLOAD (CSV) -->
+        <!-- 8B: BULK CSV IMPORT -->
         <div style="background:#f8fafc; border:1px dashed var(--fk-blue); padding:18px; border-radius:4px; margin-bottom:28px;">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
             <div>
-              <h3 style="color:var(--fk-blue); margin-bottom:4px;"><i class="fa-solid fa-file-csv"></i> Bulk Product Upload (CSV / Excel)</h3>
-              <p style="font-size:13px; color:#555;">Upload 10 to 500 products at once with full Flipkart specifications.</p>
+              <h3 style="color:var(--fk-blue); margin-bottom:4px;"><i class="fa-solid fa-file-csv"></i> Bulk CSV Product Uploader</h3>
+              <p style="font-size:13px; color:#555;">Import products in batches with complete attributes.</p>
             </div>
             <button type="button" class="fk-btn-blue" style="background:#059669;" onclick="downloadSampleCSV()">
-              <i class="fa-solid fa-download"></i> 1. Download Sample CSV Template
+              <i class="fa-solid fa-download"></i> 1. Download Sample CSV
             </button>
           </div>
           <div style="display:flex; align-items:center; gap:12px; margin-top:14px; flex-wrap:wrap;">
             <input type="file" id="bulkCsvInput" accept=".csv" class="fk-input" style="margin-bottom:0; flex:1; background:#fff;" />
             <button type="button" class="btn-buy-now" style="padding:11px 22px; flex:0 0 auto;" onclick="handleBulkCSVUpload()">
-              <i class="fa-solid fa-cloud-arrow-up"></i> 2. Upload & Publish CSV Products
+              <i class="fa-solid fa-cloud-arrow-up"></i> 2. Ingest CSV Products
             </button>
           </div>
           <div id="bulkUploadStatus" style="margin-top:8px; font-size:13px; font-weight:700; color:var(--fk-green);"></div>
         </div>
 
-        <!-- 8C: MANAGE, EDIT & DELETE EXISTING CLOUD PRODUCTS -->
+        <!-- 8C: INVENTORY TABLE -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h3>Manage Existing Cloud Products (<span id="sellerTotalCount">0</span>)</h3>
+          <h3>Manage Cloud Catalog (<span id="sellerTotalCount">0</span>)</h3>
           <button type="button" class="fk-btn-blue" style="background:#4b5563; font-size:12px; padding:6px 12px;" onclick="restoreDefaultCatalog()">
             Seed Demo Catalog
           </button>
         </div>
         <div id="sellerProductsManageList" style="margin-bottom:32px;"></div>
 
-        <!-- 8D: ADMIN ORDER & RETURN/REPLACEMENT FULFILLMENT MANAGER -->
+        <!-- 8D: ADMIN ORDER DISPATCHER -->
         <div style="border-top:2px solid var(--fk-border); padding-top:24px;">
-          <h3 style="color:var(--fk-blue); margin-bottom:6px;"><i class="fa-solid fa-boxes-packing"></i> Admin Order & Return/Replacement Manager</h3>
+          <h3 style="color:var(--fk-blue); margin-bottom:6px;"><i class="fa-solid fa-boxes-packing"></i> Order Dispatch & Fulfillment Controller</h3>
           <p style="font-size:13px; color:#555; margin-bottom:14px;">
-            Update customer order stages here (e.g., switch an order to <strong>Delivered</strong> to unlock customer <strong>Return & Replace</strong> buttons).
+            Advance order stages manually to trigger customer-side cancellation, return, or replacement buttons.
           </p>
           <div id="adminOrdersManageList"></div>
         </div>
@@ -606,21 +606,21 @@
 
   </div>
 
-  <!-- LOGIN / CREATE ACCOUNT MODAL -->
+  <!-- AUTH MODAL -->
   <div class="modal-overlay" id="authModal">
     <div class="fk-auth-modal">
       <div class="fk-auth-left">
         <div>
           <h2 style="font-size:26px; margin-bottom:12px;" id="authTitle">Login / Sign Up</h2>
           <p style="font-size:14px; line-height:1.6; color:#dbeafe;">
-            Sign in with your verified password to view your private Orders, Return/Replace items, and manage your Wishlist.
+            Access private order histories, real-time returns, and profile preferences.
           </p>
         </div>
-        <div style="font-size:12px; opacity:0.9;">✓ Encrypted Supabase Auth</div>
+        <div style="font-size:12px; opacity:0.9;">✓ Supabase Session Management</div>
       </div>
       <div class="fk-auth-right">
         <button onclick="closeAuthModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
-        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Your Full Name (For New Sign Up)</label>
+        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Full Name (New Accounts)</label>
         <input type="text" id="authName" class="fk-input" placeholder="e.g. Vivek Gurav" />
         <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Email Address *</label>
         <input type="email" id="authEmail" class="fk-input" placeholder="Enter your email *" />
@@ -628,7 +628,7 @@
         <input type="password" id="authPassword" class="fk-input" placeholder="Enter password *" />
         <div id="authMsg" style="font-size:13px; margin-bottom:12px; font-weight:700;"></div>
         <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleHeaderAuth('login')">
-          LOGIN TO EXISTING ACCOUNT
+          LOGIN TO ACCOUNT
         </button>
         <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleHeaderAuth('signup')">
           CREATE NEW ACCOUNT
@@ -637,7 +637,7 @@
     </div>
   </div>
 
-  <!-- CANCEL / RETURN / REPLACE REASON MODAL -->
+  <!-- ACTION MODAL -->
   <div class="modal-overlay" id="orderActionModal">
     <div style="background:#fff; width:480px; max-width:95%; border-radius:4px; padding:24px; box-shadow:0 10px 25px rgba(0,0,0,.3); position:relative;">
       <button onclick="closeOrderActionModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:22px; cursor:pointer;">&times;</button>
@@ -649,8 +649,8 @@
       <label style="font-size:12px; font-weight:700;">Select Reason *</label>
       <select id="actionReasonSelect" class="fk-input" style="margin-top:4px;"></select>
 
-      <label style="font-size:12px; font-weight:700;">Additional Comments / Pickup Instructions *</label>
-      <textarea id="actionCommentInput" class="fk-input" rows="2" placeholder="Provide details for faster processing..." required></textarea>
+      <label style="font-size:12px; font-weight:700;">Comments / Pickup Instructions</label>
+      <textarea id="actionCommentInput" class="fk-input" rows="2" placeholder="Details for reverse courier..."></textarea>
 
       <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
         <button type="button" class="fk-btn-blue" style="background:#6b7280;" onclick="closeOrderActionModal()">Close</button>
@@ -662,7 +662,7 @@
   <footer class="fk-footer">
     <div class="footer-grid">
       <div><h4>G KART STORE</h4><a onclick="navigateTo('home')">Home</a><a onclick="navigateTo('seller')">Seller Hub</a></div>
-      <div><h4>CUSTOMER</h4><a onclick="openAuthModal()">Login / Sign Up</a><a onclick="navigateTo('orders')">Track / Return Orders</a></div>
+      <div><h4>CUSTOMER</h4><a onclick="openAuthModal()">Login / Sign Up</a><a onclick="navigateTo('orders')">Track Orders</a></div>
       <div><h4>CONTACT</h4><p>gvivek3004@gmail.com | Pune, Maharashtra</p></div>
     </div>
   </footer>
@@ -694,7 +694,7 @@
         warranty: '1 Year Apple India Official Warranty',
         return_policy: '7 Days Service Center Replacement',
         description: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Processor',
-        specifications: 'In The Box: iPhone 15, USB-C Charge Cable, Documentation | Model Number: MTP03HN/A | Color: Black | SIM Type: Dual SIM (Nano + eSIM) | Processor: A16 Bionic Chip | Operating System: iOS 17 | Weight: 171 g'
+        specifications: 'In The Box: iPhone 15, USB-C Charge Cable | Model Number: MTP03HN/A | Color: Black | Processor: A16 Bionic | Weight: 171 g'
       },
       {
         name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)',
@@ -707,13 +707,13 @@
         rating: 4.4,
         image_url: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600',
         extra_images: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600',
-        warranty: '1 Year Samsung Manufacturer Warranty for Device',
-        return_policy: '7 Days Return & Replacement Policy',
-        description: '8 GB RAM | 128 GB ROM | 50MP Flagship Pro-Grade Camera | 4500 mAh Battery',
-        specifications: 'In The Box: Handset, Data Cable, Ejection Pin | Model Name: Galaxy S23 FE 5G | Display: 6.4 inch Dynamic AMOLED 2X | Battery: 4500 mAh | Weight: 209 g'
+        warranty: '1 Year Samsung Manufacturer Warranty',
+        return_policy: '7 Days Easy Return & Replacement',
+        description: '8 GB RAM | 128 GB ROM | 50MP Pro-Grade Camera | 4500 mAh Battery',
+        specifications: 'In The Box: Handset, Data Cable | Display: 6.4 inch Dynamic AMOLED 2X | Battery: 4500 mAh | Weight: 209 g'
       },
       {
-        name: 'Sony WH-CH720N Wireless Noise Cancelling Headphones',
+        name: 'Sony WH-CH720N Noise Cancelling Headphones',
         brand: 'SONY',
         category: 'Electronics',
         price: 7990,
@@ -722,43 +722,11 @@
         sku: 'GK-SNY-WHCH720N',
         rating: 4.5,
         image_url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
-        extra_images: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600',
+        extra_images: '',
         warranty: '1 Year Sony India Domestic Warranty',
         return_policy: '7 Days Easy Return & Replacement',
-        description: 'Up to 50 Hours Battery Life | Multipoint Bluetooth Connection | Integrated V1 Noise Cancelling Processor',
-        specifications: 'In The Box: Headphones, Connection Cable, USB Cable | Bluetooth Version: 5.2 | Battery Life: 50 Hours | Weight: 192 g'
-      },
-      {
-        name: 'Noise ColorFit Icon 2 1.8" Bluetooth Calling Smartwatch',
-        brand: 'NOISE',
-        category: 'Electronics',
-        price: 1199,
-        mrp: 5999,
-        stock: 35,
-        sku: 'GK-NOISE-ICON2',
-        rating: 4.2,
-        image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
-        extra_images: '',
-        warranty: '1 Year Manufacturer Warranty',
-        return_policy: '7 Days Easy Return & Replacement',
-        description: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof Rating',
-        specifications: 'In The Box: Smartwatch, Magnetic Charger, User Manual | Strap Material: Silicone | Water Resistant: Yes (IP68)'
-      },
-      {
-        name: 'PUMA Men Running Sports Shoes',
-        brand: 'PUMA',
-        category: 'Fashion',
-        price: 1649,
-        mrp: 3999,
-        stock: 25,
-        sku: 'GK-PUMA-RUN-09',
-        rating: 4.3,
-        image_url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600',
-        extra_images: '',
-        warranty: '90 Days Manufacturer Warranty Against Manufacturing Defects',
-        return_policy: '10 Days Size Exchange & Return',
-        description: 'Breathable Mesh Upper | Cushioned Midsole | High-Traction Rubber Outsole',
-        specifications: 'Outer Material: Mesh | Sole Material: Rubber | Closure: Lace-Up | Ideal For: Men Sports & Running'
+        description: '50 Hours Battery Life | Multipoint Bluetooth | Integrated V1 Processor',
+        specifications: 'In The Box: Headphones, Charging Cable | Bluetooth: 5.2 | Battery Life: 50 Hours | Weight: 192 g'
       }
     ];
 
@@ -769,11 +737,17 @@
     let currentSort = 'popular';
     let adminUnlocked = sessionStorage.getItem('gkart_admin_ok') === 'true';
 
-    // =========================================================
-    // 1. REAL SUPABASE AUTHENTICATION (VERIFIED SESSIONS ONLY)
-    // =========================================================
+    // 1. AUTHENTICATION & SESSION TRACKING
     async function initAuthSession() {
       const { data: { session } } = await supabaseClient.auth.getSession();
+      handleSessionState(session);
+
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        handleSessionState(session);
+      });
+    }
+
+    function handleSessionState(session) {
       if (session && session.user) {
         currentUser = {
           id: session.user.id,
@@ -783,7 +757,7 @@
       } else {
         currentUser = null;
       }
-      await updateAuthUI();
+      updateAuthUI();
     }
 
     async function updateAuthUI() {
@@ -828,52 +802,46 @@
     async function authenticateWithSupabase(mode, name, email, password, errElement) {
       if (!email || password.length < 6) {
         errElement.style.color = 'var(--fk-red)';
-        errElement.textContent = 'Please enter a valid email and at least 6 characters for password.';
+        errElement.textContent = 'Enter a valid email and a password of at least 6 characters.';
         return false;
       }
 
       errElement.style.color = 'var(--fk-blue)';
-      errElement.textContent = mode === 'signup' ? 'Creating your account...' : 'Verifying credentials...';
+      errElement.textContent = mode === 'signup' ? 'Creating account...' : 'Verifying credentials...';
 
-      let authResult;
+      let res;
       if (mode === 'signup') {
-        authResult = await supabaseClient.auth.signUp({
+        res = await supabaseClient.auth.signUp({
           email,
           password,
           options: { data: { full_name: name || email.split('@')[0] } }
         });
       } else {
-        authResult = await supabaseClient.auth.signInWithPassword({ email, password });
+        res = await supabaseClient.auth.signInWithPassword({ email, password });
       }
 
-      const { data, error } = authResult;
-
+      const { data, error } = res;
       if (error) {
         errElement.style.color = 'var(--fk-red)';
-        if (error.message.toLowerCase().includes('email not confirmed')) {
-          errElement.textContent = 'Please disable "Confirm email" in Supabase -> Authentication -> Providers -> Email.';
-        } else {
-          errElement.textContent = error.message;
-        }
+        errElement.textContent = error.message;
         return false;
       }
 
       if (!data.session && mode === 'signup') {
         errElement.style.color = 'var(--fk-red)';
-        errElement.textContent = 'Account created! Please disable "Confirm email" in Supabase Auth settings so users can log in immediately.';
+        errElement.textContent = 'Account created. Check your inbox or turn off "Confirm email" in Supabase settings.';
         return false;
       }
 
-      const userObj = data.user;
       currentUser = {
-        id: userObj.id,
-        email: userObj.email,
-        name: userObj.user_metadata?.full_name || name || userObj.email.split('@')[0]
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.user_metadata?.full_name || name || data.user.email.split('@')[0]
       };
 
       errElement.textContent = '';
-      await updateAuthUI();
-      showToast(`✓ Welcome, ${currentUser.name}!`);
+      updateAuthUI();
+      showToast(`✓ Logged in as ${currentUser.name}`);
       return true;
     }
 
@@ -904,15 +872,13 @@
     async function handleLogout() {
       await supabaseClient.auth.signOut();
       currentUser = null;
-      await updateAuthUI();
+      updateAuthUI();
       showToast('Logged out successfully');
       if (document.getElementById('view-checkout').classList.contains('active')) renderFlipkartCheckout();
       if (document.getElementById('view-orders').classList.contains('active')) loadMyOrders();
     }
 
-    // =========================================================
-    // 2. CLOUD PRODUCTS SYNC & NAVIGATION
-    // =========================================================
+    // 2. PRODUCT CATALOG
     async function syncSupabaseProducts() {
       const { data, error } = await supabaseClient
         .from('products')
@@ -920,8 +886,8 @@
         .order('id', { ascending: false });
 
       if (!error && data) {
-        if (data.length === 0 && !localStorage.getItem('gkart_cloud_seeded_v2')) {
-          localStorage.setItem('gkart_cloud_seeded_v2', 'true');
+        if (data.length === 0 && !localStorage.getItem('gkart_seeded_v3')) {
+          localStorage.setItem('gkart_seeded_v3', 'true');
           await supabaseClient.from('products').insert(demoSeedProducts);
           return syncSupabaseProducts();
         }
@@ -929,18 +895,18 @@
         allProducts = data.map(p => ({
           id: Number(p.id),
           name: p.name,
-          brand: p.brand || 'G Kart Assured',
+          brand: p.brand || 'G Kart',
           category: p.category || 'Electronics',
           price: Number(p.price),
           mrp: Number(p.mrp || Math.round(Number(p.price) * 1.35)),
-          stock: p.stock !== null && p.stock !== undefined ? Number(p.stock) : 10,
+          stock: p.stock !== null ? Number(p.stock) : 10,
           sku: p.sku || `GK-SKU-${p.id}`,
           rating: Number(p.rating || 4.5),
           img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
           extra_images: p.extra_images || '',
           warranty: p.warranty || '1 Year Manufacturer Warranty',
-          return_policy: p.return_policy || '7 Days Easy Return & Replacement',
-          desc: p.description || '1 Year Warranty | G Kart Assured',
+          return_policy: p.return_policy || '7 Days Return & Replacement',
+          desc: p.description || '',
           specifications: p.specifications || ''
         }));
       }
@@ -950,17 +916,16 @@
     }
 
     function navigateTo(viewName) {
-      // Strictly require login to open My Orders
       if (viewName === 'orders' && !currentUser) {
-        showToast('🔒 Please log in to view your private orders');
+        showToast('🔒 Log in to view your orders');
         openAuthModal();
         return;
       }
 
       if (viewName === 'seller' && !adminUnlocked) {
-        const pin = prompt('🔒 Admin Access Only — Enter Seller Hub PIN:');
+        const pin = prompt('Enter Seller Hub PIN:');
         if (pin !== '3004') {
-          showToast('❌ Access Denied: Invalid Admin PIN');
+          showToast('❌ Invalid Admin PIN');
           return;
         }
         adminUnlocked = true;
@@ -1008,38 +973,30 @@
       document.getElementById('homeElecGrid').innerHTML = allProducts.filter(p => p.category === 'Mobiles' || p.category === 'Electronics').slice(0, 5).map(createCardHTML).join('');
     }
 
-    // =========================================================
-    // 3. FULL FLIPKART PRODUCT DETAIL PAGE (MULTI-IMAGE, SPECS, STOCK)
-    // =========================================================
+    // 3. PRODUCT DETAIL PAGE (PDP)
     function openPDP(productId) {
       const p = allProducts.find(i => i.id === Number(productId));
       if (!p) return;
-      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
-      const defaultReviewer = currentUser ? currentUser.name : '';
 
-      // Build Multi-Image Array
+      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
       const galleryImgs = [p.img];
       if (p.extra_images) {
         p.extra_images.split(',').map(u => u.trim()).filter(Boolean).forEach(u => galleryImgs.push(u));
       }
 
-      // Build Highlights Bullet List
       const highlightsList = (p.desc || '').split('|').map(h => h.trim()).filter(Boolean);
-
-      // Build Structured Flipkart Specifications Rows
       const specPairs = [
         { k: 'Brand', v: p.brand },
-        { k: 'Model / SKU', v: p.sku },
+        { k: 'SKU / Model', v: p.sku },
         { k: 'Category', v: p.category },
         { k: 'Warranty Summary', v: p.warranty },
-        { k: 'Return / Replacement Policy', v: p.return_policy }
+        { k: 'Return Policy', v: p.return_policy }
       ];
+
       if (p.specifications) {
         p.specifications.split('|').forEach(pair => {
           const idx = pair.indexOf(':');
-          if (idx > -1) {
-            specPairs.push({ k: pair.slice(0, idx).trim(), v: pair.slice(idx + 1).trim() });
-          }
+          if (idx > -1) specPairs.push({ k: pair.slice(0, idx).trim(), v: pair.slice(idx + 1).trim() });
         });
       }
 
@@ -1051,7 +1008,7 @@
             <div class="pdp-gallery"><img id="pdpMainImg" src="${galleryImgs[0]}" /></div>
             <div class="pdp-thumbs">
               ${galleryImgs.map((url, idx) => `
-                <img src="${url}" class="pdp-thumb ${idx === 0 ? 'active' : ''}" onclick="switchPdpImage('${url}', this)" onmouseover="switchPdpImage('${url}', this)" />
+                <img src="${url}" class="pdp-thumb ${idx === 0 ? 'active' : ''}" onclick="switchPdpImage('${url}', this)" />
               `).join('')}
             </div>
             <div class="pdp-cta-row">
@@ -1072,7 +1029,7 @@
               <span class="green-star-pill">${p.rating} ★</span>
               <span class="assured-tag">G-Assured ✓</span>
               <span style="font-size:13px; font-weight:700; color:${inStock ? 'var(--fk-green)' : 'var(--fk-red)'};">
-                ${inStock ? `• In Stock (${p.stock} units available)` : '• Currently Out of Stock'}
+                ${inStock ? `• In Stock (${p.stock} remaining)` : '• Currently Out of Stock'}
               </span>
             </div>
 
@@ -1082,32 +1039,28 @@
               <span class="p-off" style="font-size:16px;">${disc}% off</span>
             </div>
 
-            <!-- SERVICE & POLICY STRIP -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin:14px 0; padding:12px; background:#f8fafc; border:1px solid var(--fk-border); border-radius:4px; font-size:13px;">
               <div><i class="fa-solid fa-shield-halved" style="color:var(--fk-blue);"></i> <strong>Warranty:</strong> ${p.warranty}</div>
               <div><i class="fa-solid fa-rotate-left" style="color:var(--fk-green);"></i> <strong>Returns:</strong> ${p.return_policy}</div>
-              <div><i class="fa-solid fa-file-invoice" style="color:var(--fk-orange);"></i> <strong>Invoice:</strong> GST Invoice Available</div>
+              <div><i class="fa-solid fa-file-invoice" style="color:var(--fk-orange);"></i> <strong>GST Invoice:</strong> Supported</div>
             </div>
 
-            <!-- SHIPROCKET PINCODE CHECK -->
             <div style="margin:14px 0; padding:14px; background:#fff; border:1px solid var(--fk-border); border-radius:4px;">
-              <strong><i class="fa-solid fa-location-dot" style="color:var(--fk-blue);"></i> Check Live Shiprocket Delivery Availability:</strong>
+              <strong>Check Delivery:</strong>
               <div style="display:flex; gap:10px; margin-top:8px; align-items:center; flex-wrap:wrap;">
-                <input type="text" id="pdpPinInput" placeholder="Enter 6-digit Pincode" value="411035" maxlength="6" style="padding:8px; border:1px solid #ccc; width:140px;" />
-                <button type="button" class="fk-btn-blue" onclick="checkRealShiprocketPincode()">Check Pincode</button>
-                <span id="pdpPinStatus" style="font-size:13px; font-weight:700; color:var(--fk-green);">✓ Express Delivery in 2–4 Days</span>
+                <input type="text" id="pdpPinInput" value="411035" maxlength="6" style="padding:8px; border:1px solid #ccc; width:130px;" />
+                <button type="button" class="fk-btn-blue" onclick="checkRealShiprocketPincode()">Check</button>
+                <span id="pdpPinStatus" style="font-size:13px; font-weight:700; color:var(--fk-green);">✓ Serviceable</span>
               </div>
             </div>
 
-            <!-- PRODUCT HIGHLIGHTS -->
             <div style="margin:18px 0;">
-              <strong style="font-size:15px; color:var(--fk-muted); display:block; margin-bottom:8px;">Key Highlights</strong>
+              <strong style="font-size:15px; color:var(--fk-muted); display:block; margin-bottom:8px;">Key Features</strong>
               <ul style="padding-left:20px; font-size:14px; line-height:1.8;">
                 ${highlightsList.map(h => `<li>${h}</li>`).join('')}
               </ul>
             </div>
 
-            <!-- FLIPKART SPECIFICATIONS TABLE -->
             <div class="specs-box">
               <div class="specs-header">Specifications</div>
               ${specPairs.map(sp => `
@@ -1118,12 +1071,11 @@
               `).join('')}
             </div>
 
-            <!-- CUSTOMER REVIEWS -->
             <div style="border-top:2px solid var(--fk-border); padding-top:18px;">
-              <h3 style="margin-bottom:12px;">Ratings & Verified Customer Reviews</h3>
+              <h3 style="margin-bottom:12px;">Customer Reviews</h3>
               <form onsubmit="submitProductReview(event, ${p.id})" style="background:#f9fafb; padding:14px; border:1px solid var(--fk-border); border-radius:4px; margin-bottom:16px;">
                 <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
-                  <input type="text" id="revName" placeholder="Your Name *" value="${defaultReviewer}" required style="padding:9px; border:1px solid #ccc; flex:1;" />
+                  <input type="text" id="revName" placeholder="Your Name" value="${currentUser ? currentUser.name : ''}" required style="padding:9px; border:1px solid #ccc; flex:1;" />
                   <select id="revRating" style="padding:9px; border:1px solid #ccc;">
                     <option value="5">5 ★ Excellent</option>
                     <option value="4">4 ★ Very Good</option>
@@ -1131,8 +1083,8 @@
                   </select>
                 </div>
                 <div style="display:flex; gap:10px;">
-                  <input type="text" id="revComment" placeholder="Write your review... *" required style="flex:1; padding:9px; border:1px solid #ccc;" />
-                  <button type="submit" class="fk-btn-blue" style="padding:9px 22px;">Post Review</button>
+                  <input type="text" id="revComment" placeholder="Write feedback..." required style="flex:1; padding:9px; border:1px solid #ccc;" />
+                  <button type="submit" class="fk-btn-blue" style="padding:9px 22px;">Submit</button>
                 </div>
               </form>
               <div id="pdpReviewsList"></div>
@@ -1154,12 +1106,14 @@
       const pin = document.getElementById('pdpPinInput').value.trim();
       const statusEl = document.getElementById('pdpPinStatus');
       if (pin.length !== 6 || isNaN(pin)) {
-        statusEl.style.color = 'red';
-        statusEl.textContent = 'Enter a valid 6-digit pincode.';
+        statusEl.style.color = 'var(--fk-red)';
+        statusEl.textContent = 'Invalid 6-digit Pincode';
         return;
       }
+
       statusEl.style.color = 'var(--fk-blue)';
-      statusEl.textContent = 'Checking live Shiprocket couriers...';
+      statusEl.textContent = 'Checking courier coverage...';
+
       try {
         const res = await fetch('/.netlify/functions/shiprocket', {
           method: 'POST',
@@ -1169,14 +1123,14 @@
         const data = await res.json();
         if (data.serviceable) {
           statusEl.style.color = 'var(--fk-green)';
-          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (Est: ${data.etd})`;
+          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (${data.etd})`;
         } else {
           statusEl.style.color = 'var(--fk-green)';
-          statusEl.textContent = `✓ Deliverable to ${pin} via Shiprocket Standard`;
+          statusEl.textContent = `✓ Standard Delivery Available`;
         }
       } catch (e) {
         statusEl.style.color = 'var(--fk-green)';
-        statusEl.textContent = `✓ Deliverable to ${pin} via Shiprocket Express`;
+        statusEl.textContent = `✓ Standard Delivery Available`;
       }
     }
 
@@ -1189,7 +1143,7 @@
         .order('id', { ascending: false });
 
       if (error || !data || data.length === 0) {
-        box.innerHTML = `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet. Be the first to review this product!</p>`;
+        box.innerHTML = `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet.</p>`;
         return;
       }
 
@@ -1209,23 +1163,25 @@
         rating: Number(document.getElementById('revRating').value),
         comment: document.getElementById('revComment').value.trim()
       }]);
-      if (error) return alert('Review Error: ' + error.message);
+
+      if (error) return alert('Review Submission Error: ' + error.message);
       document.getElementById('revComment').value = '';
-      showToast('✓ Review published!');
+      showToast('✓ Review recorded');
       loadProductReviews(productId);
     }
 
-    // =========================================================
-    // 4. CART & FLIPKART 4-STEP MANDATORY CHECKOUT
-    // =========================================================
+    // 4. CART & 4-STEP CHECKOUT
     function addItemToCart(productId, goCheckout) {
       const prod = allProducts.find(p => p.id === Number(productId));
-      if (!prod || prod.stock <= 0) return showToast('Sorry, this product is out of stock');
+      if (!prod || prod.stock <= 0) return showToast('Item out of stock');
+
       const existing = cart.find(i => i.id === Number(productId));
       if (existing) existing.qty += 1;
       else cart.push({ ...prod, qty: 1 });
+
       saveState();
-      showToast(`Added "${prod.name}" to cart`);
+      showToast(`Added ${prod.name} to cart`);
+
       if (goCheckout) startFlipkartCheckout();
       else navigateTo('cart');
     }
@@ -1235,15 +1191,17 @@
     }
 
     function startFlipkartCheckout() {
-      if (cart.length === 0) return alert('Your cart is empty!');
+      if (cart.length === 0) return alert('Cart is empty.');
       navigateTo('checkout');
     }
 
     function changeQty(id, delta) {
       const item = cart.find(i => i.id === Number(id));
       if (!item) return;
+
       item.qty += delta;
       if (item.qty <= 0) cart = cart.filter(i => i.id !== Number(id));
+
       saveState();
       renderCartView();
     }
@@ -1263,7 +1221,7 @@
             <img src="${i.img}" style="width:75px; height:75px; object-fit:contain;" />
             <div style="flex:1;">
               <strong>${i.name}</strong>
-              <div style="font-size:12px; color:var(--fk-muted);">${i.brand} • ${i.return_policy}</div>
+              <div style="font-size:12px; color:var(--fk-muted);">${i.brand}</div>
               <div style="margin:6px 0; font-size:17px; font-weight:700;">₹${(i.price * i.qty).toLocaleString('en-IN')}</div>
               <div style="display:flex; align-items:center; gap:10px;">
                 <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
@@ -1327,7 +1285,7 @@
           <span><strong>${i.name}</strong> (Qty: ${i.qty})</span>
           <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
         </div>
-      `).join('') + `<div style="text-align:right; font-size:18px; font-weight:800; margin-top:12px; color:var(--fk-blue);">Total Payable: ₹${total.toLocaleString('en-IN')}</div>`;
+      `).join('') + `<div style="text-align:right; font-size:18px; font-weight:800; margin-top:12px; color:var(--fk-blue);">Total: ₹${total.toLocaleString('en-IN')}</div>`;
     }
 
     function confirmStep2Address() {
@@ -1337,7 +1295,7 @@
       const addr = document.getElementById('chkAddress').value.trim();
 
       if (!name || phone.length < 10 || pin.length !== 6 || !addr) {
-        alert('Please fill out complete delivery details (Valid 10-digit Phone, 6-digit Pincode, and Street Address).');
+        alert('Complete recipient details: 10-digit phone, 6-digit pincode, and street address.');
         return;
       }
 
@@ -1356,10 +1314,10 @@
 
     async function completeFlipkartOrder() {
       if (!currentUser || !currentUser.id) {
-        alert('❌ Mandatory Login Required! Please log in at Step 1 before placing your order.');
+        alert('Authentication required.');
         return;
       }
-      if (cart.length === 0) return alert('Your cart is empty!');
+      if (cart.length === 0) return alert('Cart is empty.');
 
       const name = document.getElementById('chkName').value.trim();
       const phone = document.getElementById('chkPhone').value.trim();
@@ -1374,7 +1332,7 @@
 
       if (selectedMode === 'RAZORPAY') {
         statusMsg.style.color = 'var(--fk-blue)';
-        statusMsg.textContent = 'Opening secure Razorpay Payment Gateway...';
+        statusMsg.textContent = 'Initializing Razorpay Gateway...';
 
         try {
           const rzpInitRes = await fetch('/.netlify/functions/shiprocket', {
@@ -1385,8 +1343,8 @@
           const rzpInitData = await rzpInitRes.json();
 
           if (!rzpInitData.order_id) {
-            statusMsg.style.color = 'red';
-            statusMsg.textContent = rzpInitData.error || 'Could not initialize Razorpay.';
+            statusMsg.style.color = 'var(--fk-red)';
+            statusMsg.textContent = rzpInitData.error || 'Razorpay initialization failed.';
             return;
           }
 
@@ -1401,11 +1359,11 @@
             theme: { color: '#2874f0' },
             handler: async function (response) {
               statusMsg.style.color = 'var(--fk-green)';
-              statusMsg.textContent = '✓ Payment Verified! Saving Private Order...';
+              statusMsg.textContent = 'Payment verified. Registering order...';
               await finalizeOrderToBackend({
                 name, phone, pincode, city, state, address, total_amount,
                 payment_method: 'Prepaid',
-                payment_label: `Paid Online (Razorpay ID: ${response.razorpay_payment_id})`,
+                payment_label: `Prepaid (Razorpay ID: ${response.razorpay_payment_id})`,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_signature: response.razorpay_signature
@@ -1416,13 +1374,13 @@
           const rzpPopup = new window.Razorpay(options);
           rzpPopup.open();
         } catch (err) {
-          statusMsg.style.color = 'red';
-          statusMsg.textContent = 'Error connecting to payment gateway.';
+          statusMsg.style.color = 'var(--fk-red)';
+          statusMsg.textContent = 'Gateway connection error.';
         }
         return;
       }
 
-      statusMsg.textContent = 'Saving COD Order to Supabase Cloud & Shiprocket...';
+      statusMsg.textContent = 'Saving COD Order...';
       await finalizeOrderToBackend({
         name, phone, pincode, city, state, address, total_amount,
         payment_method: 'COD',
@@ -1434,7 +1392,7 @@
       const statusMsg = document.getElementById('checkoutStatusMsg');
       const itemNames = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
 
-      let shiprocketTag = 'Shiprocket Dispatched';
+      let shiprocketTag = 'Direct Courier Pending';
       try {
         const srRes = await fetch('/.netlify/functions/shiprocket', {
           method: 'POST',
@@ -1460,7 +1418,6 @@
         if (srData.order_id) shiprocketTag = `Shiprocket Order #${srData.order_id}`;
       } catch (e) {}
 
-      // Save strictly tied to currentUser.id (UUID)
       const { error } = await supabaseClient.from('orders').insert([{
         user_id: currentUser.id,
         customer_name: details.name,
@@ -1474,8 +1431,8 @@
       }]);
 
       if (error) {
-        statusMsg.style.color = 'red';
-        statusMsg.textContent = 'Order Save Error: ' + error.message;
+        statusMsg.style.color = 'var(--fk-red)';
+        statusMsg.textContent = 'Failed to persist order: ' + error.message;
         return;
       }
 
@@ -1483,21 +1440,19 @@
       saveState();
       statusMsg.textContent = '';
       await refreshCloudOrderCount();
-      showToast('🎉 Private Order Confirmed & Dispatched!');
+      showToast('🎉 Order Placed Successfully');
       navigateTo('orders');
     }
 
-    // =========================================================
-    // 5. PRIVATE ORDERS + CANCEL, RETURN & REPLACE WORKFLOWS
-    // =========================================================
+    // 5. PRIVATE ORDERS & LIFECYCLE
     async function loadMyOrders() {
       const box = document.getElementById('ordersListContainer');
       if (!currentUser || !currentUser.id) {
-        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">Please log in to view your private orders.</p>`;
+        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">Log in to access your orders.</p>`;
         return;
       }
 
-      box.innerHTML = `<p style="padding:20px 0; color:var(--fk-blue); font-weight:700;">Loading private orders for ${currentUser.email}...</p>`;
+      box.innerHTML = `<p style="padding:20px 0; color:var(--fk-blue); font-weight:700;">Retrieving private orders...</p>`;
 
       const { data: cloudOrders, error } = await supabaseClient
         .from('orders')
@@ -1506,14 +1461,14 @@
         .order('id', { ascending: false });
 
       if (error) {
-        box.innerHTML = `<p style="color:red; padding:20px 0;">Error loading orders: ${error.message}</p>`;
+        box.innerHTML = `<p style="color:var(--fk-red); padding:20px 0;">Order load failed: ${error.message}</p>`;
         return;
       }
 
       document.getElementById('orderCountMenu').textContent = cloudOrders ? cloudOrders.length : 0;
 
       if (!cloudOrders || cloudOrders.length === 0) {
-        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">No orders placed under your account (${currentUser.email}) yet.</p>`;
+        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">No active orders found.</p>`;
         return;
       }
 
@@ -1529,42 +1484,40 @@
         return `
           <div style="border:1px solid var(--fk-border); padding:18px; margin-bottom:16px; border-radius:4px; background:#fff;">
             <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px;">
-              <strong>Order #GK-${1000 + Number(o.id)} • ${o.customer_name} (📞 ${o.customer_phone})</strong>
+              <strong>Order #GK-${1000 + Number(o.id)} • Recipient: ${o.customer_name} (${o.customer_phone})</strong>
               <strong style="font-size:18px; color:var(--fk-blue);">₹${Number(o.total_amount).toLocaleString('en-IN')}</strong>
             </div>
             <div style="font-size:13px; color:#444; margin-bottom:6px;">
-              <strong>Delivery Details:</strong> ${o.shipping_address} — <strong>Pincode: ${o.pincode}</strong>
+              <strong>Destination:</strong> ${o.shipping_address} — <strong>Pincode: ${o.pincode}</strong>
             </div>
             <div style="font-size:13px; font-weight:700; color:${badgeColor}; margin-bottom:8px;">
-              Current Stage: <span style="padding:2px 8px; border-radius:3px; background:#f3f4f6;">${stage}</span> • ${o.order_status}
-              ${o.action_reason ? `<div style="color:#b91c1c; margin-top:4px;">Customer Request Reason: ${o.action_reason}</div>` : ''}
+              Status: <span style="padding:2px 8px; border-radius:3px; background:#f3f4f6;">${stage}</span> • ${o.order_status}
+              ${o.action_reason ? `<div style="color:var(--fk-red); margin-top:4px;">Action Reason: ${o.action_reason}</div>` : ''}
             </div>
 
-            <!-- TRACKING TIMELINE -->
             <div class="track-bar">
-              <div class="track-step ${stage !== 'Cancelled' ? 'done' : ''}"><div class="track-dot"></div>Order Confirmed</div>
+              <div class="track-step ${stage !== 'Cancelled' ? 'done' : ''}"><div class="track-dot"></div>Confirmed</div>
               <div class="track-step ${['Packed','Shipped','Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Packed</div>
               <div class="track-step ${['Shipped','Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Shipped</div>
               <div class="track-step ${['Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Delivered</div>
             </div>
 
-            <!-- ACTION BUTTONS: CANCEL (PRE-DELIVERY) OR RETURN/REPLACE (POST-DELIVERY) -->
             <div style="margin-top:14px; padding-top:12px; border-top:1px solid #f0f0f0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
               ${isPreDelivery ? `
                 <button class="btn-order-action" style="background:#fef2f2; color:var(--fk-red); border-color:#fecaca;" onclick="openOrderActionModal(${o.id}, 'Cancel')">
                   <i class="fa-solid fa-ban"></i> Cancel Order
                 </button>
                 <button class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe; margin-left:auto;" onclick="markOrderStage(${o.id}, 'Delivered')">
-                  <i class="fa-solid fa-box-check"></i> Mark as Delivered (Test Return/Replace)
+                  <i class="fa-solid fa-check"></i> Mark Delivered (Test Returns)
                 </button>
               ` : ''}
 
               ${isDelivered ? `
                 <button class="btn-order-action" style="background:#fff7ed; color:#ea580c; border-color:#fed7aa;" onclick="openOrderActionModal(${o.id}, 'Return')">
-                  <i class="fa-solid fa-rotate-left"></i> Return Order (Refund)
+                  <i class="fa-solid fa-rotate-left"></i> Return (Refund)
                 </button>
                 <button class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe;" onclick="openOrderActionModal(${o.id}, 'Replace')">
-                  <i class="fa-solid fa-arrows-rotate"></i> Replace Item (Exchange)
+                  <i class="fa-solid fa-arrows-rotate"></i> Replace (Exchange)
                 </button>
               ` : ''}
             </div>
@@ -1584,29 +1537,29 @@
 
       if (actionType === 'Cancel') {
         titleEl.textContent = `Cancel Order #GK-${1000 + Number(orderId)}`;
-        subEl.textContent = 'Please select a reason for cancelling this order before delivery:';
+        subEl.textContent = 'Select reason for cancellation prior to parcel delivery:';
         selectEl.innerHTML = `
           <option value="Ordered by mistake">Ordered by mistake</option>
-          <option value="Want to change delivery address or phone">Want to change delivery address or phone</option>
-          <option value="Expected delivery time is too long">Expected delivery time is too long</option>
-          <option value="Found a better price elsewhere">Found a better price elsewhere</option>
+          <option value="Incorrect address entered">Incorrect address entered</option>
+          <option value="Delivery duration too long">Delivery duration too long</option>
+          <option value="Found better pricing">Found better pricing</option>
         `;
       } else if (actionType === 'Return') {
-        titleEl.textContent = `Return Order #GK-${1000 + Number(orderId)} for Refund`;
-        subEl.textContent = 'Shiprocket reverse pickup will be scheduled and refund initiated after pickup:';
+        titleEl.textContent = `Return Order #GK-${1000 + Number(orderId)}`;
+        subEl.textContent = 'Reverse courier dispatch will trigger after validation:';
         selectEl.innerHTML = `
-          <option value="Defective or non-functional product">Defective or non-functional product</option>
-          <option value="Product quality not as expected">Product quality not as expected</option>
-          <option value="Wrong item delivered">Wrong item delivered</option>
-          <option value="Missing parts or accessories in box">Missing parts or accessories in box</option>
+          <option value="Defective or inoperative product">Defective or inoperative product</option>
+          <option value="Physical damage on receipt">Physical damage on receipt</option>
+          <option value="Incorrect item dispatched">Incorrect item dispatched</option>
+          <option value="Accessories missing">Accessories missing</option>
         `;
       } else if (actionType === 'Replace') {
-        titleEl.textContent = `Replace Order #GK-${1000 + Number(orderId)} (Free Exchange)`;
-        subEl.textContent = 'A brand new replacement unit will be dispatched via Shiprocket:';
+        titleEl.textContent = `Replace Item for Order #GK-${1000 + Number(orderId)}`;
+        subEl.textContent = 'An exchange unit will be queued for shipment:';
         selectEl.innerHTML = `
-          <option value="Physical damage during transit">Physical damage during transit</option>
-          <option value="Size or variant mismatch">Size or variant mismatch</option>
-          <option value="Item not powering on / defective">Item not powering on / defective</option>
+          <option value="Transit damage / cracked unit">Transit damage / cracked unit</option>
+          <option value="Size / Variant mismatch">Size / Variant mismatch</option>
+          <option value="Hardware fault / Non-functional">Hardware fault / Non-functional</option>
         `;
       }
 
@@ -1627,17 +1580,17 @@
       if (actionType === 'Return') newStage = 'Return Requested';
       if (actionType === 'Replace') newStage = 'Replacement Requested';
 
-      const fullReason = `${reason}${comment ? ' — ' + comment : ''}`;
+      const fullReason = `${reason}${comment ? ' | ' + comment : ''}`;
 
       const { error } = await supabaseClient
         .from('orders')
         .update({ lifecycle_stage: newStage, action_reason: fullReason })
         .eq('id', orderId);
 
-      if (error) return alert('Update failed: ' + error.message);
+      if (error) return alert('Operation failed: ' + error.message);
 
       closeOrderActionModal();
-      showToast(`✓ Order #GK-${1000 + orderId} updated to: ${newStage}`);
+      showToast(`✓ Order updated to ${newStage}`);
       loadMyOrders();
     }
 
@@ -1646,15 +1599,15 @@
         .from('orders')
         .update({ lifecycle_stage: newStage })
         .eq('id', Number(orderId));
-      if (error) return alert('Error: ' + error.message);
-      showToast(`✓ Order #GK-${1000 + Number(orderId)} marked as ${newStage}`);
+
+      if (error) return alert('Update failed: ' + error.message);
+
+      showToast(`✓ Order moved to ${newStage}`);
       if (document.getElementById('view-orders').classList.contains('active')) loadMyOrders();
       if (document.getElementById('view-seller').classList.contains('active')) loadAdminAllOrders();
     }
 
-    // =========================================================
-    // 6. SELLER HUB: ADD, EDIT, DELETE, BULK CSV & ORDER MANAGER
-    // =========================================================
+    // 6. SELLER HUB: FORM, CSV IMPORT & ADMIN DISPATCH
     async function sellerSaveProduct(e) {
       e.preventDefault();
       const editId = document.getElementById('editProdId').value;
@@ -1677,12 +1630,12 @@
 
       if (editId) {
         const { error } = await supabaseClient.from('products').update(prodPayload).eq('id', Number(editId));
-        if (error) return alert('Update Error: ' + error.message);
-        showToast('✓ Product updated in Supabase Cloud!');
+        if (error) return alert('Product update failed: ' + error.message);
+        showToast('✓ Product updated');
       } else {
         const { error } = await supabaseClient.from('products').insert([prodPayload]);
-        if (error) return alert('Insert Error: ' + error.message);
-        showToast('✓ New product published to Supabase Cloud!');
+        if (error) return alert('Product insert failed: ' + error.message);
+        showToast('✓ Product created');
       }
 
       resetSellerForm();
@@ -1709,8 +1662,8 @@
       document.getElementById('sellDesc').value = p.desc;
       document.getElementById('sellSpecs').value = p.specifications || '';
 
-      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Editing Product: ${p.name}`;
-      document.getElementById('sellerSubmitBtn').textContent = '💾 Update Product Changes';
+      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit: ${p.name}`;
+      document.getElementById('sellerSubmitBtn').textContent = '💾 Update Product';
       document.getElementById('cancelEditBtn').style.display = 'inline-block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1718,7 +1671,7 @@
     function resetSellerForm() {
       document.getElementById('sellerProductForm').reset();
       document.getElementById('editProdId').value = '';
-      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-store"></i> Seller Hub — Add New Flipkart Product`;
+      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-store"></i> Seller Hub — Add Flipkart Product`;
       document.getElementById('sellerSubmitBtn').textContent = '+ Publish Product to Cloud';
       document.getElementById('cancelEditBtn').style.display = 'none';
     }
@@ -1728,7 +1681,7 @@
       document.getElementById('sellerTotalCount').textContent = allProducts.length;
 
       if (allProducts.length === 0) {
-        listEl.innerHTML = `<p style="color:var(--fk-muted); padding:12px 0;">No products in Cloud. Click "Seed Demo Catalog" or add one above.</p>`;
+        listEl.innerHTML = `<p style="color:var(--fk-muted); padding:12px 0;">No active listings found.</p>`;
         return;
       }
 
@@ -1739,7 +1692,7 @@
             <div>
               <strong style="font-size:14px; display:block;">${p.name}</strong>
               <span style="font-size:12px; color:var(--fk-muted);">
-                Brand: <strong>${p.brand}</strong> • SKU: ${p.sku} • Stock: <strong>${p.stock}</strong> • Price: <strong>₹${p.price.toLocaleString('en-IN')}</strong> (MRP: ₹${p.mrp.toLocaleString('en-IN')})
+                Brand: <strong>${p.brand}</strong> | Stock: <strong>${p.stock}</strong> | ₹${p.price.toLocaleString('en-IN')} (MRP: ₹${p.mrp.toLocaleString('en-IN')})
               </span>
             </div>
           </div>
@@ -1757,62 +1710,65 @@
 
     async function sellerDeleteProduct(productId) {
       const target = allProducts.find(p => Number(p.id) === Number(productId));
-      if (!target || !confirm(`Delete "${target.name}" permanently from Supabase Cloud?`)) return;
+      if (!target || !confirm(`Delete "${target.name}"?`)) return;
 
       const { error } = await supabaseClient.from('products').delete().eq('id', Number(productId));
-      if (error) return alert('Delete Error: ' + error.message);
+      if (error) return alert('Deletion failed: ' + error.message);
 
       await syncSupabaseProducts();
       renderSellerProductList();
-      showToast('🗑️ Product deleted!');
+      showToast('🗑️ Product deleted');
     }
 
-    // BULK CSV TEMPLATE DOWNLOAD & UPLOAD
+    // CSV IMPORT PIPELINE
     function downloadSampleCSV() {
       const csvContent = [
         'name,brand,category,price,mrp,stock,sku,image_url,warranty,return_policy,description,specifications',
-        '"Boat Airdopes 141 Bluetooth TWS Earbuds","BOAT","Electronics",1299,4490,50,"GK-BOAT-141","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500","1 Year Boat Warranty","7 Days Replacement","42 Hours Playback | BEAST Mode Low Latency | IPX4 Water Resistance","In The Box: Earbuds, Charging Case, Type-C Cable | Bluetooth: v5.1 | Playtime: 42 Hours"',
-        '"LG 32 Inch HD Ready Smart LED TV","LG","Appliances",13990,21990,15,"GK-LG-32LQ","https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500","1 Year LG India Comprehensive Warranty","10 Days Replacement","WebOS Smart TV | Dolby Audio | Quad Core Processor","Display Size: 32 inch | Resolution: 1366 x 768 | HDMI Ports: 2 | USB Ports: 1"'
+        '"Boat Airdopes 141 TWS Earbuds","BOAT","Electronics",1299,4490,50,"GK-BOAT-141","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500","1 Year Warranty","7 Days Replacement","42 Hours Playback | Low Latency | IPX4 Water Resistance","In The Box: Earbuds, Case, Cable | Bluetooth: 5.1 | Battery: 42 Hours"',
+        '"LG 32 Inch Smart LED TV","LG","Appliances",13990,21990,15,"GK-LG-32LQ","https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500","1 Year LG Warranty","10 Days Replacement","WebOS Smart TV | Dolby Audio","Screen Size: 32 inch | Resolution: 1366 x 768 | HDMI: 2"'
       ].join('\n');
 
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'gkart_bulk_products_template.csv';
+      a.download = 'gkart_bulk_sample.csv';
       a.click();
     }
 
-    function parseCSVRow(line) {
-      const res = [];
-      let cur = '';
-      let inQuotes = false;
+    function parseCSVLine(line) {
+      const result = [];
+      let current = '';
+      let insideQuotes = false;
       for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
-        if (ch === '"') inQuotes = !inQuotes;
-        else if (ch === ',' && !inQuotes) { res.push(cur.trim()); cur = ''; }
-        else cur += ch;
+        const char = line[i];
+        if (char === '"') {
+          insideQuotes = !insideQuotes;
+        } else if (char === ',' && !insideQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
       }
-      res.push(cur.trim());
-      return res;
+      result.push(current.trim());
+      return result;
     }
 
     async function handleBulkCSVUpload() {
       const fileInput = document.getElementById('bulkCsvInput');
       const statusEl = document.getElementById('bulkUploadStatus');
-      if (!fileInput.files || fileInput.files.length === 0) {
-        return alert('Please choose a .csv file first!');
-      }
+      if (!fileInput.files || fileInput.files.length === 0) return alert('Select a CSV file first.');
 
       const text = await fileInput.files[0].text();
       const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
-      if (lines.length < 2) return alert('CSV file has no product rows.');
+      if (lines.length < 2) return alert('No valid data lines found in CSV.');
 
-      const rowsToInsert = [];
+      const productsToInsert = [];
       for (let i = 1; i < lines.length; i++) {
-        const cols = parseCSVRow(lines[i]);
+        const cols = parseCSVLine(lines[i]);
         if (cols.length >= 8 && cols[0]) {
-          rowsToInsert.push({
+          productsToInsert.push({
             name: cols[0],
             brand: cols[1] || 'G Kart',
             category: cols[2] || 'Electronics',
@@ -1823,48 +1779,49 @@
             image_url: cols[7],
             warranty: cols[8] || '1 Year Manufacturer Warranty',
             return_policy: cols[9] || '7 Days Return & Replacement',
-            description: cols[10] || 'G Kart Verified Product',
+            description: cols[10] || '',
             specifications: cols[11] || ''
           });
         }
       }
 
-      if (rowsToInsert.length === 0) return alert('No valid product rows found in CSV.');
+      if (productsToInsert.length === 0) return alert('Unable to map product columns.');
 
-      statusEl.textContent = `Uploading ${rowsToInsert.length} products to Supabase Cloud...`;
-      const { error } = await supabaseClient.from('products').insert(rowsToInsert);
+      statusEl.textContent = `Uploading ${productsToInsert.length} products...`;
+      const { error } = await supabaseClient.from('products').insert(productsToInsert);
       if (error) {
-        statusEl.style.color = 'red';
-        statusEl.textContent = 'Bulk Upload Error: ' + error.message;
+        statusEl.style.color = 'var(--fk-red)';
+        statusEl.textContent = 'Bulk upload error: ' + error.message;
         return;
       }
 
       statusEl.style.color = 'var(--fk-green)';
-      statusEl.textContent = `✓ Successfully uploaded ${rowsToInsert.length} products!`;
+      statusEl.textContent = `✓ Uploaded ${productsToInsert.length} products.`;
       fileInput.value = '';
       await syncSupabaseProducts();
       renderSellerProductList();
-      showToast(`🎉 Bulk uploaded ${rowsToInsert.length} products!`);
+      showToast(`Ingested ${productsToInsert.length} products`);
     }
 
     async function loadAdminAllOrders() {
       const box = document.getElementById('adminOrdersManageList');
       const { data, error } = await supabaseClient.from('orders').select('*').order('id', { ascending: false });
+
       if (error || !data || data.length === 0) {
-        box.innerHTML = `<p style="font-size:13px; color:var(--fk-muted);">No orders found (Log in with gvivek3004@gmail.com to view all customer orders).</p>`;
+        box.innerHTML = `<p style="font-size:13px; color:var(--fk-muted);">No orders available for fulfillment.</p>`;
         return;
       }
 
       box.innerHTML = data.map(o => `
         <div class="seller-item-row">
           <div>
-            <strong>Order #GK-${1000 + Number(o.id)} • ${o.customer_name} (${o.customer_email})</strong>
+            <strong>Order #GK-${1000 + Number(o.id)} • ${o.customer_name}</strong>
             <div style="font-size:12px; color:#555;">${o.shipping_address} | Stage: <strong>${o.lifecycle_stage || 'Confirmed'}</strong></div>
-            ${o.action_reason ? `<div style="font-size:12px; color:var(--fk-red); font-weight:700;">Reason: ${o.action_reason}</div>` : ''}
+            ${o.action_reason ? `<div style="font-size:12px; color:var(--fk-red); font-weight:700;">Customer Note: ${o.action_reason}</div>` : ''}
           </div>
           <div style="display:flex; gap:6px; align-items:center;">
             <select onchange="markOrderStage(${o.id}, this.value)" style="padding:6px; font-size:12px; font-weight:700;">
-              ${['Confirmed','Packed','Shipped','Delivered','Cancelled','Return Approved','Replacement Dispatched'].map(st => `
+              ${['Confirmed','Packed','Shipped','Delivered','Cancelled','Return Requested','Replacement Requested'].map(st => `
                 <option value="${st}" ${(o.lifecycle_stage \vert{}\vert{} 'Confirmed') === st ? 'selected' : ''}>${st}</option>
               `).join('')}
             </select>
@@ -1877,10 +1834,10 @@
       await supabaseClient.from('products').insert(demoSeedProducts);
       await syncSupabaseProducts();
       renderSellerProductList();
-      showToast('✓ Demo products seeded!');
+      showToast('✓ Seeded catalog');
     }
 
-    // FILTERS & WISHLIST
+    // 7. UTILITIES & CATALOG FILTERS
     function openCategory(cat) {
       document.getElementById('filterCatSelect').value = cat;
       navigateTo('catalog');
