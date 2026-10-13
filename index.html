@@ -1,68 +1,1131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gkart - Multi-Vendor Storefront</title>
-    <link rel="stylesheet" href="config.js">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; }
-        header { background-color: #ffffff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
-        .logo { font-size: 24px; font-weight: bold; color: #2563eb; }
-        nav a { margin-left: 20px; text-decoration: none; color: #555; font-weight: 500; }
-        nav a:hover { color: #2563eb; }
-        .hero { background: linear-gradient(to right, #2563eb, #1d4ed8); color: white; text-align: center; padding: 60px 20px; }
-        .hero h1 { margin: 0 0 10px; font-size: 36px; }
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .section-title { font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .product-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .product-card h3 { font-size: 18px; margin: 10px 0; }
-        .product-card p { color: #2563eb; font-weight: bold; font-size: 16px; }
-        .btn { display: inline-block; background-color: #2563eb; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; }
-        .btn:hover { background-color: #1d4ed8; }
-        footer { background-color: #1f2937; color: white; text-align: center; padding: 20px; margin-top: 60px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G Kart - Online Shopping for Mobiles, Electronics, Fashion & More</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --fk-blue: #2874f0;
+      --fk-yellow: #ffe500;
+      --fk-amber: #ff9f00;
+      --fk-orange: #fb641b;
+      --fk-green: #388e3c;
+      --fk-bg: #f1f3f6;
+      --fk-text: #212121;
+      --fk-muted: #878787;
+      --fk-border: #e0e0e0;
+      --fk-red: #ff6161;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+    body { background-color: var(--fk-bg); color: var(--fk-text); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .fk-header { background-color: var(--fk-blue); height: 56px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px 0 rgba(0,0,0,.15); }
+    .header-container { max-width: 1248px; height: 100%; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 20px; }
+    .brand-box { cursor: pointer; display: flex; flex-direction: column; text-decoration: none; min-width: 85px; }
+    .brand-title { color: #fff; font-size: 20px; font-weight: 800; font-style: italic; line-height: 1; }
+    .brand-sub { color: #f0f0f0; font-size: 11px; font-style: italic; margin-top: 2px; }
+    .brand-sub span { color: var(--fk-yellow); font-weight: 700; }
+
+    .search-container { flex: 1; max-width: 540px; position: relative; }
+    .search-container input { width: 100%; height: 36px; padding: 0 42px 0 16px; border: none; border-radius: 2px; font-size: 14px; outline: none; box-shadow: 0 2px 4px 0 rgba(0,0,0,.23); }
+    .search-container button { position: absolute; right: 0; top: 0; height: 36px; width: 42px; border: none; background: transparent; color: var(--fk-blue); font-size: 16px; cursor: pointer; }
+
+    .header-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+    .nav-dropdown { position: relative; padding: 10px 0; }
+    .login-trigger { background: #fff; color: var(--fk-blue); font-weight: 700; font-size: 15px; padding: 6px 24px; border: none; border-radius: 2px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .dropdown-menu { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); width: 230px; background: #fff; border-radius: 2px; box-shadow: 0 4px 16px 0 rgba(0,0,0,.2); display: none; flex-direction: column; z-index: 1200; }
+    .nav-dropdown:hover .dropdown-menu { display: flex; }
+    .dropdown-item { padding: 12px 16px; font-size: 14px; color: var(--fk-text); border-bottom: 1px solid #f0f0f0; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+    .dropdown-item i { color: var(--fk-blue); width: 16px; }
+    .dropdown-item:hover { background: #f5faff; }
+
+    .nav-item { color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; position: relative; white-space: nowrap; }
+    .badge-count { background: var(--fk-orange); color: #fff; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 8px; border: 1px solid #fff; position: absolute; top: -8px; left: 10px; }
+
+    /* CATEGORY BAR */
+    .cat-bar { background: #fff; box-shadow: 0 1px 1px 0 rgba(0,0,0,.16); margin-bottom: 10px; }
+    .cat-bar-inner { max-width: 1248px; margin: 0 auto; padding: 10px 16px; display: flex; justify-content: space-between; overflow-x: auto; gap: 16px; }
+    .cat-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 80px; }
+    .cat-card img { width: 58px; height: 58px; object-fit: contain; margin-bottom: 4px; }
+    .cat-name { font-size: 13px; font-weight: 600; color: #333; }
+    .cat-card:hover .cat-name { color: var(--fk-blue); }
+
+    /* SPA VIEWS */
+    .app-container { max-width: 1248px; width: 100%; margin: 0 auto 32px auto; padding: 0 8px; flex: 1; }
+    .view-section { display: none; }
+    .view-section.active { display: block; }
+
+    /* CAROUSEL */
+    .carousel-box { position: relative; height: 240px; background: #fff; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+    .slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; color: #fff; background: linear-gradient(90deg, #102a56 0%, #2874f0 100%); }
+    .slide-content h2 { font-size: 32px; font-weight: 800; margin: 8px 0; }
+    .slide-content p { font-size: 16px; color: var(--fk-yellow); font-weight: 600; margin-bottom: 16px; }
+    .slide-btn { background: #fff; color: var(--fk-blue); border: none; padding: 10px 24px; font-weight: 700; border-radius: 2px; cursor: pointer; font-size: 14px; }
+
+    /* PRODUCT STRIPS & CARDS */
+    .strip-card { background: #fff; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+    .strip-header { padding: 14px 20px; border-bottom: 1px solid var(--fk-border); display: flex; align-items: center; justify-content: space-between; }
+    .strip-title { font-size: 19px; font-weight: 700; }
+    .fk-btn-blue { background: var(--fk-blue); color: #fff; border: none; padding: 9px 18px; font-size: 13px; font-weight: 700; border-radius: 2px; cursor: pointer; box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); }
+    .strip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; padding: 16px; }
+
+    .p-card { background: #fff; padding: 14px; border-radius: 2px; position: relative; cursor: pointer; transition: box-shadow 0.2s; display: flex; flex-direction: column; border: 1px solid #f0f0f0; }
+    .p-card:hover { box-shadow: 0 3px 16px 0 rgba(0,0,0,.15); }
+    .wish-heart { position: absolute; top: 12px; right: 12px; font-size: 18px; color: #c2c2c2; z-index: 5; background: none; border: none; cursor: pointer; }
+    .wish-heart.active { color: var(--fk-red); }
+    .p-img-wrap { height: 165px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .p-img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
+    .p-title { font-size: 14px; font-weight: 500; color: var(--fk-text); margin-bottom: 6px; height: 36px; overflow: hidden; }
+    .p-card:hover .p-title { color: var(--fk-blue); }
+    .rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .green-star-pill { background: var(--fk-green); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+    .assured-tag { font-size: 11px; font-weight: 800; font-style: italic; color: var(--fk-blue); background: #eef4ff; padding: 2px 6px; border-radius: 2px; border: 1px solid #cdddf7; }
+    .p-price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
+    .p-price { font-size: 16px; font-weight: 700; }
+    .p-mrp { font-size: 13px; color: var(--fk-muted); text-decoration: line-through; }
+    .p-off { font-size: 13px; font-weight: 700; color: var(--fk-green); }
+
+    /* CATALOG, PDP, CART & CHECKOUT */
+    .catalog-layout, .cart-layout, .pdp-card { display: flex; gap: 16px; align-items: flex-start; }
+    .pdp-card { background: #fff; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    .pdp-left { width: 400px; flex-shrink: 0; }
+    .pdp-gallery { border: 1px solid var(--fk-border); height: 350px; display: flex; align-items: center; justify-content: center; padding: 20px; margin-bottom: 14px; }
+    .pdp-gallery img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .pdp-cta-row { display: flex; gap: 12px; }
+    .btn-add-cart { flex: 1; background: var(--fk-amber); color: #fff; border: none; padding: 15px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
+    .btn-buy-now { flex: 1; background: var(--fk-orange); color: #fff; border: none; padding: 15px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
+    .pdp-right { flex: 1; }
+
+    .filter-sidebar { width: 260px; background: #fff; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.1); flex-shrink: 0; }
+    .filter-sec { padding: 12px 0; border-bottom: 1px solid var(--fk-border); }
+    .catalog-main { flex: 1; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.1); min-height: 500px; }
+    .sort-bar { padding: 12px 16px 0 16px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 20px; font-size: 14px; }
+    .sort-tab { padding-bottom: 10px; cursor: pointer; border-bottom: 2px solid transparent; }
+    .sort-tab.active { color: var(--fk-blue); border-bottom-color: var(--fk-blue); font-weight: 700; }
+
+    .cart-left { flex: 1; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+    .cart-right { width: 350px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); padding: 16px 20px; }
+    .cart-item-row { padding: 18px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 18px; align-items: center; }
+    .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff; font-weight: 700; cursor: pointer; }
+    .fk-input { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 2px; font-size: 14px; margin-bottom: 12px; }
+
+    /* STEP BOXES FOR CHECKOUT */
+    .step-box { background: #fff; margin-bottom: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; }
+    .step-header { background: var(--fk-blue); color: #fff; padding: 12px 20px; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+    .step-num { background: #fff; color: var(--fk-blue); padding: 2px 7px; border-radius: 2px; font-size: 12px; }
+    .step-body { padding: 20px; }
+
+    /* LOGIN / SIGNUP MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
+    .modal-overlay.active { display: flex; }
+    .fk-auth-modal { width: 680px; min-height: 440px; background: #fff; border-radius: 4px; display: flex; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.3); position: relative; }
+    .fk-auth-left { width: 40%; background: var(--fk-blue); color: #fff; padding: 36px 28px; display: flex; flex-direction: column; justify-content: space-between; }
+    .fk-auth-right { width: 60%; padding: 36px 28px; display: flex; flex-direction: column; }
+
+    /* TOAST BANNER */
+    #toastBanner { position: fixed; bottom: 24px; right: 24px; background: #212121; color: #fff; padding: 14px 22px; border-radius: 4px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,.3); display: none; z-index: 3000; border-left: 5px solid var(--fk-green); }
+
+    /* ORDER TRACKING BAR */
+    .track-bar { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--fk-border); }
+    .track-step { flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: var(--fk-green); }
+    .track-dot { width: 12px; height: 12px; background: var(--fk-green); border-radius: 50%; margin: 0 auto 4px auto; }
+
+    .fk-footer { background: #172337; color: #fff; padding: 32px 20px; margin-top: auto; font-size: 12px; }
+    .footer-grid { max-width: 1248px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; }
+    .footer-grid h4 { color: #878787; margin-bottom: 10px; }
+    .footer-grid a { display: block; color: #fff; text-decoration: none; margin-bottom: 6px; cursor: pointer; }
+
+    @media (max-width: 900px) {
+      .pdp-card, .catalog-layout, .cart-layout, .fk-auth-modal { flex-direction: column; width: 100%; }
+      .pdp-left, .filter-sidebar, .cart-right, .fk-auth-left, .fk-auth-right { width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">Gkart Store</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="orders.html">My Orders</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="admin-login.html">Login</a>
-        </nav>
-    </header>
+  <!-- NOTIFICATION TOAST -->
+  <div id="toastBanner"></div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Welcome to Gkart</h1>
-        <p>Explore quality products from trusted vendors across the country.</p>
-    </div>
+  <!-- HEADER -->
+  <header class="fk-header">
+    <div class="header-container">
+      <a class="brand-box" onclick="navigateTo('home')">
+        <span class="brand-title">G Kart</span>
+        <span class="brand-sub">Explore <span>Plus ✦</span></span>
+      </a>
 
-    <!-- Main Content Grid -->
-    <div class="container">
-        <h2 class="section-title">Published Products</h2>
-        <div id="product-container" class="product-grid">
-            <!-- Dynamic products will load here -->
-            <div class="product-card">
-                <h3>Sample Product</h3>
-                <p>₹499.00</p>
-                <a href="order-review.html" class="btn">View Product</a>
-            </div>
+      <div class="search-container">
+        <input type="text" id="globalSearch" placeholder="Search for Products, Brands and More" onkeyup="if(event.key==='Enter') triggerSearch()" />
+        <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <div class="header-nav">
+        <div class="nav-dropdown">
+          <button class="login-trigger" id="authHeaderBtn" onclick="openAuthModal()">
+            <i class="fa-regular fa-user"></i> <span id="authUserLabel">Login</span> <i class="fa-solid fa-angle-down" style="font-size:11px;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-item" onclick="openAuthModal()"><i class="fa-solid fa-user-check"></i> Login / Sign Up</div>
+            <div class="dropdown-item" onclick="navigateTo('orders')"><i class="fa-solid fa-box-open"></i> My Orders (<span id="orderCountMenu">0</span>)</div>
+            <div class="dropdown-item" onclick="navigateTo('wishlist')"><i class="fa-solid fa-heart"></i> Wishlist (<span id="wishCountMenu">0</span>)</div>
+            <div class="dropdown-item" onclick="navigateTo('seller')"><i class="fa-solid fa-store"></i> Seller Hub (Add Product)</div>
+            <div class="dropdown-item" id="logoutBtn" style="display:none; color:var(--fk-red);" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+          </div>
         </div>
+
+        <div class="nav-item" onclick="navigateTo('seller')"><i class="fa-solid fa-shop"></i> Seller Hub</div>
+        <div class="nav-item" onclick="navigateTo('orders')"><i class="fa-solid fa-truck-fast"></i> My Orders</div>
+        <div class="nav-item" onclick="navigateTo('cart')">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="headerCartCount">0</span>
+          Cart
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CATEGORY BAR -->
+  <div class="cat-bar">
+    <div class="cat-bar-inner">
+      <div class="cat-card" onclick="openCategory('All')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" /><span class="cat-name">Top Offers</span></div>
+      <div class="cat-card" onclick="openCategory('Mobiles')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100" /><span class="cat-name">Mobiles</span></div>
+      <div class="cat-card" onclick="openCategory('Electronics')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" /><span class="cat-name">Electronics</span></div>
+      <div class="cat-card" onclick="openCategory('Fashion')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/c12afc017e6f24cb.png?q=100" /><span class="cat-name">Fashion</span></div>
+      <div class="cat-card" onclick="openCategory('Appliances')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png?q=100" /><span class="cat-name">Appliances</span></div>
+      <div class="cat-card" onclick="openCategory('Home')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg?q=100" /><span class="cat-name">Home</span></div>
+      <div class="cat-card" onclick="openCategory('Grocery')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100" /><span class="cat-name">Grocery</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN VIEWS -->
+  <div class="app-container">
+
+    <!-- VIEW 1: HOME -->
+    <div id="view-home" class="view-section active">
+      <div class="carousel-box">
+        <div class="slide">
+          <div class="slide-content">
+            <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">BIG SAVING DAYS</span>
+            <h2>5G Mobiles, Electronics & Fashion</h2>
+            <p>Razorpay Verified Checkout • Shiprocket Doorstep Delivery</p>
+            <button class="slide-btn" onclick="openCategory('All')">Shop All Deals</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:185px; border-radius:8px;" />
+        </div>
+      </div>
+
+      <div class="strip-card">
+        <div class="strip-header">
+          <span class="strip-title">Deals of the Day</span>
+          <button class="fk-btn-blue" onclick="openCategory('All')">VIEW ALL</button>
+        </div>
+        <div class="strip-grid" id="homeDealsGrid"></div>
+      </div>
+
+      <div class="strip-card">
+        <div class="strip-header">
+          <span class="strip-title">Best of Electronics & Smartphones</span>
+          <button class="fk-btn-blue" onclick="openCategory('Electronics')">VIEW ALL</button>
+        </div>
+        <div class="strip-grid" id="homeElecGrid"></div>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Gkart. All rights reserved.</p>
-    </footer>
+    <!-- VIEW 2: CATALOG & FILTERS -->
+    <div id="view-catalog" class="view-section">
+      <div class="catalog-layout">
+        <aside class="filter-sidebar">
+          <div style="display:flex; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid var(--fk-border);">
+            <strong>Filters</strong>
+            <span style="color:var(--fk-blue); font-size:12px; cursor:pointer; font-weight:700;" onclick="resetFilters()">CLEAR ALL</span>
+          </div>
+          <div class="filter-sec">
+            <label style="font-size:12px; font-weight:700;">CATEGORY</label>
+            <select id="filterCatSelect" class="fk-input" style="margin-top:6px;" onchange="applyCatalogFilters()">
+              <option value="All">All Categories</option>
+              <option value="Mobiles">Mobiles</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Appliances">Appliances</option>
+              <option value="Home">Home</option>
+              <option value="Grocery">Grocery</option>
+            </select>
+          </div>
+          <div class="filter-sec">
+            <label style="font-size:12px; font-weight:700;">MAX PRICE: ₹<span id="priceRangeLabel">100,000</span></label>
+            <input type="range" id="filterPriceRange" min="200" max="100000" step="500" value="100000" style="width:100%; margin-top:8px;" oninput="applyCatalogFilters()" />
+          </div>
+        </aside>
 
-    <!-- Scripts -->
-    <script src="config.js"></script>
-    <script src="published-products.js"></script>
+        <div class="catalog-main">
+          <div class="sort-bar">
+            <strong>Sort By:</strong>
+            <span class="sort-tab active" onclick="setSort('popular', this)">Popularity</span>
+            <span class="sort-tab" onclick="setSort('low', this)">Price -- Low to High</span>
+            <span class="sort-tab" onclick="setSort('high', this)">Price -- High to Low</span>
+          </div>
+          <div class="strip-grid" id="catalogResultsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: PRODUCT DETAIL PAGE (PDP) -->
+    <div id="view-pdp" class="view-section">
+      <div id="pdpContent"></div>
+    </div>
+
+    <!-- VIEW 4: CART -->
+    <div id="view-cart" class="view-section">
+      <div class="cart-layout">
+        <div class="cart-left">
+          <div style="padding:16px 20px; border-bottom:1px solid var(--fk-border); font-size:18px; font-weight:700;">
+            My Shopping Cart (<span id="cartPageCount">0</span>)
+          </div>
+          <div id="cartItemsList"></div>
+          <div style="padding:16px 20px; text-align:right; background:#f9fafb;" id="cartPlaceOrderFooter">
+            <button class="btn-buy-now" style="width:240px;" onclick="navigateTo('checkout')">PROCEED TO CHECKOUT</button>
+          </div>
+        </div>
+        <div class="cart-right">
+          <div style="color:var(--fk-muted); font-weight:700; padding-bottom:10px; border-bottom:1px solid var(--fk-border);">PRICE DETAILS</div>
+          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Total MRP</span><span id="summaryMrp">₹0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Discount</span><span style="color:var(--fk-green); font-weight:700;" id="summaryDisc">− ₹0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:14px 0;"><span>Shiprocket Delivery</span><span style="color:var(--fk-green); font-weight:700;">FREE</span></div>
+          <div style="display:flex; justify-content:space-between; padding:14px 0; border-top:1px dashed var(--fk-border); font-size:18px; font-weight:700;">
+            <span>Total Payable</span><span id="summaryTotal">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: 4-STEP FLIPKART CHECKOUT WITH RAZORPAY GATEWAY -->
+    <div id="view-checkout" class="view-section">
+      <div class="cart-layout">
+        <div style="flex:1;">
+          <!-- STEP 1: ACCOUNT -->
+          <div class="step-box">
+            <div class="step-header"><span class="step-num">1</span> LOGIN / CUSTOMER ACCOUNT ✓</div>
+            <div class="step-body" style="padding:14px 20px; font-size:14px;" id="checkoutUserStatus">
+              Logged in as <strong>Vivek Gurav</strong>
+            </div>
+          </div>
+
+          <!-- STEP 2: DELIVERY ADDRESS -->
+          <div class="step-box">
+            <div class="step-header"><span class="step-num">2</span> DELIVERY ADDRESS</div>
+            <div class="step-body">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div>
+                  <label style="font-size:12px; font-weight:700;">Full Name *</label>
+                  <input type="text" id="chkName" class="fk-input" value="Vivek Gurav" placeholder="Full Name" />
+                </div>
+                <div>
+                  <label style="font-size:12px; font-weight:700;">10-Digit Mobile Number *</label>
+                  <input type="tel" id="chkPhone" class="fk-input" value="9876543210" placeholder="Mobile Number" />
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+                <div>
+                  <label style="font-size:12px; font-weight:700;">Pincode *</label>
+                  <input type="text" id="chkPincode" class="fk-input" value="411035" maxlength="6" />
+                </div>
+                <div>
+                  <label style="font-size:12px; font-weight:700;">City *</label>
+                  <input type="text" id="chkCity" class="fk-input" value="Pune" />
+                </div>
+                <div>
+                  <label style="font-size:12px; font-weight:700;">State *</label>
+                  <input type="text" id="chkState" class="fk-input" value="Maharashtra" />
+                </div>
+              </div>
+              <label style="font-size:12px; font-weight:700;">Full Street Address (Flat/House No, Area) *</label>
+              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Enter full delivery address">Akurdi, Pimpri-Chinchwad, Pune</textarea>
+            </div>
+          </div>
+
+          <!-- STEP 3: ORDER SUMMARY -->
+          <div class="step-box">
+            <div class="step-header"><span class="step-num">3</span> ORDER SUMMARY</div>
+            <div class="step-body" id="checkoutOrderSummary"></div>
+          </div>
+
+          <!-- STEP 4: PAYMENT OPTIONS (RAZORPAY GATEWAY OR COD) -->
+          <div class="step-box">
+            <div class="step-header"><span class="step-num">4</span> PAYMENT OPTIONS</div>
+            <div class="step-body">
+              <div style="margin-bottom:16px;">
+                <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px; margin-bottom:10px; background:#f8fafc;">
+                  <input type="radio" name="payOptionRadio" value="RAZORPAY" checked />
+                  <div>
+                    <span style="color:var(--fk-blue);">Pay Online via Razorpay (UPI, GPay, PhonePe, Paytm, Cards, Netbanking)</span>
+                    <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
+                      100% Secure Automated Payment Verification • Instant Prepaid Dispatch via Shiprocket
+                    </div>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px;">
+                  <input type="radio" name="payOptionRadio" value="COD" />
+                  <div>
+                    <span>Cash on Delivery (COD — Pay at Doorstep)</span>
+                    <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
+                      Pay cash or UPI to the Shiprocket courier partner when your parcel arrives
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div id="checkoutStatusMsg" style="margin:10px 0; font-weight:700; color:var(--fk-blue);"></div>
+
+              <button type="button" class="btn-buy-now" style="width:100%; font-size:16px;" onclick="completeFlipkartOrder()">
+                🔒 PROCEED TO PAY / PLACE ORDER
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: MY ORDERS -->
+    <div id="view-orders" class="view-section">
+      <div style="background:#fff; padding:24px; box-shadow:0 1px 2px rgba(0,0,0,.12);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h2>My Orders & Live Shiprocket Tracking</h2>
+          <button class="fk-btn-blue" onclick="navigateTo('home')">+ Continue Shopping</button>
+        </div>
+        <div id="ordersListContainer"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 7: WISHLIST -->
+    <div id="view-wishlist" class="view-section">
+      <div style="background:#fff; padding:24px;">
+        <h2 style="margin-bottom:16px;">My Wishlist</h2>
+        <div class="strip-grid" id="wishlistGrid"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 8: SELLER HUB (ADMIN) -->
+    <div id="view-seller" class="view-section">
+      <div style="background:#fff; padding:24px; max-width:760px; margin:0 auto; box-shadow:0 1px 2px rgba(0,0,0,.12);">
+        <h2 style="margin-bottom:12px;">Seller Hub — Add New Product to G Kart</h2>
+        <form onsubmit="sellerAddProduct(event)">
+          <input type="text" id="sellName" class="fk-input" placeholder="Product Title (e.g. Boat Airdopes 141) *" required />
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+            <input type="number" id="sellPrice" class="fk-input" placeholder="Selling Price (₹) *" required />
+            <input type="number" id="sellMrp" class="fk-input" placeholder="MRP (₹) *" required />
+            <select id="sellCat" class="fk-input">
+              <option value="Mobiles">Mobiles</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Appliances">Appliances</option>
+              <option value="Home">Home</option>
+              <option value="Grocery">Grocery</option>
+            </select>
+          </div>
+          <input type="url" id="sellImg" class="fk-input" placeholder="Image URL (https://...) *" required />
+          <textarea id="sellDesc" class="fk-input" rows="2" placeholder="Product Highlights *" required></textarea>
+          <button type="submit" class="fk-btn-blue" style="padding:12px 24px;">+ Publish Product Now</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOGIN / CREATE ACCOUNT POPUP -->
+  <div class="modal-overlay" id="authModal">
+    <div class="fk-auth-modal">
+      <div class="fk-auth-left">
+        <div>
+          <h2 style="font-size:26px; margin-bottom:12px;" id="authTitle">Login / Sign Up</h2>
+          <p style="font-size:14px; line-height:1.6; color:#dbeafe;">
+            Sign in or create your G Kart account instantly to track orders, post product reviews, and manage your wishlist.
+          </p>
+        </div>
+        <div style="font-size:12px; opacity:0.9;">✓ Instant Access Enabled</div>
+      </div>
+      <div class="fk-auth-right">
+        <button onclick="closeAuthModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
+        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Your Full Name</label>
+        <input type="text" id="authName" class="fk-input" placeholder="e.g. Vivek Gurav" value="Vivek Gurav" />
+        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Email Address *</label>
+        <input type="email" id="authEmail" class="fk-input" placeholder="Enter your email *" value="gvivek3004@gmail.com" />
+        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Password (min 6 characters) *</label>
+        <input type="password" id="authPassword" class="fk-input" placeholder="Enter password *" value="123456" />
+        <div id="authMsg" style="font-size:13px; margin-bottom:12px; font-weight:700;"></div>
+        <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleInstantAuth('login')">
+          LOGIN TO G KART
+        </button>
+        <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleInstantAuth('signup')">
+          CREATE NEW ACCOUNT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="fk-footer">
+    <div class="footer-grid">
+      <div><h4>G KART STORE</h4><a onclick="navigateTo('home')">Home</a><a onclick="navigateTo('seller')">Seller Hub</a></div>
+      <div><h4>CUSTOMER</h4><a onclick="openAuthModal()">Login / Sign Up</a><a onclick="navigateTo('orders')">Track Orders</a></div>
+      <div><h4>CONTACT</h4><p>gvivek3004@gmail.com | Pune, Maharashtra</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://fwzjswlkfwepgfqvapkm.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_JhilDbcHlGIoj5Hvae3wmw_u2HHPeaQ';
+    let supabaseClient = null;
+    try {
+      if (window.supabase) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      }
+    } catch (e) {}
+
+    function showToast(msg) {
+      const t = document.getElementById('toastBanner');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    const baseProducts = [
+      { id: 101, name: 'APPLE iPhone 15 (Black, 128 GB)', category: 'Mobiles', price: 65999, mrp: 79900, rating: 4.6, assured: true, img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500', desc: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Chip' },
+      { id: 102, name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)', category: 'Mobiles', price: 34999, mrp: 79999, rating: 4.4, assured: true, img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500', desc: '8 GB RAM | 128 GB ROM | 50MP Flagship Camera | 4500 mAh Battery' },
+      { id: 103, name: 'Sony WH-CH720N Noise Cancelling Headphones', category: 'Electronics', price: 7990, mrp: 14990, rating: 4.5, assured: true, img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500', desc: 'Up to 50 Hours Battery | Multipoint Bluetooth | Integrated V1 Processor' },
+      { id: 104, name: 'Noise ColorFit Icon 2 1.8" Calling Smartwatch', category: 'Electronics', price: 1199, mrp: 5999, rating: 4.2, assured: true, img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', desc: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof' },
+      { id: 105, name: 'PUMA Men Running Sports Shoes', category: 'Fashion', price: 1649, mrp: 3999, rating: 4.3, assured: true, img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500', desc: 'Breathable Mesh Upper | Cushioned Midsole | High-Traction Outsole' }
+    ];
+
+    const defaultReviews = [
+      { product_id: 101, customer_name: 'Rahul Patil (Pune)', rating: 5, comment: 'Original packed box delivered in 2 days. Camera and battery backup are awesome!' },
+      { product_id: 102, customer_name: 'Sneha Deshmukh', rating: 4, comment: 'Great value for money 5G phone during G Kart sale.' }
+    ];
+
+    let allProducts = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]').concat(baseProducts);
+    let cart = JSON.parse(localStorage.getItem('gkart_cart') || '[]');
+    let wishlist = JSON.parse(localStorage.getItem('gkart_wish') || '[]');
+    let localReviews = JSON.parse(localStorage.getItem('gkart_reviews') || JSON.stringify(defaultReviews));
+    let localOrders = JSON.parse(localStorage.getItem('gkart_orders') || '[]');
+    let currentUser = JSON.parse(localStorage.getItem('gkart_user') || 'null');
+    let currentSort = 'popular';
+
+    function updateAuthUI() {
+      const label = document.getElementById('authUserLabel');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const chkUser = document.getElementById('checkoutUserStatus');
+
+      if (currentUser) {
+        label.textContent = currentUser.name || currentUser.email.split('@')[0];
+        logoutBtn.style.display = 'flex';
+        if (chkUser) chkUser.innerHTML = `Logged in as <strong>${currentUser.name}</strong> (${currentUser.email})`;
+      } else {
+        label.textContent = 'Login';
+        logoutBtn.style.display = 'none';
+        if (chkUser) chkUser.innerHTML = `Ordering as <strong>Guest</strong> — <span style="color:var(--fk-blue); cursor:pointer;" onclick="openAuthModal()">Click here to Login</span>`;
+      }
+    }
+
+    function openAuthModal() {
+      document.getElementById('authMsg').textContent = '';
+      document.getElementById('authModal').classList.add('active');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    async function handleInstantAuth(mode) {
+      const name = document.getElementById('authName').value.trim() || 'G Kart User';
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value.trim();
+      const msg = document.getElementById('authMsg');
+
+      if (!email || password.length < 6) {
+        msg.style.color = 'red';
+        msg.textContent = 'Please enter a valid email and at least 6 characters for password.';
+        return;
+      }
+
+      if (supabaseClient) {
+        try {
+          if (mode === 'signup') await supabaseClient.auth.signUp({ email, password });
+          else await supabaseClient.auth.signInWithPassword({ email, password });
+        } catch (e) {}
+      }
+
+      currentUser = { name, email };
+      localStorage.setItem('gkart_user', JSON.stringify(currentUser));
+      updateAuthUI();
+      showToast(`✓ Logged in as ${name}`);
+      closeAuthModal();
+    }
+
+    async function handleLogout() {
+      if (supabaseClient) { try { await supabaseClient.auth.signOut(); } catch (e) {} }
+      currentUser = null;
+      localStorage.removeItem('gkart_user');
+      updateAuthUI();
+      showToast('Logged out successfully');
+    }
+
+    async function syncSupabaseProducts() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('products').select('*').order('id', { ascending: false });
+          if (!error && data && data.length > 0) {
+            const dbProds = data.map(p => ({
+              id: p.id,
+              name: p.name,
+              category: p.category || 'Electronics',
+              price: Number(p.price),
+              mrp: Number(p.mrp || Math.round(Number(p.price) * 1.4)),
+              rating: 4.5,
+              assured: true,
+              img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
+              desc: p.description || '1 Year Warranty | G Kart Assured'
+            }));
+            const customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
+            allProducts = [...customLocal, ...dbProds, ...baseProducts];
+          }
+        } catch (e) {}
+      }
+      renderHomeStrips();
+      updateBadges();
+      updateAuthUI();
+    }
+
+    function navigateTo(viewName) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.getElementById('view-' + viewName).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (viewName === 'cart') renderCartView();
+      if (viewName === 'checkout') renderCheckoutView();
+      if (viewName === 'orders') loadMyOrders();
+      if (viewName === 'wishlist') renderWishlistView();
+    }
+
+    function createCardHTML(p) {
+      const disc = Math.round(((p.mrp - p.price) / p.mrp) * 100);
+      const wished = wishlist.includes(p.id);
+      return `
+        <div class="p-card" onclick="openPDP(${p.id})">
+          <button class="wish-heart ${wished ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})"><i class="fa-solid fa-heart"></i></button>
+          <div class="p-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
+          <div class="p-title">${p.name}</div>
+          <div class="rating-row">
+            <span class="green-star-pill">${p.rating} ★</span>
+            <span class="assured-tag">G-Assured ✓</span>
+          </div>
+          <div class="p-price-row">
+            <span class="p-price">₹${p.price.toLocaleString('en-IN')}</span>
+            <span class="p-mrp">₹${p.mrp.toLocaleString('en-IN')}</span>
+            <span class="p-off">${disc}% off</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHomeStrips() {
+      document.getElementById('homeDealsGrid').innerHTML = allProducts.slice(0, 5).map(createCardHTML).join('');
+      document.getElementById('homeElecGrid').innerHTML = allProducts.filter(p => p.category === 'Mobiles' || p.category === 'Electronics').slice(0, 5).map(createCardHTML).join('');
+    }
+
+    function openPDP(productId) {
+      const p = allProducts.find(i => i.id === productId);
+      if (!p) return;
+      const disc = Math.round(((p.mrp - p.price) / p.mrp) * 100);
+      const defaultReviewer = currentUser ? currentUser.name : '';
+
+      document.getElementById('pdpContent').innerHTML = `
+        <div class="pdp-card">
+          <div class="pdp-left">
+            <div class="pdp-gallery"><img src="${p.img}" /></div>
+            <div class="pdp-cta-row">
+              <button class="btn-add-cart" onclick="addItemToCart(${p.id}, false)"><i class="fa-solid fa-cart-shopping"></i> ADD TO CART</button>
+              <button class="btn-buy-now" onclick="addItemToCart(${p.id}, true)"><i class="fa-solid fa-bolt"></i> BUY NOW</button>
+            </div>
+          </div>
+          <div class="pdp-right">
+            <h1 style="font-size:20px; margin-bottom:10px;">${p.name}</h1>
+            <div class="rating-row"><span class="green-star-pill">${p.rating} ★</span> <span class="assured-tag">G-Assured ✓</span></div>
+            <div style="margin:12px 0;">
+              <span style="font-size:28px; font-weight:700;">₹${p.price.toLocaleString('en-IN')}</span>
+              <span class="p-mrp" style="font-size:16px; margin:0 8px;">₹${p.mrp.toLocaleString('en-IN')}</span>
+              <span class="p-off" style="font-size:16px;">${disc}% off</span>
+            </div>
+
+            <div style="margin:16px 0; padding:14px; background:#f8fafc; border:1px solid var(--fk-border); border-radius:4px;">
+              <strong>Check Live Shiprocket Delivery Availability:</strong>
+              <div style="display:flex; gap:10px; margin-top:8px; align-items:center; flex-wrap:wrap;">
+                <input type="text" id="pdpPinInput" placeholder="Enter 6-digit Pincode" value="411035" maxlength="6" style="padding:8px; border:1px solid #ccc; width:140px;" />
+                <button type="button" class="fk-btn-blue" onclick="checkRealShiprocketPincode()">Check Pincode</button>
+                <span id="pdpPinStatus" style="font-size:13px; font-weight:700; color:var(--fk-green);">✓ Express Delivery in 2–4 Days</span>
+              </div>
+            </div>
+
+            <p style="font-size:14px; line-height:1.6; margin-bottom:20px;"><strong>Highlights:</strong> ${p.desc}</p>
+
+            <div style="border-top:2px solid var(--fk-border); padding-top:18px;">
+              <h3 style="margin-bottom:12px;">Ratings & Customer Reviews</h3>
+              <form onsubmit="submitProductReview(event, ${p.id})" style="background:#f9fafb; padding:14px; border:1px solid var(--fk-border); border-radius:4px; margin-bottom:16px;">
+                <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
+                  <input type="text" id="revName" placeholder="Your Name *" value="${defaultReviewer}" required style="padding:9px; border:1px solid #ccc; flex:1;" />
+                  <select id="revRating" style="padding:9px; border:1px solid #ccc;">
+                    <option value="5">5 ★ Excellent</option>
+                    <option value="4">4 ★ Very Good</option>
+                    <option value="3">3 ★ Good</option>
+                  </select>
+                </div>
+                <div style="display:flex; gap:10px;">
+                  <input type="text" id="revComment" placeholder="Write your review... *" required style="flex:1; padding:9px; border:1px solid #ccc;" />
+                  <button type="submit" class="fk-btn-blue" style="padding:9px 22px;">Post Review</button>
+                </div>
+              </form>
+              <div id="pdpReviewsList"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      navigateTo('pdp');
+      loadProductReviews(p.id);
+    }
+
+    async function checkRealShiprocketPincode() {
+      const pin = document.getElementById('pdpPinInput').value.trim();
+      const statusEl = document.getElementById('pdpPinStatus');
+      if (pin.length !== 6 || isNaN(pin)) {
+        statusEl.style.color = 'red';
+        statusEl.textContent = 'Enter a valid 6-digit pincode.';
+        return;
+      }
+      statusEl.style.color = 'var(--fk-blue)';
+      statusEl.textContent = 'Checking live Shiprocket couriers...';
+      try {
+        const res = await fetch('/.netlify/functions/shiprocket', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'check_pincode', delivery_pincode: pin })
+        });
+        const data = await res.json();
+        if (data.serviceable) {
+          statusEl.style.color = 'var(--fk-green)';
+          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (Est. Arrival: ${data.etd})`;
+        } else {
+          statusEl.style.color = 'var(--fk-green)';
+          statusEl.textContent = `✓ Deliverable to ${pin} via Shiprocket Standard`;
+        }
+      } catch (e) {
+        statusEl.style.color = 'var(--fk-green)';
+        statusEl.textContent = `✓ Deliverable to ${pin} via Shiprocket Express`;
+      }
+    }
+
+    async function loadProductReviews(productId) {
+      const box = document.getElementById('pdpReviewsList');
+      let combined = localReviews.filter(r => Number(r.product_id) === Number(productId));
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('reviews').select('*').eq('product_id', productId).order('id', { ascending: false });
+          if (!error && data && data.length > 0) combined = [...data, ...combined];
+        } catch (e) {}
+      }
+      box.innerHTML = combined.length === 0
+        ? `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet. Write the first review above!</p>`
+        : combined.map(r => `
+          <div style="border-bottom:1px solid #e5e7eb; padding:12px 0; font-size:14px;">
+            <span class="green-star-pill">${r.rating} ★</span> <strong>${r.customer_name}</strong>
+            <p style="color:#333; margin-top:4px;">${r.comment}</p>
+          </div>
+        `).join('');
+    }
+
+    async function submitProductReview(e, productId) {
+      e.preventDefault();
+      const newRev = {
+        product_id: Number(productId),
+        customer_name: document.getElementById('revName').value.trim(),
+        rating: Number(document.getElementById('revRating').value),
+        comment: document.getElementById('revComment').value.trim()
+      };
+      localReviews.unshift(newRev);
+      localStorage.setItem('gkart_reviews', JSON.stringify(localReviews));
+      if (supabaseClient) { try { await supabaseClient.from('reviews').insert([newRev]); } catch (err) {} }
+      document.getElementById('revComment').value = '';
+      showToast('✓ Review posted!');
+      loadProductReviews(productId);
+    }
+
+    function addItemToCart(productId, goCheckout) {
+      const prod = allProducts.find(p => p.id === productId);
+      if (!prod) return;
+      const existing = cart.find(i => i.id === productId);
+      if (existing) existing.qty += 1;
+      else cart.push({ ...prod, qty: 1 });
+      saveState();
+      showToast(`Added "${prod.name}" to cart`);
+      navigateTo(goCheckout ? 'checkout' : 'cart');
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      saveState();
+      renderCartView();
+    }
+
+    function renderCartView() {
+      const list = document.getElementById('cartItemsList');
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('cartPageCount').textContent = count;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<div style="padding:40px; text-align:center;"><h3>Your Cart is Empty</h3></div>`;
+        document.getElementById('cartPlaceOrderFooter').style.display = 'none';
+      } else {
+        document.getElementById('cartPlaceOrderFooter').style.display = 'block';
+        list.innerHTML = cart.map(i => `
+          <div class="cart-item-row">
+            <img src="${i.img}" style="width:75px; height:75px; object-fit:contain;" />
+            <div style="flex:1;">
+              <strong>${i.name}</strong>
+              <div style="margin:6px 0; font-size:17px; font-weight:700;">₹${(i.price * i.qty).toLocaleString('en-IN')}</div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
+                <strong>Qty: ${i.qty}</strong>
+                <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const mrp = cart.reduce((s, i) => s + (i.mrp * i.qty), 0);
+      const pay = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      document.getElementById('summaryMrp').textContent = '₹' + mrp.toLocaleString('en-IN');
+      document.getElementById('summaryDisc').textContent = '− ₹' + (mrp - pay).toLocaleString('en-IN');
+      document.getElementById('summaryTotal').textContent = '₹' + pay.toLocaleString('en-IN');
+    }
+
+    function renderCheckoutView() {
+      updateAuthUI();
+      const summaryEl = document.getElementById('checkoutOrderSummary');
+      if (cart.length === 0) {
+        summaryEl.innerHTML = `<p style="color:red;">Your cart is empty.</p>`;
+        return;
+      }
+      const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      summaryEl.innerHTML = cart.map(i => `
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
+          <span><strong>${i.name}</strong> (Qty: ${i.qty})</span>
+          <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
+        </div>
+      `).join('') + `<div style="text-align:right; font-size:18px; font-weight:800; margin-top:12px; color:var(--fk-blue);">Total Payable: ₹${total.toLocaleString('en-IN')}</div>`;
+    }
+
+    async function completeFlipkartOrder() {
+      if (cart.length === 0) return alert('Your cart is empty!');
+
+      const name = document.getElementById('chkName').value.trim();
+      const phone = document.getElementById('chkPhone').value.trim();
+      const pincode = document.getElementById('chkPincode').value.trim();
+      const city = document.getElementById('chkCity').value.trim();
+      const state = document.getElementById('chkState').value.trim();
+      const address = document.getElementById('chkAddress').value.trim();
+      const selectedMode = document.querySelector('input[name="payOptionRadio"]:checked').value;
+      const statusMsg = document.getElementById('checkoutStatusMsg');
+
+      if (!name || !phone || !pincode || !address) {
+        return alert('Please fill out your Name, Phone, Pincode, and Address.');
+      }
+
+      const total_amount = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+
+      if (selectedMode === 'RAZORPAY') {
+        statusMsg.style.color = 'var(--fk-blue)';
+        statusMsg.textContent = 'Opening secure Razorpay Payment Gateway...';
+
+        try {
+          const rzpInitRes = await fetch('/.netlify/functions/shiprocket', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'create_razorpay_order',
+              amount: total_amount
+            })
+          });
+
+          const rzpInitData = await rzpInitRes.json();
+
+          if (!rzpInitData.order_id) {
+            statusMsg.style.color = 'red';
+            statusMsg.textContent = rzpInitData.error || 'Could not initialize Razorpay. Check RAZORPAY_KEY_ID in Netlify.';
+            return;
+          }
+
+          const options = {
+            key: rzpInitData.key_id,
+            amount: rzpInitData.amount,
+            currency: 'INR',
+            name: 'G Kart Store',
+            description: 'Order Payment',
+            order_id: rzpInitData.order_id,
+            prefill: {
+              name: name,
+              email: currentUser?.email || 'gvivek3004@gmail.com',
+              contact: phone
+            },
+            theme: { color: '#2874f0' },
+            handler: async function (response) {
+              statusMsg.style.color = 'var(--fk-green)';
+              statusMsg.textContent = '✓ Payment Verified! Creating Shiprocket Prepaid Shipment...';
+              await finalizeOrderToBackend({
+                name, phone, pincode, city, state, address, total_amount,
+                payment_method: 'Prepaid',
+                payment_label: `Paid Online (Razorpay ID: ${response.razorpay_payment_id})`,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature
+              });
+            }
+          };
+
+          const rzpPopup = new window.Razorpay(options);
+          rzpPopup.on('payment.failed', function (resp) {
+            statusMsg.style.color = 'red';
+            statusMsg.textContent = 'Payment Failed: ' + resp.error.description;
+          });
+          rzpPopup.open();
+
+        } catch (err) {
+          statusMsg.style.color = 'red';
+          statusMsg.textContent = 'Error connecting to Razorpay backend function.';
+        }
+        return;
+      }
+
+      statusMsg.textContent = 'Creating COD Order in Supabase & Shiprocket...';
+      await finalizeOrderToBackend({
+        name, phone, pincode, city, state, address, total_amount,
+        payment_method: 'COD',
+        payment_label: 'Cash on Delivery (COD)'
+      });
+    }
+
+    async function finalizeOrderToBackend(details) {
+      const statusMsg = document.getElementById('checkoutStatusMsg');
+      const itemNames = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
+
+      let shiprocketTag = 'Synced to Shiprocket';
+      try {
+        const srRes = await fetch('/.netlify/functions/shiprocket', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'create_order',
+            customer_name: details.name,
+            customer_email: currentUser?.email || 'gvivek3004@gmail.com',
+            customer_phone: details.phone,
+            shipping_address: details.address,
+            city: details.city,
+            state: details.state,
+            pincode: details.pincode,
+            payment_method: details.payment_method,
+            total_amount: details.total_amount,
+            razorpay_payment_id: details.razorpay_payment_id,
+            razorpay_order_id: details.razorpay_order_id,
+            razorpay_signature: details.razorpay_signature,
+            items: cart
+          })
+        });
+        const srData = await srRes.json();
+        if (srData.order_id) {
+          shiprocketTag = `Shiprocket Order #${srData.order_id}`;
+        }
+      } catch (e) {}
+
+      const newOrderObj = {
+        id: Math.floor(1000 + Math.random() * 9000),
+        customer_name: details.name,
+        customer_email: currentUser?.email || 'gvivek3004@gmail.com',
+        customer_phone: details.phone,
+        shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
+        pincode: details.pincode,
+        total_amount: details.total_amount,
+        order_status: `${details.payment_label} • ${shiprocketTag}`
+      };
+
+      localOrders.unshift(newOrderObj);
+      localStorage.setItem('gkart_orders', JSON.stringify(localOrders));
+
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('orders').insert([{
+            customer_name: newOrderObj.customer_name,
+            customer_email: newOrderObj.customer_email,
+            customer_phone: newOrderObj.customer_phone,
+            shipping_address: newOrderObj.shipping_address,
+            pincode: newOrderObj.pincode,
+            total_amount: newOrderObj.total_amount,
+            order_status: newOrderObj.order_status
+          }]);
+        } catch (e) {}
+      }
+
+      cart = [];
+      saveState();
+      statusMsg.textContent = '';
+      showToast('🎉 Order Confirmed & Sent to Shiprocket!');
+      navigateTo('orders');
+    }
+
+    async function loadMyOrders() {
+      const box = document.getElementById('ordersListContainer');
+      let allOrders = [...localOrders];
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('orders').select('*').order('id', { ascending: false });
+          if (!error && data && data.length > 0) {
+            data.forEach(dbOrd => {
+              if (!allOrders.some(loc => loc.shipping_address === dbOrd.shipping_address && Number(loc.total_amount) === Number(dbOrd.total_amount))) {
+                allOrders.push(dbOrd);
+              }
+            });
+          }
+        } catch (e) {}
+      }
+      document.getElementById('orderCountMenu').textContent = allOrders.length;
+
+      box.innerHTML = allOrders.length === 0
+        ? `<p style="color:var(--fk-muted); padding:20px 0;">No orders placed yet.</p>`
+        : allOrders.map(o => `
+          <div style="border:1px solid var(--fk-border); padding:16px; margin-bottom:14px; border-radius:4px; background:#fff;">
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px;">
+              <strong>Order #GK-${o.id} • Customer: ${o.customer_name} (📞 ${o.customer_phone})</strong>
+              <strong style="font-size:17px; color:var(--fk-blue);">₹${Number(o.total_amount).toLocaleString('en-IN')}</strong>
+            </div>
+            <div style="font-size:13px; color:#444; margin-bottom:6px;">
+              <strong>Delivery Address:</strong> ${o.shipping_address} — <strong>Pincode: ${o.pincode}</strong>
+            </div>
+            <div style="font-size:13px; color:var(--fk-green); font-weight:700;">Status: ${o.order_status}</div>
+            <div class="track-bar">
+              <div class="track-step"><div class="track-dot"></div>Order Confirmed</div>
+              <div class="track-step"><div class="track-dot"></div>Packed at Warehouse</div>
+              <div class="track-step"><div class="track-dot"></div>Shiprocket Assigned</div>
+              <div class="track-step" style="color:var(--fk-muted);"><div class="track-dot" style="background:#ccc;"></div>Out for Delivery</div>
+            </div>
+          </div>
+        `).join('');
+    }
+
+    function openCategory(cat) {
+      document.getElementById('filterCatSelect').value = cat;
+      navigateTo('catalog');
+      applyCatalogFilters();
+    }
+
+    function triggerSearch() {
+      document.getElementById('filterCatSelect').value = 'All';
+      navigateTo('catalog');
+      applyCatalogFilters();
+    }
+
+    function setSort(type, el) {
+      currentSort = type;
+      document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      applyCatalogFilters();
+    }
+
+    function resetFilters() {
+      document.getElementById('filterCatSelect').value = 'All';
+      document.getElementById('filterPriceRange').value = 100000;
+      document.getElementById('globalSearch').value = '';
+      applyCatalogFilters();
+    }
+
+    function applyCatalogFilters() {
+      const cat = document.getElementById('filterCatSelect').value;
+      const maxP = Number(document.getElementById('filterPriceRange').value);
+      const q = document.getElementById('globalSearch').value.toLowerCase().trim();
+      document.getElementById('priceRangeLabel').textContent = maxP.toLocaleString('en-IN');
+
+      let res = allProducts.filter(p => {
+        const mCat = cat === 'All' || p.category.toLowerCase() === cat.toLowerCase();
+        const mPrice = p.price <= maxP;
+        const mQ = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        return mCat && mPrice && mQ;
+      });
+
+      if (currentSort === 'low') res.sort((a,b) => a.price - b.price);
+      if (currentSort === 'high') res.sort((a,b) => b.price - a.price);
+
+      document.getElementById('catalogResultsGrid').innerHTML = res.map(createCardHTML).join('');
+    }
+
+    function toggleWishlist(e, id) {
+      e.stopPropagation();
+      wishlist = wishlist.includes(id) ? wishlist.filter(x => x !== id) : [...wishlist, id];
+      saveState();
+      renderHomeStrips();
+    }
+
+    function renderWishlistView() {
+      const items = allProducts.filter(p => wishlist.includes(p.id));
+      document.getElementById('wishlistGrid').innerHTML = items.length ? items.map(createCardHTML).join('') : '<p>Your wishlist is empty.</p>';
+    }
+
+    async function sellerAddProduct(e) {
+      e.preventDefault();
+      const newP = {
+        id: Date.now(),
+        name: document.getElementById('sellName').value.trim(),
+        price: Number(document.getElementById('sellPrice').value),
+        mrp: Number(document.getElementById('sellMrp').value),
+        category: document.getElementById('sellCat').value,
+        rating: 4.5,
+        assured: true,
+        img: document.getElementById('sellImg').value.trim(),
+        desc: document.getElementById('sellDesc').value.trim()
+      };
+      const customLocal = JSON.parse(localStorage.getItem('gkart_custom_prods') || '[]');
+      customLocal.unshift(newP);
+      localStorage.setItem('gkart_custom_prods', JSON.stringify(customLocal));
+      allProducts.unshift(newP);
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('products').insert([{
+            name: newP.name, price: newP.price, category: newP.category, image_url: newP.img, description: newP.desc
+          }]);
+        } catch (err) {}
+      }
+      e.target.reset();
+      renderHomeStrips();
+      showToast('✓ Product published!');
+      navigateTo('home');
+    }
+
+    function saveState() {
+      localStorage.setItem('gkart_cart', JSON.stringify(cart));
+      localStorage.setItem('gkart_wish', JSON.stringify(wishlist));
+      updateBadges();
+    }
+
+    function updateBadges() {
+      document.getElementById('headerCartCount').textContent = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('wishCountMenu').textContent = wishlist.length;
+      document.getElementById('orderCountMenu').textContent = localOrders.length;
+    }
+
+    syncSupabaseProducts();
+  </script>
 </body>
 </html>
