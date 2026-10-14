@@ -20,162 +20,124 @@
       --fk-border: #e0e0e0;
       --fk-red: #dc2626;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Roboto, Arial, sans-serif; }
     body { background-color: var(--fk-bg); color: var(--fk-text); min-height: 100vh; display: flex; flex-direction: column; }
-
-    /* HEADER */
-    .fk-header { background-color: var(--fk-blue); height: 56px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px 0 rgba(0,0,0,.15); }
+    .fk-header { background-color: var(--fk-blue); height: 56px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,.15); }
     .header-container { max-width: 1248px; height: 100%; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 20px; }
     .brand-box { cursor: pointer; display: flex; flex-direction: column; text-decoration: none; min-width: 85px; }
     .brand-title { color: #fff; font-size: 20px; font-weight: 800; font-style: italic; line-height: 1; }
     .brand-sub { color: #f0f0f0; font-size: 11px; font-style: italic; margin-top: 2px; }
     .brand-sub span { color: var(--fk-yellow); font-weight: 700; }
-
     .search-container { flex: 1; max-width: 540px; position: relative; }
-    .search-container input { width: 100%; height: 36px; padding: 0 42px 0 16px; border: none; border-radius: 2px; font-size: 14px; outline: none; box-shadow: 0 2px 4px 0 rgba(0,0,0,.23); }
+    .search-container input { width: 100%; height: 36px; padding: 0 42px 0 16px; border: none; border-radius: 2px; font-size: 14px; outline: none; }
     .search-container button { position: absolute; right: 0; top: 0; height: 36px; width: 42px; border: none; background: transparent; color: var(--fk-blue); font-size: 16px; cursor: pointer; }
-
     .header-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
     .nav-dropdown { position: relative; padding: 10px 0; }
     .login-trigger { background: #fff; color: var(--fk-blue); font-weight: 700; font-size: 15px; padding: 6px 24px; border: none; border-radius: 2px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-    .dropdown-menu { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); width: 230px; background: #fff; border-radius: 2px; box-shadow: 0 4px 16px 0 rgba(0,0,0,.2); display: none; flex-direction: column; z-index: 1200; }
+    .dropdown-menu { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); width: 230px; background: #fff; border-radius: 2px; box-shadow: 0 4px 16px rgba(0,0,0,.2); display: none; flex-direction: column; z-index: 1200; }
     .nav-dropdown:hover .dropdown-menu { display: flex; }
     .dropdown-item { padding: 12px 16px; font-size: 14px; color: var(--fk-text); border-bottom: 1px solid #f0f0f0; cursor: pointer; display: flex; align-items: center; gap: 12px; }
     .dropdown-item i { color: var(--fk-blue); width: 16px; }
     .dropdown-item:hover { background: #f5faff; }
-
     .nav-item { color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; position: relative; white-space: nowrap; }
     .badge-count { background: var(--fk-orange); color: #fff; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 8px; border: 1px solid #fff; position: absolute; top: -8px; left: 10px; }
-
-    /* CATEGORY BAR */
-    .cat-bar { background: #fff; box-shadow: 0 1px 1px 0 rgba(0,0,0,.16); margin-bottom: 10px; }
+    .cat-bar { background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,.16); margin-bottom: 10px; }
     .cat-bar-inner { max-width: 1248px; margin: 0 auto; padding: 10px 16px; display: flex; justify-content: space-between; overflow-x: auto; gap: 16px; }
     .cat-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 80px; }
     .cat-card img { width: 58px; height: 58px; object-fit: contain; margin-bottom: 4px; }
     .cat-name { font-size: 13px; font-weight: 600; color: #333; }
-    .cat-card:hover .cat-name { color: var(--fk-blue); }
-
-    /* VIEW MANAGEMENT */
     .app-container { max-width: 1248px; width: 100%; margin: 0 auto 32px auto; padding: 0 8px; flex: 1; }
     .view-section { display: none; }
     .view-section.active { display: block; }
-
-    /* CAROUSEL */
-    .carousel-box { position: relative; height: 240px; background: #fff; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-    .slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; color: #fff; background: linear-gradient(90deg, #102a56 0%, #2874f0 100%); }
-    .slide-content h2 { font-size: 32px; font-weight: 800; margin: 8px 0; }
-    .slide-content p { font-size: 16px; color: var(--fk-yellow); font-weight: 600; margin-bottom: 16px; }
-    .slide-btn { background: #fff; color: var(--fk-blue); border: none; padding: 10px 24px; font-weight: 700; border-radius: 2px; cursor: pointer; font-size: 14px; }
-
-    /* PRODUCT CARDS */
+    .carousel-box { position: relative; height: 220px; background: #fff; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+    .slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; color: #fff; background: linear-gradient(90deg, #102a56 0%, #2874f0 100%); }
+    .slide-content h2 { font-size: 28px; font-weight: 800; margin: 8px 0; }
+    .slide-content p { font-size: 15px; color: var(--fk-yellow); font-weight: 600; margin-bottom: 14px; }
+    .slide-btn { background: #fff; color: var(--fk-blue); border: none; padding: 10px 22px; font-weight: 700; border-radius: 2px; cursor: pointer; font-size: 14px; }
     .strip-card { background: #fff; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
     .strip-header { padding: 14px 20px; border-bottom: 1px solid var(--fk-border); display: flex; align-items: center; justify-content: space-between; }
     .strip-title { font-size: 19px; font-weight: 700; }
-    .fk-btn-blue { background: var(--fk-blue); color: #fff; border: none; padding: 9px 18px; font-size: 13px; font-weight: 700; border-radius: 2px; cursor: pointer; box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); }
+    .fk-btn-blue { background: var(--fk-blue); color: #fff; border: none; padding: 9px 18px; font-size: 13px; font-weight: 700; border-radius: 2px; cursor: pointer; }
     .strip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; padding: 16px; }
-
-    .p-card { background: #fff; padding: 14px; border-radius: 2px; position: relative; cursor: pointer; transition: box-shadow 0.2s; display: flex; flex-direction: column; border: 1px solid #f0f0f0; }
-    .p-card:hover { box-shadow: 0 3px 16px 0 rgba(0,0,0,.15); }
+    .p-card { background: #fff; padding: 14px; border-radius: 2px; position: relative; cursor: pointer; display: flex; flex-direction: column; border: 1px solid #f0f0f0; }
+    .p-card:hover { box-shadow: 0 3px 16px rgba(0,0,0,.15); }
     .wish-heart { position: absolute; top: 12px; right: 12px; font-size: 18px; color: #c2c2c2; z-index: 5; background: none; border: none; cursor: pointer; }
     .wish-heart.active { color: var(--fk-red); }
-    .p-img-wrap { height: 165px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .p-img-wrap { height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
     .p-img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
     .p-brand { font-size: 12px; font-weight: 700; color: var(--fk-muted); text-transform: uppercase; margin-bottom: 2px; }
     .p-title { font-size: 14px; font-weight: 500; color: var(--fk-text); margin-bottom: 6px; height: 36px; overflow: hidden; }
-    .p-card:hover .p-title { color: var(--fk-blue); }
     .rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .green-star-pill { background: var(--fk-green); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
-    .assured-tag { font-size: 11px; font-weight: 800; font-style: italic; color: var(--fk-blue); background: #eef4ff; padding: 2px 6px; border-radius: 2px; border: 1px solid #cdddf7; }
+    .assured-tag { font-size: 11px; font-weight: 800; color: var(--fk-blue); background: #eef4ff; padding: 2px 6px; border-radius: 2px; border: 1px solid #cdddf7; }
     .p-price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
     .p-price { font-size: 16px; font-weight: 700; }
     .p-mrp { font-size: 13px; color: var(--fk-muted); text-decoration: line-through; }
     .p-off { font-size: 13px; font-weight: 700; color: var(--fk-green); }
-
-    /* PDP LAYOUT */
     .catalog-layout, .cart-layout, .pdp-card { display: flex; gap: 16px; align-items: flex-start; }
     .pdp-card { background: #fff; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
-    .pdp-left { width: 420px; flex-shrink: 0; position: sticky; top: 72px; }
-    .pdp-gallery { border: 1px solid var(--fk-border); height: 340px; display: flex; align-items: center; justify-content: center; padding: 16px; margin-bottom: 10px; }
+    .pdp-left { width: 400px; flex-shrink: 0; }
+    .pdp-gallery { border: 1px solid var(--fk-border); height: 320px; display: flex; align-items: center; justify-content: center; padding: 16px; margin-bottom: 10px; }
     .pdp-gallery img { max-width: 100%; max-height: 100%; object-fit: contain; }
     .pdp-thumbs { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; }
-    .pdp-thumb { width: 64px; height: 64px; border: 2px solid var(--fk-border); border-radius: 2px; padding: 4px; cursor: pointer; object-fit: contain; background: #fff; }
-    .pdp-thumb:hover, .pdp-thumb.active { border-color: var(--fk-blue); }
+    .pdp-thumb { width: 60px; height: 60px; border: 2px solid var(--fk-border); border-radius: 2px; padding: 4px; cursor: pointer; object-fit: contain; background: #fff; }
+    .pdp-thumb.active { border-color: var(--fk-blue); }
     .pdp-cta-row { display: flex; gap: 12px; }
-    .btn-add-cart { flex: 1; background: var(--fk-amber); color: #fff; border: none; padding: 15px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
-    .btn-buy-now { flex: 1; background: var(--fk-orange); color: #fff; border: none; padding: 15px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
+    .btn-add-cart { flex: 1; background: var(--fk-amber); color: #fff; border: none; padding: 14px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
+    .btn-buy-now { flex: 1; background: var(--fk-orange); color: #fff; border: none; padding: 14px; font-size: 15px; font-weight: 700; border-radius: 2px; cursor: pointer; }
     .btn-disabled { background: #9ca3af !important; cursor: not-allowed !important; }
     .pdp-right { flex: 1; }
-
-    /* SPECIFICATIONS TABLE */
-    .specs-box { border: 1px solid var(--fk-border); border-radius: 2px; margin: 20px 0; }
-    .specs-header { padding: 14px 18px; font-size: 18px; font-weight: 700; border-bottom: 1px solid var(--fk-border); background: #f9fafb; }
-    .specs-row { display: flex; padding: 12px 18px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
-    .specs-row:last-child { border-bottom: none; }
-    .specs-key { width: 32%; color: var(--fk-muted); font-weight: 500; }
-    .specs-val { width: 68%; color: var(--fk-text); font-weight: 500; }
-
-    .filter-sidebar { width: 260px; background: #fff; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.1); flex-shrink: 0; }
+    .specs-box { border: 1px solid var(--fk-border); border-radius: 2px; margin: 18px 0; }
+    .specs-header { padding: 12px 16px; font-size: 17px; font-weight: 700; border-bottom: 1px solid var(--fk-border); background: #f9fafb; }
+    .specs-row { display: flex; padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .specs-key { width: 34%; color: var(--fk-muted); font-weight: 500; }
+    .specs-val { width: 66%; color: var(--fk-text); font-weight: 500; }
+    .filter-sidebar { width: 250px; background: #fff; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.1); flex-shrink: 0; }
     .filter-sec { padding: 12px 0; border-bottom: 1px solid var(--fk-border); }
-    .catalog-main { flex: 1; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.1); min-height: 500px; }
+    .catalog-main { flex: 1; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.1); min-height: 480px; }
     .sort-bar { padding: 12px 16px 0 16px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 20px; font-size: 14px; }
     .sort-tab { padding-bottom: 10px; cursor: pointer; border-bottom: 2px solid transparent; }
     .sort-tab.active { color: var(--fk-blue); border-bottom-color: var(--fk-blue); font-weight: 700; }
-
     .cart-left { flex: 1; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
-    .cart-right { width: 360px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); padding: 16px 20px; }
-    .cart-item-row { padding: 18px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 18px; align-items: center; }
+    .cart-right { width: 350px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); padding: 16px 20px; }
+    .cart-item-row { padding: 16px; border-bottom: 1px solid var(--fk-border); display: flex; gap: 16px; align-items: center; }
     .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff; font-weight: 700; cursor: pointer; }
     .fk-input { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 2px; font-size: 14px; margin-bottom: 12px; }
-
-    /* PROMO COUPON BOX */
     .coupon-box { background: #f8fafc; border: 1px dashed var(--fk-blue); padding: 12px; border-radius: 4px; margin: 14px 0; }
     .coupon-input-row { display: flex; gap: 8px; margin-top: 6px; }
-    .coupon-input-row input { flex: 1; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 2px; font-size: 13px; text-transform: uppercase; font-weight: 700; outline: none; }
+    .coupon-input-row input { flex: 1; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 2px; font-size: 13px; text-transform: uppercase; font-weight: 700; }
     .coupon-tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
     .coupon-pill { background: #eff6ff; color: var(--fk-blue); border: 1px solid #bfdbfe; padding: 3px 8px; font-size: 11px; font-weight: 700; border-radius: 3px; cursor: pointer; }
-    .coupon-pill:hover { background: var(--fk-blue); color: #fff; }
-
-    /* CHECKOUT ACCORDION */
-    .step-box { background: #fff; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; transition: opacity 0.3s; }
+    .step-box { background: #fff; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.12); border-radius: 2px; overflow: hidden; }
     .step-box.locked { opacity: 0.5; pointer-events: none; }
     .step-header { padding: 14px 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between; text-transform: uppercase; }
     .step-header.active { background: var(--fk-blue); color: #fff; }
     .step-header.done { background: #fff; color: #878787; border-bottom: 1px solid var(--fk-border); }
     .step-header-left { display: flex; align-items: center; gap: 12px; }
-    .step-num { width: 22px; height: 22px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
-    .step-header.active .step-num { background: #fff; color: var(--fk-blue); }
-    .step-header.done .step-num { background: #f0f0f0; color: var(--fk-blue); }
+    .step-num { width: 22px; height: 22px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #fff; color: var(--fk-blue); }
     .step-body { padding: 20px 24px; }
-
-    /* SELLER & ACTION BUTTONS */
     .seller-item-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px; border: 1px solid var(--fk-border); border-radius: 4px; margin-bottom: 10px; background: #fafafa; flex-wrap: wrap; }
-    .btn-edit-prod { background: var(--fk-blue); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-delete-prod { background: var(--fk-red); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-order-action { padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; border: 1px solid; display: inline-flex; align-items: center; gap: 6px; }
-
-    /* MODALS & NOTIFICATIONS */
+    .btn-edit-prod { background: var(--fk-blue); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; }
+    .btn-delete-prod { background: var(--fk-red); color: #fff; border: none; padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; }
+    .btn-order-action { padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 3px; cursor: pointer; border: 1px solid; }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
     .modal-overlay.active { display: flex; }
-    .fk-auth-modal { width: 680px; min-height: 440px; background: #fff; border-radius: 4px; display: flex; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.3); position: relative; }
-    .fk-auth-left { width: 40%; background: var(--fk-blue); color: #fff; padding: 36px 28px; display: flex; flex-direction: column; justify-content: space-between; }
-    .fk-auth-right { width: 60%; padding: 36px 28px; display: flex; flex-direction: column; }
-    #toastBanner { position: fixed; bottom: 24px; right: 24px; background: #212121; color: #fff; padding: 14px 22px; border-radius: 4px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,.3); display: none; z-index: 3000; border-left: 5px solid var(--fk-green); }
-
+    .fk-auth-modal { width: 660px; min-height: 420px; background: #fff; border-radius: 4px; display: flex; overflow: hidden; position: relative; }
+    .fk-auth-left { width: 40%; background: var(--fk-blue); color: #fff; padding: 32px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+    .fk-auth-right { width: 60%; padding: 32px 24px; display: flex; flex-direction: column; }
+    #toastBanner { position: fixed; bottom: 24px; right: 24px; background: #212121; color: #fff; padding: 14px 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: none; z-index: 3000; border-left: 5px solid var(--fk-green); }
     .track-bar { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--fk-border); }
     .track-step { flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: #9ca3af; }
     .track-step.done { color: var(--fk-green); }
     .track-dot { width: 12px; height: 12px; background: #d1d5db; border-radius: 50%; margin: 0 auto 4px auto; }
     .track-step.done .track-dot { background: var(--fk-green); }
-
-    .fk-footer { background: #172337; color: #fff; padding: 32px 20px; margin-top: auto; font-size: 12px; }
+    .fk-footer { background: #172337; color: #fff; padding: 28px 20px; margin-top: auto; font-size: 12px; }
     .footer-grid { max-width: 1248px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; }
     .footer-grid h4 { color: #878787; margin-bottom: 10px; }
     .footer-grid a { display: block; color: #fff; text-decoration: none; margin-bottom: 6px; cursor: pointer; }
-
     @media (max-width: 900px) {
       .pdp-card, .catalog-layout, .cart-layout, .fk-auth-modal { flex-direction: column; width: 100%; }
-      .pdp-left, .filter-sidebar, .cart-right, .fk-auth-left, .fk-auth-right { width: 100%; position: static; }
+      .pdp-left, .filter-sidebar, .cart-right, .fk-auth-left, .fk-auth-right { width: 100%; }
     }
   </style>
 </head>
@@ -183,19 +145,16 @@
 
   <div id="toastBanner"></div>
 
-  <!-- HEADER -->
   <header class="fk-header">
     <div class="header-container">
       <a class="brand-box" onclick="navigateTo('home')">
         <span class="brand-title">G Kart</span>
-        <span class="brand-sub">Explore <span>Plus ✦</span></span>
+        <span class="brand-sub">Explore <span>Plus</span></span>
       </a>
-
       <div class="search-container">
         <input type="text" id="globalSearch" placeholder="Search for Products, Brands and More" onkeyup="if(event.key==='Enter') triggerSearch()" />
         <button type="button" onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
-
       <div class="header-nav">
         <div class="nav-dropdown">
           <button type="button" class="login-trigger" id="authHeaderBtn" onclick="openAuthModal()">
@@ -209,7 +168,6 @@
             <div class="dropdown-item" id="logoutBtn" style="display:none; color:var(--fk-red);" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
           </div>
         </div>
-
         <div class="nav-item" onclick="navigateTo('seller')"><i class="fa-solid fa-shop"></i> Seller Hub</div>
         <div class="nav-item" onclick="navigateTo('orders')"><i class="fa-solid fa-truck-fast"></i> My Orders</div>
         <div class="nav-item" onclick="navigateTo('cart')">
@@ -221,7 +179,6 @@
     </div>
   </header>
 
-  <!-- CATEGORY BAR -->
   <div class="cat-bar">
     <div class="cat-bar-inner">
       <div class="cat-card" onclick="openCategory('All')"><img src="https://rukminim2.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="Offers" /><span class="cat-name">Top Offers</span></div>
@@ -235,21 +192,18 @@
   </div>
 
   <div class="app-container">
-
-    <!-- VIEW 1: HOME -->
     <div id="view-home" class="view-section active">
       <div class="carousel-box">
         <div class="slide">
           <div class="slide-content">
             <span style="background:var(--fk-orange); padding:4px 10px; font-size:12px; font-weight:700;">USE CODE: WELCOME10 OR DIWALI20</span>
             <h2>Big Saving Days Are Live</h2>
-            <p>Extra Up to ₹5,000 Coupon Discount • Razorpay & Shiprocket Express</p>
+            <p>Extra Up to Rs.5,000 Coupon Discount - Razorpay &amp; Shiprocket Express</p>
             <button type="button" class="slide-btn" onclick="openCategory('All')">Shop All Deals</button>
           </div>
-          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:185px; border-radius:8px;" alt="Banner" />
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" style="height:175px; border-radius:8px;" alt="Banner" />
         </div>
       </div>
-
       <div class="strip-card">
         <div class="strip-header">
           <span class="strip-title">Deals of the Day</span>
@@ -257,17 +211,15 @@
         </div>
         <div class="strip-grid" id="homeDealsGrid"></div>
       </div>
-
       <div class="strip-card">
         <div class="strip-header">
-          <span class="strip-title">Best of Electronics & Smartphones</span>
+          <span class="strip-title">Best of Electronics &amp; Smartphones</span>
           <button type="button" class="fk-btn-blue" onclick="openCategory('Electronics')">VIEW ALL</button>
         </div>
         <div class="strip-grid" id="homeElecGrid"></div>
       </div>
     </div>
 
-    <!-- VIEW 2: CATALOG -->
     <div id="view-catalog" class="view-section">
       <div class="catalog-layout">
         <aside class="filter-sidebar">
@@ -288,11 +240,10 @@
             </select>
           </div>
           <div class="filter-sec">
-            <label style="font-size:12px; font-weight:700;">MAX PRICE: ₹<span id="priceRangeLabel">100,000</span></label>
+            <label style="font-size:12px; font-weight:700;">MAX PRICE: Rs.<span id="priceRangeLabel">100,000</span></label>
             <input type="range" id="filterPriceRange" min="200" max="100000" step="500" value="100000" style="width:100%; margin-top:8px;" oninput="applyCatalogFilters()" />
           </div>
         </aside>
-
         <div class="catalog-main">
           <div class="sort-bar">
             <strong>Sort By:</strong>
@@ -305,12 +256,10 @@
       </div>
     </div>
 
-    <!-- VIEW 3: FULL FLIPKART PDP -->
     <div id="view-pdp" class="view-section">
       <div id="pdpContent"></div>
     </div>
 
-    <!-- VIEW 4: CART -->
     <div id="view-cart" class="view-section">
       <div class="cart-layout">
         <div class="cart-left">
@@ -322,197 +271,123 @@
             <button type="button" class="btn-buy-now" style="width:240px;" onclick="startFlipkartCheckout()">PLACE ORDER</button>
           </div>
         </div>
-
         <div class="cart-right">
           <div style="color:var(--fk-muted); font-weight:700; padding-bottom:10px; border-bottom:1px solid var(--fk-border);">PRICE DETAILS</div>
-
           <div class="coupon-box">
-            <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">
-              <i class="fa-solid fa-ticket"></i> APPLY PROMO CODE / COUPON
-            </div>
+            <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">APPLY PROMO CODE / COUPON</div>
             <div class="coupon-input-row">
-              <input type="text" id="cartCouponInput" placeholder="e.g. WELCOME10" />
+              <input type="text" id="cartCouponInput" placeholder="WELCOME10" />
               <button type="button" class="fk-btn-blue" style="padding:8px 14px;" onclick="applyCouponCode('cart')">APPLY</button>
             </div>
             <div class="coupon-tag-row">
-              <span class="coupon-pill" onclick="quickApplyCoupon('WELCOME10')">WELCOME10 (10% Off)</span>
-              <span class="coupon-pill" onclick="quickApplyCoupon('DIWALI20')">DIWALI20 (20% Off)</span>
-              <span class="coupon-pill" onclick="quickApplyCoupon('FLAT500')">FLAT500 (₹500 Off)</span>
+              <span class="coupon-pill" onclick="quickApplyCoupon('WELCOME10')">WELCOME10</span>
+              <span class="coupon-pill" onclick="quickApplyCoupon('DIWALI20')">DIWALI20</span>
+              <span class="coupon-pill" onclick="quickApplyCoupon('FLAT500')">FLAT500</span>
             </div>
             <div id="cartCouponStatus" style="margin-top:8px; font-size:12px; font-weight:700;"></div>
           </div>
-
-          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Total MRP</span><span id="summaryMrp">₹0</span></div>
-          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Product Discount</span><span style="color:var(--fk-green); font-weight:700;" id="summaryDisc">− ₹0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Total MRP</span><span id="summaryMrp">Rs.0</span></div>
+          <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Product Discount</span><span style="color:var(--fk-green); font-weight:700;" id="summaryDisc">- Rs.0</span></div>
           <div style="display:flex; justify-content:space-between; margin:12px 0;">
             <span>Coupon Discount <span id="summaryCouponBadge" style="font-size:11px; color:var(--fk-blue); font-weight:700;"></span></span>
-            <span style="color:var(--fk-green); font-weight:700;" id="summaryCouponAmt">− ₹0</span>
+            <span style="color:var(--fk-green); font-weight:700;" id="summaryCouponAmt">- Rs.0</span>
           </div>
           <div style="display:flex; justify-content:space-between; margin:12px 0;"><span>Shiprocket Delivery</span><span style="color:var(--fk-green); font-weight:700;">FREE</span></div>
           <div style="display:flex; justify-content:space-between; padding:14px 0; border-top:1px dashed var(--fk-border); font-size:18px; font-weight:700;">
-            <span>Total Payable</span><span id="summaryTotal">₹0</span>
+            <span>Total Payable</span><span id="summaryTotal">Rs.0</span>
           </div>
-          <div id="summaryTotalSavingsText" style="font-size:13px; color:var(--fk-green); font-weight:700; text-align:center; padding-top:4px;"></div>
+          <div id="summaryTotalSavingsText" style="font-size:13px; color:var(--fk-green); font-weight:700; text-align:center;"></div>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 5: 4-STEP MANDATORY CHECKOUT -->
     <div id="view-checkout" class="view-section">
       <div class="cart-layout">
         <div style="flex:1;">
-
-          <!-- STEP 1: MANDATORY LOGIN -->
           <div class="step-box" id="step1Box">
             <div class="step-header active" id="step1Header">
-              <div class="step-header-left">
-                <span class="step-num">1</span>
-                <span id="step1Title">LOGIN OR SIGNUP</span>
-              </div>
-              <button type="button" id="step1ChangeBtn" style="display:none; background:#fff; color:var(--fk-blue); border:1px solid #e0e0e0; padding:6px 16px; font-weight:700; cursor:pointer;" onclick="handleLogout()">LOGOUT / CHANGE</button>
+              <div class="step-header-left"><span class="step-num">1</span><span id="step1Title">LOGIN OR SIGNUP</span></div>
+              <button type="button" id="step1ChangeBtn" style="display:none; background:#fff; color:var(--fk-blue); border:1px solid #e0e0e0; padding:6px 14px; font-weight:700; cursor:pointer;" onclick="handleLogout()">LOGOUT / CHANGE</button>
             </div>
-            <div class="step-body" id="step1Body">
+            <div class="step-body">
               <div id="checkoutInlineAuth">
-                <p style="font-size:14px; margin-bottom:14px; color:#555;">To place an order, please log in with your account or create a new one:</p>
+                <p style="font-size:14px; margin-bottom:12px; color:#555;">To place an order, please log in or create an account:</p>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-                  <input type="text" id="chkAuthName" class="fk-input" placeholder="Full Name (for new signups)" />
+                  <input type="text" id="chkAuthName" class="fk-input" placeholder="Full Name" />
                   <input type="email" id="chkAuthEmail" class="fk-input" placeholder="Email Address *" required />
                 </div>
-                <input type="password" id="chkAuthPass" class="fk-input" placeholder="Password (min 6 characters) *" required />
+                <input type="password" id="chkAuthPass" class="fk-input" placeholder="Password (min 6 chars) *" required />
                 <div id="chkAuthErr" style="color:var(--fk-red); font-size:13px; font-weight:700; margin-bottom:10px;"></div>
                 <div style="display:flex; gap:12px;">
-                  <button type="button" class="btn-buy-now" style="flex:1; padding:12px;" onclick="handleCheckoutAuth('login')">LOGIN & CONTINUE</button>
+                  <button type="button" class="btn-buy-now" style="flex:1; padding:12px;" onclick="handleCheckoutAuth('login')">LOGIN &amp; CONTINUE</button>
                   <button type="button" class="fk-btn-blue" style="flex:1; background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleCheckoutAuth('signup')">CREATE NEW ACCOUNT</button>
                 </div>
               </div>
               <div id="checkoutLoggedInSummary" style="display:none;">
-                <p style="font-size:15px;">Logged in Customer: <strong id="step1UserName"></strong></p>
-                <p style="font-size:14px; color:#555;">Account Email: <strong id="step1UserEmail"></strong></p>
+                <p style="font-size:15px;">Customer: <strong id="step1UserName"></strong> (<span id="step1UserEmail"></span>)</p>
               </div>
             </div>
           </div>
 
-          <!-- STEP 2: DELIVERY ADDRESS -->
           <div class="step-box locked" id="step2Box">
-            <div class="step-header" id="step2Header">
-              <div class="step-header-left">
-                <span class="step-num">2</span>
-                <span>DELIVERY ADDRESS</span>
-              </div>
-            </div>
-            <div class="step-body" id="step2Body">
+            <div class="step-header" id="step2Header"><div class="step-header-left"><span class="step-num">2</span><span>DELIVERY ADDRESS</span></div></div>
+            <div class="step-body">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-                <div>
-                  <label style="font-size:12px; font-weight:700;">Recipient Full Name *</label>
-                  <input type="text" id="chkName" class="fk-input" placeholder="Name for delivery" />
-                </div>
-                <div>
-                  <label style="font-size:12px; font-weight:700;">10-Digit Mobile Number *</label>
-                  <input type="tel" id="chkPhone" class="fk-input" placeholder="10-digit mobile" maxlength="10" />
-                </div>
+                <input type="text" id="chkName" class="fk-input" placeholder="Recipient Full Name *" />
+                <input type="tel" id="chkPhone" class="fk-input" placeholder="10-Digit Mobile Number *" maxlength="10" />
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
-                <div>
-                  <label style="font-size:12px; font-weight:700;">Pincode *</label>
-                  <input type="text" id="chkPincode" class="fk-input" value="411035" maxlength="6" />
-                </div>
-                <div>
-                  <label style="font-size:12px; font-weight:700;">City *</label>
-                  <input type="text" id="chkCity" class="fk-input" value="Pune" />
-                </div>
-                <div>
-                  <label style="font-size:12px; font-weight:700;">State *</label>
-                  <input type="text" id="chkState" class="fk-input" value="Maharashtra" />
-                </div>
+                <input type="text" id="chkPincode" class="fk-input" value="411035" maxlength="6" placeholder="Pincode *" />
+                <input type="text" id="chkCity" class="fk-input" value="Pune" placeholder="City *" />
+                <input type="text" id="chkState" class="fk-input" value="Maharashtra" placeholder="State *" />
               </div>
-              <label style="font-size:12px; font-weight:700;">Full Street Address (House No, Street, Landmark) *</label>
-              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Full street address"></textarea>
-              <button type="button" class="btn-buy-now" style="width:260px;" onclick="confirmStep2Address()">DELIVER HERE</button>
+              <textarea id="chkAddress" class="fk-input" rows="2" placeholder="Full Street Address (House No, Area, Landmark) *"></textarea>
+              <button type="button" class="btn-buy-now" style="width:240px;" onclick="confirmStep2Address()">DELIVER HERE</button>
             </div>
           </div>
 
-          <!-- STEP 3: ORDER SUMMARY & CHECKOUT PROMO CODE -->
           <div class="step-box locked" id="step3Box">
-            <div class="step-header" id="step3Header">
-              <div class="step-header-left">
-                <span class="step-num">3</span>
-                <span>ORDER SUMMARY & PROMO DISCOUNTS</span>
-              </div>
-            </div>
-            <div class="step-body" id="step3Body">
+            <div class="step-header" id="step3Header"><div class="step-header-left"><span class="step-num">3</span><span>ORDER SUMMARY &amp; PROMO CODE</span></div></div>
+            <div class="step-body">
               <div id="checkoutOrderSummary"></div>
-
-              <div class="coupon-box" style="max-width:460px; margin-top:16px;">
-                <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">
-                  <i class="fa-solid fa-tag"></i> HAVE A PROMO CODE?
-                </div>
+              <div class="coupon-box" style="max-width:440px; margin-top:14px;">
+                <div style="font-size:12px; font-weight:700; color:var(--fk-blue);">HAVE A PROMO CODE?</div>
                 <div class="coupon-input-row">
-                  <input type="text" id="chkCouponInput" placeholder="Enter WELCOME10 / DIWALI20 / FLAT500" />
-                  <button type="button" class="fk-btn-blue" style="padding:8px 16px;" onclick="applyCouponCode('checkout')">APPLY</button>
-                  <button type="button" id="removeCouponBtn" style="display:none; background:#fee2e2; color:var(--fk-red); border:1px solid #fecaca; padding:8px 12px; font-size:12px; font-weight:700; cursor:pointer; border-radius:2px;" onclick="removeCoupon()">REMOVE</button>
-                </div>
-                <div class="coupon-tag-row">
-                  <span class="coupon-pill" onclick="quickApplyCoupon('WELCOME10')">WELCOME10</span>
-                  <span class="coupon-pill" onclick="quickApplyCoupon('DIWALI20')">DIWALI20</span>
-                  <span class="coupon-pill" onclick="quickApplyCoupon('FLAT500')">FLAT500</span>
+                  <input type="text" id="chkCouponInput" placeholder="WELCOME10 / DIWALI20 / FLAT500" />
+                  <button type="button" class="fk-btn-blue" style="padding:8px 14px;" onclick="applyCouponCode('checkout')">APPLY</button>
+                  <button type="button" id="removeCouponBtn" style="display:none; background:#fee2e2; color:var(--fk-red); border:1px solid #fecaca; padding:8px 10px; font-size:12px; font-weight:700; cursor:pointer;" onclick="removeCoupon()">REMOVE</button>
                 </div>
                 <div id="chkCouponStatus" style="margin-top:8px; font-size:12px; font-weight:700;"></div>
               </div>
-
-              <button type="button" class="btn-buy-now" style="width:260px; margin-top:14px;" onclick="confirmStep3Summary()">CONTINUE TO PAYMENT</button>
+              <button type="button" class="btn-buy-now" style="width:240px; margin-top:12px;" onclick="confirmStep3Summary()">CONTINUE TO PAYMENT</button>
             </div>
           </div>
 
-          <!-- STEP 4: PAYMENT OPTIONS -->
           <div class="step-box locked" id="step4Box">
-            <div class="step-header" id="step4Header">
-              <div class="step-header-left">
-                <span class="step-num">4</span>
-                <span>PAYMENT OPTIONS</span>
-              </div>
-            </div>
-            <div class="step-body" id="step4Body">
-              <div style="margin-bottom:16px;">
-                <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px; margin-bottom:10px; background:#f8fafc;">
-                  <input type="radio" name="payOptionRadio" value="RAZORPAY" checked />
-                  <div>
-                    <span style="color:var(--fk-blue);">Pay Online via Razorpay (UPI, GPay, PhonePe, Cards, Netbanking)</span>
-                    <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Instant Prepaid Dispatch via Shiprocket
-                    </div>
-                  </div>
-                </label>
-
-                <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px;">
-                  <input type="radio" name="payOptionRadio" value="COD" />
-                  <div>
-                    <span>Cash on Delivery (COD — Pay at Doorstep)</span>
-                    <div style="font-size:12px; color:var(--fk-muted); font-weight:400; margin-top:2px;">
-                      Pay cash to the courier partner when the box arrives
-                    </div>
-                  </div>
-                </label>
-              </div>
-
+            <div class="step-header" id="step4Header"><div class="step-header-left"><span class="step-num">4</span><span>PAYMENT OPTIONS</span></div></div>
+            <div class="step-body">
+              <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px; margin-bottom:10px; background:#f8fafc;">
+                <input type="radio" name="payOptionRadio" value="RAZORPAY" checked />
+                <span>Pay Online via Razorpay (UPI, GPay, PhonePe, Cards, Netbanking)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:10px; font-weight:700; cursor:pointer; padding:12px; border:1px solid #cbd5e1; border-radius:4px; margin-bottom:14px;">
+                <input type="radio" name="payOptionRadio" value="COD" />
+                <span>Cash on Delivery (COD - Pay at Doorstep)</span>
+              </label>
               <div id="checkoutStatusMsg" style="margin:10px 0; font-weight:700; color:var(--fk-blue);"></div>
-
-              <button type="button" class="btn-buy-now" style="width:100%; font-size:16px;" onclick="completeFlipkartOrder()">
-                🔒 CONFIRM & COMPLETE ORDER
-              </button>
+              <button type="button" class="btn-buy-now" style="width:100%; font-size:16px;" onclick="completeFlipkartOrder()">CONFIRM &amp; COMPLETE ORDER</button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- VIEW 6: STRICTLY PRIVATE ORDERS -->
     <div id="view-orders" class="view-section">
       <div style="background:#fff; padding:24px; box-shadow:0 1px 2px rgba(0,0,0,.12);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
           <div>
-            <h2>My Orders & Post-Purchase Services</h2>
-            <p style="font-size:13px; color:var(--fk-muted); margin-top:4px;">Private view: Only orders belonging to your logged-in account are visible.</p>
+            <h2>My Private Orders &amp; Returns</h2>
+            <p style="font-size:13px; color:var(--fk-muted);">Only orders belonging to your logged-in account are visible.</p>
           </div>
           <button type="button" class="fk-btn-blue" onclick="navigateTo('home')">+ Continue Shopping</button>
         </div>
@@ -520,7 +395,6 @@
       </div>
     </div>
 
-    <!-- VIEW 7: WISHLIST -->
     <div id="view-wishlist" class="view-section">
       <div style="background:#fff; padding:24px;">
         <h2 style="margin-bottom:16px;">My Wishlist</h2>
@@ -528,182 +402,105 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SELLER HUB -->
     <div id="view-seller" class="view-section">
       <div style="background:#fff; padding:24px; max-width:980px; margin:0 auto; box-shadow:0 1px 2px rgba(0,0,0,.12);">
-
-        <!-- 8A: ADD / EDIT PRODUCT FORM -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h2 id="sellerFormHeading" style="color:var(--fk-blue);"><i class="fa-solid fa-store"></i> Seller Hub — Add Flipkart Product</h2>
+          <h2 id="sellerFormHeading" style="color:var(--fk-blue);">Seller Hub - Add or Edit Product</h2>
           <button type="button" id="cancelEditBtn" style="display:none; background:#6b7280; color:#fff; border:none; padding:8px 14px; border-radius:3px; cursor:pointer; font-weight:700;" onclick="resetSellerForm()">Cancel Edit</button>
         </div>
 
-        <form id="sellerProductForm" onsubmit="sellerSaveProduct(event)" style="margin-bottom:28px; padding-bottom:24px; border-bottom:2px solid var(--fk-border);">
+        <form id="sellerProductForm" onsubmit="sellerSaveProduct(event)" style="margin-bottom:24px; padding-bottom:20px; border-bottom:2px solid var(--fk-border);">
           <input type="hidden" id="editProdId" value="" />
           <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px;">
-            <div>
-              <label style="font-size:12px; font-weight:700;">Product Title *</label>
-              <input type="text" id="sellName" class="fk-input" placeholder="e.g. APPLE iPhone 15 (Black, 128 GB)" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">Brand Name *</label>
-              <input type="text" id="sellBrand" class="fk-input" placeholder="e.g. APPLE / Sony" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">Category *</label>
-              <select id="sellCat" class="fk-input">
-                <option value="Mobiles">Mobiles</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Fashion">Fashion</option>
-                <option value="Appliances">Appliances</option>
-                <option value="Home">Home</option>
-                <option value="Grocery">Grocery</option>
-              </select>
-            </div>
+            <input type="text" id="sellName" class="fk-input" placeholder="Product Title *" required />
+            <input type="text" id="sellBrand" class="fk-input" placeholder="Brand Name *" required />
+            <select id="sellCat" class="fk-input">
+              <option value="Mobiles">Mobiles</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Appliances">Appliances</option>
+              <option value="Home">Home</option>
+              <option value="Grocery">Grocery</option>
+            </select>
           </div>
-
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px;">
-            <div>
-              <label style="font-size:12px; font-weight:700;">Selling Price (₹) *</label>
-              <input type="number" id="sellPrice" class="fk-input" placeholder="e.g. 65999" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">MRP (₹) *</label>
-              <input type="number" id="sellMrp" class="fk-input" placeholder="e.g. 79900" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">Stock Quantity *</label>
-              <input type="number" id="sellStock" class="fk-input" value="15" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">SKU / Model Code *</label>
-              <input type="text" id="sellSku" class="fk-input" placeholder="e.g. GK-IPH15-BLK" required />
-            </div>
+            <input type="number" id="sellPrice" class="fk-input" placeholder="Selling Price *" required />
+            <input type="number" id="sellMrp" class="fk-input" placeholder="MRP *" required />
+            <input type="number" id="sellStock" class="fk-input" value="15" placeholder="Stock *" required />
+            <input type="text" id="sellSku" class="fk-input" placeholder="SKU Code *" required />
           </div>
-
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-            <div>
-              <label style="font-size:12px; font-weight:700;">Primary Image URL *</label>
-              <input type="url" id="sellImg" class="fk-input" placeholder="https://..." required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">Additional Image URLs (Comma-separated)</label>
-              <input type="text" id="sellExtraImgs" class="fk-input" placeholder="https://img2.jpg, https://img3.jpg" />
-            </div>
+            <input type="url" id="sellImg" class="fk-input" placeholder="Primary Image URL (https://...) *" required />
+            <input type="text" id="sellExtraImgs" class="fk-input" placeholder="Extra Image URLs (Comma-separated)" />
           </div>
-
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-            <div>
-              <label style="font-size:12px; font-weight:700;">Warranty Details *</label>
-              <input type="text" id="sellWarranty" class="fk-input" value="1 Year Manufacturer Brand Warranty" required />
-            </div>
-            <div>
-              <label style="font-size:12px; font-weight:700;">Return & Replacement Policy *</label>
-              <input type="text" id="sellReturnPolicy" class="fk-input" value="7 Days Easy Return & Replacement" required />
-            </div>
+            <input type="text" id="sellWarranty" class="fk-input" value="1 Year Manufacturer Warranty" required />
+            <input type="text" id="sellReturnPolicy" class="fk-input" value="7 Days Easy Return & Replacement" required />
           </div>
-
-          <label style="font-size:12px; font-weight:700;">Key Highlights (Pipe | separated) *</label>
-          <input type="text" id="sellDesc" class="fk-input" placeholder="e.g. 128 GB ROM | 6.1 inch Display | 48MP Camera" required />
-
-          <label style="font-size:12px; font-weight:700;">Specifications (Format: Key: Value | Key: Value)</label>
-          <textarea id="sellSpecs" class="fk-input" rows="2" placeholder="In The Box: Handset, Cable | Model Name: iPhone 15 | Color: Black | Weight: 171 g"></textarea>
-
-          <button type="submit" id="sellerSubmitBtn" class="fk-btn-blue" style="padding:12px 28px; font-size:14px;">+ Publish Product</button>
+          <input type="text" id="sellDesc" class="fk-input" placeholder="Key Highlights (Pipe | separated) *" required />
+          <textarea id="sellSpecs" class="fk-input" rows="2" placeholder="Specifications (Format: Key: Value | Key: Value)"></textarea>
+          <button type="submit" id="sellerSubmitBtn" class="fk-btn-blue" style="padding:12px 26px;">+ Publish Product</button>
         </form>
 
-        <!-- 8B: BULK CSV IMPORT -->
-        <div style="background:#f8fafc; border:1px dashed var(--fk-blue); padding:18px; border-radius:4px; margin-bottom:28px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-            <div>
-              <h3 style="color:var(--fk-blue); margin-bottom:4px;"><i class="fa-solid fa-file-csv"></i> Bulk CSV Product Uploader</h3>
-              <p style="font-size:13px; color:#555;">Import products in batches with complete attributes.</p>
-            </div>
-            <button type="button" class="fk-btn-blue" style="background:#059669;" onclick="downloadSampleCSV()">
-              <i class="fa-solid fa-download"></i> 1. Download Sample CSV
-            </button>
+        <div style="background:#f8fafc; border:1px dashed var(--fk-blue); padding:16px; border-radius:4px; margin-bottom:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <strong>Bulk CSV Product Uploader</strong>
+            <button type="button" class="fk-btn-blue" style="background:#059669;" onclick="downloadSampleCSV()">1. Download Sample CSV</button>
           </div>
-          <div style="display:flex; align-items:center; gap:12px; margin-top:14px; flex-wrap:wrap;">
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
             <input type="file" id="bulkCsvInput" accept=".csv" class="fk-input" style="margin-bottom:0; flex:1; background:#fff;" />
-            <button type="button" class="btn-buy-now" style="padding:11px 22px; flex:0 0 auto;" onclick="handleBulkCSVUpload()">
-              <i class="fa-solid fa-cloud-arrow-up"></i> 2. Ingest CSV Products
-            </button>
+            <button type="button" class="btn-buy-now" style="padding:10px 20px; flex:0 0 auto;" onclick="handleBulkCSVUpload()">2. Upload CSV</button>
           </div>
           <div id="bulkUploadStatus" style="margin-top:8px; font-size:13px; font-weight:700; color:var(--fk-green);"></div>
         </div>
 
-        <!-- 8C: INVENTORY TABLE -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <h3>Manage Catalog (<span id="sellerTotalCount">0</span>)</h3>
-          <button type="button" class="fk-btn-blue" style="background:#4b5563; font-size:12px; padding:6px 12px;" onclick="restoreDefaultCatalog()">
-            Restore Demo Products
-          </button>
+          <button type="button" class="fk-btn-blue" style="background:#4b5563; font-size:12px; padding:6px 12px;" onclick="restoreDefaultCatalog()">Restore Demo Products</button>
         </div>
-        <div id="sellerProductsManageList" style="margin-bottom:32px;"></div>
+        <div id="sellerProductsManageList" style="margin-bottom:28px;"></div>
 
-        <!-- 8D: ADMIN ORDER DISPATCHER -->
-        <div style="border-top:2px solid var(--fk-border); padding-top:24px;">
-          <h3 style="color:var(--fk-blue); margin-bottom:6px;"><i class="fa-solid fa-boxes-packing"></i> Order Dispatch & Fulfillment Controller</h3>
-          <p style="font-size:13px; color:#555; margin-bottom:14px;">
-            Advance order stages manually to trigger customer-side cancellation, return, or replacement buttons.
-          </p>
+        <div style="border-top:2px solid var(--fk-border); padding-top:20px;">
+          <h3 style="color:var(--fk-blue); margin-bottom:8px;">Admin Order Stage Controller</h3>
           <div id="adminOrdersManageList"></div>
         </div>
-
       </div>
     </div>
-
   </div>
 
-  <!-- AUTH MODAL -->
   <div class="modal-overlay" id="authModal">
     <div class="fk-auth-modal">
       <div class="fk-auth-left">
         <div>
-          <h2 style="font-size:26px; margin-bottom:12px;" id="authTitle">Login / Sign Up</h2>
-          <p style="font-size:14px; line-height:1.6; color:#dbeafe;">
-            Access private order histories, real-time returns, and profile preferences.
-          </p>
+          <h2 style="font-size:24px; margin-bottom:12px;">Login / Sign Up</h2>
+          <p style="font-size:14px; line-height:1.6; color:#dbeafe;">Access your private Orders, Returns, Replacements, and Wishlist.</p>
         </div>
-        <div style="font-size:12px; opacity:0.9;">✓ Verified Customer Portal</div>
+        <div style="font-size:12px;">Verified Customer Portal</div>
       </div>
       <div class="fk-auth-right">
         <button type="button" onclick="closeAuthModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
-        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Full Name (New Accounts)</label>
-        <input type="text" id="authName" class="fk-input" placeholder="e.g. Vivek Gurav" />
-        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Email Address *</label>
-        <input type="email" id="authEmail" class="fk-input" placeholder="Enter your email *" />
-        <label style="font-size:12px; font-weight:700; margin-bottom:4px;">Password (min 6 characters) *</label>
-        <input type="password" id="authPassword" class="fk-input" placeholder="Enter password *" />
+        <input type="text" id="authName" class="fk-input" placeholder="Full Name (For New Accounts)" />
+        <input type="email" id="authEmail" class="fk-input" placeholder="Email Address *" />
+        <input type="password" id="authPassword" class="fk-input" placeholder="Password (min 6 chars) *" />
         <div id="authMsg" style="font-size:13px; margin-bottom:12px; font-weight:700;"></div>
-        <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleHeaderAuth('login')">
-          LOGIN TO ACCOUNT
-        </button>
-        <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleHeaderAuth('signup')">
-          CREATE NEW ACCOUNT
-        </button>
+        <button type="button" class="btn-buy-now" style="margin-bottom:10px;" onclick="handleHeaderAuth('login')">LOGIN TO ACCOUNT</button>
+        <button type="button" class="fk-btn-blue" style="background:#fff; color:var(--fk-blue); border:1px solid var(--fk-blue); padding:12px;" onclick="handleHeaderAuth('signup')">CREATE NEW ACCOUNT</button>
       </div>
     </div>
   </div>
 
-  <!-- ACTION MODAL -->
   <div class="modal-overlay" id="orderActionModal">
-    <div style="background:#fff; width:480px; max-width:95%; border-radius:4px; padding:24px; box-shadow:0 10px 25px rgba(0,0,0,.3); position:relative;">
-      <button type="button" onclick="closeOrderActionModal()" style="position:absolute; top:12px; right:16px; border:none; background:none; font-size:22px; cursor:pointer;">&times;</button>
-      <h3 id="actionModalTitle" style="margin-bottom:8px; color:var(--fk-blue);">Cancel / Return Order</h3>
-      <p id="actionModalSub" style="font-size:13px; color:#555; margin-bottom:14px;"></p>
+    <div style="background:#fff; width:460px; max-width:95%; border-radius:4px; padding:22px; position:relative;">
+      <button type="button" onclick="closeOrderActionModal()" style="position:absolute; top:10px; right:14px; border:none; background:none; font-size:22px; cursor:pointer;">&times;</button>
+      <h3 id="actionModalTitle" style="margin-bottom:8px; color:var(--fk-blue);">Order Request</h3>
+      <p id="actionModalSub" style="font-size:13px; color:#555; margin-bottom:12px;"></p>
       <input type="hidden" id="actionOrderId" />
       <input type="hidden" id="actionType" />
-
-      <label style="font-size:12px; font-weight:700;">Select Reason *</label>
-      <select id="actionReasonSelect" class="fk-input" style="margin-top:4px;"></select>
-
-      <label style="font-size:12px; font-weight:700;">Comments / Pickup Instructions</label>
-      <textarea id="actionCommentInput" class="fk-input" rows="2" placeholder="Details for reverse courier..."></textarea>
-
-      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
+      <select id="actionReasonSelect" class="fk-input"></select>
+      <textarea id="actionCommentInput" class="fk-input" rows="2" placeholder="Comments / Pickup instructions"></textarea>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
         <button type="button" class="fk-btn-blue" style="background:#6b7280;" onclick="closeOrderActionModal()">Close</button>
-        <button type="button" id="actionConfirmBtn" class="btn-buy-now" style="padding:10px 20px;" onclick="submitOrderLifecycleAction()">Confirm Request</button>
+        <button type="button" class="btn-buy-now" style="padding:9px 18px;" onclick="submitOrderLifecycleAction()">Confirm</button>
       </div>
     </div>
   </div>
@@ -717,254 +514,111 @@
   </footer>
 
   <script>
-    const SUPABASE_URL = 'https://fwzjswlkfwepgfqvapkm.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_JhilDbcHlGIoj5Hvae3wmw_u2HHPeaQ';
-    let supabaseClient = null;
+    var SUPABASE_URL = 'https://fwzjswlkfwepgfqvapkm.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_JhilDbcHlGIoj5Hvae3wmw_u2HHPeaQ';
+    var supabaseClient = null;
     try {
       if (window.supabase && window.supabase.createClient) {
         supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       }
-    } catch (err) {
-      console.warn('Supabase init warning:', err);
-    }
+    } catch (e) {}
 
-    function safeJSONParse(key, fallback) {
+    function safeJSON(key, fallback) {
       try {
-        const val = localStorage.getItem(key);
-        return val ? JSON.parse(val) : fallback;
-      } catch (e) {
-        return fallback;
-      }
+        var v = localStorage.getItem(key);
+        return v ? JSON.parse(v) : fallback;
+      } catch (e) { return fallback; }
     }
 
     function showToast(msg) {
-      const t = document.getElementById('toastBanner');
+      var t = document.getElementById('toastBanner');
       if (!t) return;
       t.textContent = msg;
       t.style.display = 'block';
-      setTimeout(() => { t.style.display = 'none'; }, 3800);
+      setTimeout(function() { t.style.display = 'none'; }, 3500);
     }
 
-    // DEFAULT FLIPKART CATALOG (RENDERS IMMEDIATELY SO SITE IS NEVER BLANK)
-    const demoSeedProducts = [
-      {
-        id: 101,
-        name: 'APPLE iPhone 15 (Black, 128 GB)',
-        brand: 'APPLE',
-        category: 'Mobiles',
-        price: 65999,
-        mrp: 79900,
-        stock: 12,
-        sku: 'GK-APL-IPH15-BLK',
-        rating: 4.6,
-        img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600',
-        extra_images: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600, https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600',
-        warranty: '1 Year Apple India Official Warranty',
-        return_policy: '7 Days Service Center Replacement',
-        desc: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Processor',
-        specifications: 'In The Box: iPhone 15, USB-C Charge Cable | Model Number: MTP03HN/A | Color: Black | Processor: A16 Bionic | Weight: 171 g'
-      },
-      {
-        id: 102,
-        name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)',
-        brand: 'SAMSUNG',
-        category: 'Mobiles',
-        price: 34999,
-        mrp: 79999,
-        stock: 20,
-        sku: 'GK-SAM-S23FE-MNT',
-        rating: 4.4,
-        img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600',
-        extra_images: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600',
-        warranty: '1 Year Samsung Manufacturer Warranty',
-        return_policy: '7 Days Easy Return & Replacement',
-        desc: '8 GB RAM | 128 GB ROM | 50MP Pro-Grade Camera | 4500 mAh Battery',
-        specifications: 'In The Box: Handset, Data Cable | Display: 6.4 inch Dynamic AMOLED 2X | Battery: 4500 mAh | Weight: 209 g'
-      },
-      {
-        id: 103,
-        name: 'Sony WH-CH720N Noise Cancelling Headphones',
-        brand: 'SONY',
-        category: 'Electronics',
-        price: 7990,
-        mrp: 14990,
-        stock: 18,
-        sku: 'GK-SNY-WHCH720N',
-        rating: 4.5,
-        img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
-        extra_images: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600',
-        warranty: '1 Year Sony India Domestic Warranty',
-        return_policy: '7 Days Easy Return & Replacement',
-        desc: '50 Hours Battery Life | Multipoint Bluetooth | Integrated V1 Processor',
-        specifications: 'In The Box: Headphones, Charging Cable | Bluetooth: 5.2 | Battery Life: 50 Hours | Weight: 192 g'
-      },
-      {
-        id: 104,
-        name: 'Noise ColorFit Icon 2 1.8" Bluetooth Calling Smartwatch',
-        brand: 'NOISE',
-        category: 'Electronics',
-        price: 1199,
-        mrp: 5999,
-        stock: 35,
-        sku: 'GK-NOISE-ICON2',
-        rating: 4.2,
-        img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
-        extra_images: '',
-        warranty: '1 Year Manufacturer Warranty',
-        return_policy: '7 Days Easy Return & Replacement',
-        desc: '1.8" Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof',
-        specifications: 'In The Box: Smartwatch, Magnetic Charger | Strap Material: Silicone | Water Resistant: IP68'
-      },
-      {
-        id: 105,
-        name: 'PUMA Men Running Sports Shoes',
-        brand: 'PUMA',
-        category: 'Fashion',
-        price: 1649,
-        mrp: 3999,
-        stock: 25,
-        sku: 'GK-PUMA-RUN-09',
-        rating: 4.3,
-        img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600',
-        extra_images: '',
-        warranty: '90 Days Manufacturer Warranty',
-        return_policy: '10 Days Size Exchange & Return',
-        desc: 'Breathable Mesh Upper | Cushioned Midsole | High-Traction Outsole',
-        specifications: 'Outer Material: Mesh | Sole Material: Rubber | Closure: Lace-Up | Ideal For: Men Sports'
-      }
+    var demoSeedProducts = [
+      { id: 101, name: 'APPLE iPhone 15 (Black, 128 GB)', brand: 'APPLE', category: 'Mobiles', price: 65999, mrp: 79900, stock: 12, sku: 'GK-APL-15', rating: 4.6, img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600', extra_images: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600', warranty: '1 Year Apple India Warranty', return_policy: '7 Days Replacement', desc: '128 GB ROM | 6.1 inch Super Retina XDR Display | 48MP Main Camera | A16 Bionic Chip', specifications: 'In The Box: iPhone 15, USB-C Cable | Model: MTP03HN/A | Color: Black | Weight: 171 g' },
+      { id: 102, name: 'Samsung Galaxy S23 FE 5G (Mint, 128 GB)', brand: 'SAMSUNG', category: 'Mobiles', price: 34999, mrp: 79999, stock: 20, sku: 'GK-SAM-S23', rating: 4.4, img: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600', extra_images: '', warranty: '1 Year Samsung Warranty', return_policy: '7 Days Return & Replacement', desc: '8 GB RAM | 128 GB ROM | 50MP Pro Camera | 4500 mAh Battery', specifications: 'In The Box: Handset, Data Cable | Display: 6.4 inch AMOLED | Battery: 4500 mAh' },
+      { id: 103, name: 'Sony WH-CH720N Noise Cancelling Headphones', brand: 'SONY', category: 'Electronics', price: 7990, mrp: 14990, stock: 18, sku: 'GK-SNY-720', rating: 4.5, img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600', extra_images: '', warranty: '1 Year Sony Warranty', return_policy: '7 Days Replacement', desc: '50 Hours Battery | Multipoint Bluetooth | V1 Noise Cancelling Processor', specifications: 'In The Box: Headphones, Cable | Bluetooth: 5.2 | Weight: 192 g' },
+      { id: 104, name: 'Noise ColorFit Icon 2 Calling Smartwatch', brand: 'NOISE', category: 'Electronics', price: 1199, mrp: 5999, stock: 35, sku: 'GK-NOISE-2', rating: 4.2, img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600', extra_images: '', warranty: '1 Year Warranty', return_policy: '7 Days Replacement', desc: '1.8 inch Display | Bluetooth Calling | 60 Sports Modes | IP68 Waterproof', specifications: 'In The Box: Smartwatch, Charger | Strap: Silicone | Waterproof: IP68' },
+      { id: 105, name: 'PUMA Men Running Sports Shoes', brand: 'PUMA', category: 'Fashion', price: 1649, mrp: 3999, stock: 25, sku: 'GK-PUMA-09', rating: 4.3, img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600', extra_images: '', warranty: '90 Days Warranty', return_policy: '10 Days Size Exchange & Return', desc: 'Breathable Mesh Upper | Cushioned Midsole | High-Traction Outsole', specifications: 'Outer Material: Mesh | Sole: Rubber | Closure: Lace-Up' }
     ];
 
-    let allProducts = [...demoSeedProducts];
-    let cart = safeJSONParse('gkart_cart', []);
-    let wishlist = safeJSONParse('gkart_wish', []);
-    let currentUser = safeJSONParse('gkart_user', null);
-    let currentSort = 'popular';
-    let adminUnlocked = sessionStorage.getItem('gkart_admin_ok') === 'true';
-    let cachedUserOrders = [];
+    var allProducts = demoSeedProducts.slice();
+    var cart = safeJSON('gkart_cart', []);
+    var wishlist = safeJSON('gkart_wish', []);
+    var currentUser = safeJSON('gkart_user', null);
+    var currentSort = 'popular';
+    var adminUnlocked = sessionStorage.getItem('gkart_admin_ok') === 'true';
+    var cachedUserOrders = [];
+    var activeCouponCode = localStorage.getItem('gkart_coupon') || '';
 
-    // PROMO COUPON DEFINITIONS & CALCULATOR
-    const COUPON_RULES = {
-      WELCOME10: { code: 'WELCOME10', type: 'percent', value: 10, minOrder: 1, maxDisc: 2000, desc: '10% Instant Discount (Up to ₹2,000)' },
-      DIWALI20:  { code: 'DIWALI20',  type: 'percent', value: 20, minOrder: 1500, maxDisc: 5000, desc: '20% Festive Discount (Up to ₹5,000)' },
-      FLAT500:   { code: 'FLAT500',   type: 'flat',    value: 500, minOrder: 2500, maxDisc: 500, desc: 'Flat ₹500 Off on Orders Above ₹2,500' }
+    var COUPON_RULES = {
+      WELCOME10: { code: 'WELCOME10', type: 'percent', value: 10, minOrder: 1, maxDisc: 2000, desc: '10% Off (Up to Rs.2000)' },
+      DIWALI20:  { code: 'DIWALI20',  type: 'percent', value: 20, minOrder: 1500, maxDisc: 5000, desc: '20% Off (Up to Rs.5000)' },
+      FLAT500:   { code: 'FLAT500',   type: 'flat',    value: 500, minOrder: 2500, maxDisc: 500, desc: 'Flat Rs.500 Off' }
     };
 
-    let activeCouponCode = localStorage.getItem('gkart_coupon') || '';
-
     function calculateCartPricing() {
-      const mrp = cart.reduce((s, i) => s + ((Number(i.mrp) || Number(i.price)) * i.qty), 0);
-      const subtotal = cart.reduce((s, i) => s + (Number(i.price) * i.qty), 0);
-      const productDisc = Math.max(0, mrp - subtotal);
-
-      let couponDisc = 0;
-      let validCoupon = null;
-      let couponMessage = '';
+      var mrp = cart.reduce(function(s, i) { return s + ((Number(i.mrp) || Number(i.price)) * i.qty); }, 0);
+      var subtotal = cart.reduce(function(s, i) { return s + (Number(i.price) * i.qty); }, 0);
+      var productDisc = Math.max(0, mrp - subtotal);
+      var couponDisc = 0, validCoupon = null, couponMessage = '';
 
       if (activeCouponCode && COUPON_RULES[activeCouponCode]) {
-        const rule = COUPON_RULES[activeCouponCode];
-        if (subtotal >= rule.minOrder) {
-          validCoupon = rule;
-          if (rule.type === 'percent') {
-            couponDisc = Math.min(rule.maxDisc, Math.round((subtotal * rule.value) / 100));
-          } else {
-            couponDisc = rule.value;
-          }
-          couponMessage = `✓ ${rule.code} applied! You saved ₹${couponDisc.toLocaleString('en-IN')} (${rule.desc})`;
+        var r = COUPON_RULES[activeCouponCode];
+        if (subtotal >= r.minOrder) {
+          validCoupon = r;
+          couponDisc = r.type === 'percent' ? Math.min(r.maxDisc, Math.round((subtotal * r.value) / 100)) : r.value;
+          couponMessage = 'Applied ' + r.code + ': You saved Rs.' + couponDisc.toLocaleString('en-IN');
         } else {
-          couponMessage = `⚠️ Add ₹${(rule.minOrder - subtotal).toLocaleString('en-IN')} more to use ${rule.code}`;
+          couponMessage = 'Add Rs.' + (r.minOrder - subtotal).toLocaleString('en-IN') + ' more to use ' + r.code;
         }
       }
-
-      const finalPayable = Math.max(0, subtotal - couponDisc);
-      return { mrp, subtotal, productDisc, couponDisc, validCoupon, couponMessage, finalPayable };
+      var finalPayable = Math.max(0, subtotal - couponDisc);
+      return { mrp: mrp, subtotal: subtotal, productDisc: productDisc, couponDisc: couponDisc, validCoupon: validCoupon, couponMessage: couponMessage, finalPayable: finalPayable };
     }
 
     function applyCouponCode(source) {
-      const inputEl = document.getElementById(source === 'cart' ? 'cartCouponInput' : 'chkCouponInput');
-      const code = (inputEl ? inputEl.value : '').trim().toUpperCase();
-
-      if (!code) {
-        showToast('Please enter a coupon code');
+      var el = document.getElementById(source === 'cart' ? 'cartCouponInput' : 'chkCouponInput');
+      var code = (el ? el.value : '').trim().toUpperCase();
+      if (!code || !COUPON_RULES[code]) {
+        showToast('Invalid Coupon Code. Use WELCOME10, DIWALI20, or FLAT500');
         return;
       }
-
-      if (!COUPON_RULES[code]) {
-        activeCouponCode = '';
-        localStorage.removeItem('gkart_coupon');
-        showToast(`❌ Invalid Coupon Code: ${code}`);
-        renderCartView();
-        renderFlipkartCheckout();
-        const statusEl = document.getElementById(source === 'cart' ? 'cartCouponStatus' : 'chkCouponStatus');
-        if (statusEl) {
-          statusEl.style.color = 'var(--fk-red)';
-          statusEl.textContent = `❌ "${code}" is not valid. Try WELCOME10, DIWALI20, or FLAT500.`;
-        }
+      var subtotal = cart.reduce(function(s, i) { return s + (Number(i.price) * i.qty); }, 0);
+      if (subtotal < COUPON_RULES[code].minOrder) {
+        showToast('Minimum order Rs.' + COUPON_RULES[code].minOrder + ' required for ' + code);
         return;
       }
-
-      const subtotal = cart.reduce((s, i) => s + (Number(i.price) * i.qty), 0);
-      const rule = COUPON_RULES[code];
-      if (subtotal < rule.minOrder) {
-        const statusEl = document.getElementById(source === 'cart' ? 'cartCouponStatus' : 'chkCouponStatus');
-        if (statusEl) {
-          statusEl.style.color = 'var(--fk-red)';
-          statusEl.textContent = `⚠️ Minimum order of ₹${rule.minOrder.toLocaleString('en-IN')} required for ${code}.`;
-        }
-        showToast(`Minimum order ₹${rule.minOrder} required for ${code}`);
-        return;
-      }
-
       activeCouponCode = code;
       localStorage.setItem('gkart_coupon', code);
       renderCartView();
       renderFlipkartCheckout();
-      const pricing = calculateCartPricing();
-      showToast(`🎉 Coupon ${code} Applied! Saved ₹${pricing.couponDisc.toLocaleString('en-IN')}`);
+      showToast('Coupon ' + code + ' Applied!');
     }
 
     function quickApplyCoupon(code) {
-      const cartInput = document.getElementById('cartCouponInput');
-      const chkInput = document.getElementById('chkCouponInput');
-      if (cartInput) cartInput.value = code;
-      if (chkInput) chkInput.value = code;
-      const isCheckout = document.getElementById('view-checkout').classList.contains('active');
-      applyCouponCode(isCheckout ? 'checkout' : 'cart');
+      if (document.getElementById('cartCouponInput')) document.getElementById('cartCouponInput').value = code;
+      if (document.getElementById('chkCouponInput')) document.getElementById('chkCouponInput').value = code;
+      var isChk = document.getElementById('view-checkout').classList.contains('active');
+      applyCouponCode(isChk ? 'checkout' : 'cart');
     }
 
     function removeCoupon() {
       activeCouponCode = '';
       localStorage.removeItem('gkart_coupon');
-      if (document.getElementById('cartCouponInput')) document.getElementById('cartCouponInput').value = '';
-      if (document.getElementById('chkCouponInput')) document.getElementById('chkCouponInput').value = '';
       renderCartView();
       renderFlipkartCheckout();
       showToast('Coupon removed');
     }
 
-    // 1. AUTHENTICATION & SESSION MANAGEMENT
-    async function initAuthSession() {
-      if (supabaseClient) {
-        try {
-          const { data } = await supabaseClient.auth.getSession();
-          if (data && data.session && data.session.user) {
-            const u = data.session.user;
-            currentUser = {
-              id: u.id,
-              email: u.email,
-              name: u.user_metadata?.full_name || u.email.split('@')[0]
-            };
-            localStorage.setItem('gkart_user', JSON.stringify(currentUser));
-          }
-        } catch (e) {}
-      }
-      updateAuthUI();
-    }
-
-    async function updateAuthUI() {
-      const label = document.getElementById('authUserLabel');
-      const logoutBtn = document.getElementById('logoutBtn');
-      const menuLogin = document.getElementById('menuLoginItem');
-
+    function updateAuthUI() {
+      var label = document.getElementById('authUserLabel');
+      var logoutBtn = document.getElementById('logoutBtn');
+      var menuLogin = document.getElementById('menuLoginItem');
       if (currentUser && currentUser.email) {
         label.textContent = currentUser.name || currentUser.email.split('@')[0];
         logoutBtn.style.display = 'flex';
@@ -979,16 +633,10 @@
     }
 
     async function refreshCloudOrderCount() {
-      if (!currentUser || !currentUser.email || !supabaseClient) {
-        document.getElementById('orderCountMenu').textContent = '0';
-        return;
-      }
+      if (!currentUser || !currentUser.email || !supabaseClient) return;
       try {
-        const { count } = await supabaseClient
-          .from('orders')
-          .select('*', { count: 'exact', head: true })
-          .ilike('customer_email', currentUser.email);
-        document.getElementById('orderCountMenu').textContent = count || 0;
+        var res = await supabaseClient.from('orders').select('*', { count: 'exact', head: true }).ilike('customer_email', currentUser.email);
+        document.getElementById('orderCountMenu').textContent = res.count || 0;
       } catch (e) {}
     }
 
@@ -1001,67 +649,50 @@
       document.getElementById('authModal').classList.remove('active');
     }
 
-    async function authenticateWithSupabase(mode, name, email, password, errElement) {
+    async function authenticateUser(mode, name, email, password, errEl) {
       if (!email || password.length < 6) {
-        errElement.style.color = 'var(--fk-red)';
-        errElement.textContent = 'Enter a valid email and a password of at least 6 characters.';
+        errEl.style.color = 'var(--fk-red)';
+        errEl.textContent = 'Enter a valid email and at least 6 characters for password.';
         return false;
       }
-
-      errElement.style.color = 'var(--fk-blue)';
-      errElement.textContent = mode === 'signup' ? 'Creating account...' : 'Verifying credentials...';
-
-      let userId = null;
-      let userName = name || email.split('@')[0];
+      errEl.style.color = 'var(--fk-blue)';
+      errEl.textContent = 'Signing in...';
+      var userName = name || email.split('@')[0];
+      var userId = null;
 
       if (supabaseClient) {
         try {
-          let res;
-          if (mode === 'signup') {
-            res = await supabaseClient.auth.signUp({
-              email,
-              password,
-              options: { data: { full_name: userName } }
-            });
-          } else {
-            res = await supabaseClient.auth.signInWithPassword({ email, password });
-          }
-
-          if (res.error) {
-            const msg = res.error.message.toLowerCase();
-            if (msg.includes('invalid login credentials')) {
-              errElement.style.color = 'var(--fk-red)';
-              errElement.textContent = 'Invalid email or password. If you are a new user, click "Create New Account".';
-              return false;
-            }
+          var res = mode === 'signup'
+            ? await supabaseClient.auth.signUp({ email: email, password: password, options: { data: { full_name: userName } } })
+            : await supabaseClient.auth.signInWithPassword({ email: email, password: password });
+          if (res.error && res.error.message.toLowerCase().indexOf('invalid login') > -1) {
+            errEl.style.color = 'var(--fk-red)';
+            errEl.textContent = 'Invalid email or password. Click Create New Account if new.';
+            return false;
           }
           if (res.data && res.data.user) {
             userId = res.data.user.id;
-            userName = res.data.user.user_metadata?.full_name || userName;
+            userName = (res.data.user.user_metadata && res.data.user.user_metadata.full_name) || userName;
           }
         } catch (e) {}
       }
 
-      currentUser = {
-        id: userId,
-        email: email.toLowerCase(),
-        name: userName
-      };
+      currentUser = { id: userId, email: email.toLowerCase(), name: userName };
       localStorage.setItem('gkart_user', JSON.stringify(currentUser));
-
-      errElement.textContent = '';
+      errEl.textContent = '';
       updateAuthUI();
-      showToast(`✓ Logged in as ${currentUser.name}`);
+      showToast('Welcome, ' + userName + '!');
       return true;
     }
 
     async function handleHeaderAuth(mode) {
-      const name = document.getElementById('authName').value.trim();
-      const email = document.getElementById('authEmail').value.trim();
-      const password = document.getElementById('authPassword').value.trim();
-      const msg = document.getElementById('authMsg');
-
-      const ok = await authenticateWithSupabase(mode, name, email, password, msg);
+      var ok = await authenticateUser(
+        mode,
+        document.getElementById('authName').value.trim(),
+        document.getElementById('authEmail').value.trim(),
+        document.getElementById('authPassword').value.trim(),
+        document.getElementById('authMsg')
+      );
       if (ok) {
         closeAuthModal();
         if (document.getElementById('view-checkout').classList.contains('active')) renderFlipkartCheckout();
@@ -1070,61 +701,57 @@
     }
 
     async function handleCheckoutAuth(mode) {
-      const name = document.getElementById('chkAuthName').value.trim();
-      const email = document.getElementById('chkAuthEmail').value.trim();
-      const password = document.getElementById('chkAuthPass').value.trim();
-      const err = document.getElementById('chkAuthErr');
-
-      const ok = await authenticateWithSupabase(mode, name, email, password, err);
+      var ok = await authenticateUser(
+        mode,
+        document.getElementById('chkAuthName').value.trim(),
+        document.getElementById('chkAuthEmail').value.trim(),
+        document.getElementById('chkAuthPass').value.trim(),
+        document.getElementById('chkAuthErr')
+      );
       if (ok) renderFlipkartCheckout();
     }
 
     async function handleLogout() {
-      if (supabaseClient) {
-        try { await supabaseClient.auth.signOut(); } catch (e) {}
-      }
+      if (supabaseClient) { try { await supabaseClient.auth.signOut(); } catch (e) {} }
       currentUser = null;
       localStorage.removeItem('gkart_user');
       updateAuthUI();
-      showToast('Logged out successfully');
+      showToast('Logged out');
       if (document.getElementById('view-checkout').classList.contains('active')) renderFlipkartCheckout();
       if (document.getElementById('view-orders').classList.contains('active')) navigateTo('home');
     }
 
-    // 2. PRODUCT CATALOG (INSTANT RENDER + CLOUD SYNC)
     async function syncSupabaseProducts() {
       renderHomeStrips();
       updateBadges();
-
+      updateAuthUI();
       if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient
-          .from('products')
-          .select('*')
-          .order('id', { ascending: false });
-
-        if (!error && data && data.length > 0) {
-          const cloudMapped = data.map(p => ({
-            id: Number(p.id),
-            name: p.name,
-            brand: p.brand || 'G Kart Assured',
-            category: p.category || 'Electronics',
-            price: Number(p.price),
-            mrp: Number(p.mrp || Math.round(Number(p.price) * 1.35)),
-            stock: p.stock !== null && p.stock !== undefined ? Number(p.stock) : 15,
-            sku: p.sku || `GK-SKU-${p.id}`,
-            rating: Number(p.rating || 4.5),
-            img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
-            extra_images: p.extra_images || '',
-            warranty: p.warranty || '1 Year Manufacturer Warranty',
-            return_policy: p.return_policy || '7 Days Easy Return & Replacement',
-            desc: p.description || '1 Year Warranty | G Kart Assured',
-            specifications: p.specifications || ''
-          }));
-
-          const cloudNames = new Set(cloudMapped.map(x => x.name.toLowerCase()));
-          const remainingSeeds = demoSeedProducts.filter(d => !cloudNames.has(d.name.toLowerCase()));
-          allProducts = [...cloudMapped, ...remainingSeeds];
+        var res = await supabaseClient.from('products').select('*').order('id', { ascending: false });
+        if (!res.error && res.data && res.data.length > 0) {
+          var cloud = res.data.map(function(p) {
+            return {
+              id: Number(p.id),
+              name: p.name,
+              brand: p.brand || 'G Kart Assured',
+              category: p.category || 'Electronics',
+              price: Number(p.price),
+              mrp: Number(p.mrp || Math.round(Number(p.price) * 1.35)),
+              stock: p.stock !== null && p.stock !== undefined ? Number(p.stock) : 15,
+              sku: p.sku || ('GK-SKU-' + p.id),
+              rating: Number(p.rating || 4.5),
+              img: p.image_url || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
+              extra_images: p.extra_images || '',
+              warranty: p.warranty || '1 Year Manufacturer Warranty',
+              return_policy: p.return_policy || '7 Days Easy Return & Replacement',
+              desc: p.description || '1 Year Warranty | G Kart Assured',
+              specifications: p.specifications || ''
+            };
+          });
+          var names = {};
+          cloud.forEach(function(c) { names[c.name.toLowerCase()] = true; });
+          var seeds = demoSeedProducts.filter(function(d) { return !names[d.name.toLowerCase()]; });
+          allProducts = cloud.concat(seeds);
           renderHomeStrips();
         }
       } catch (e) {}
@@ -1132,830 +759,393 @@
 
     function navigateTo(viewName) {
       if (viewName === 'orders' && (!currentUser || !currentUser.email)) {
-        showToast('🔒 Please log in to view your private orders');
+        showToast('Please log in to view your private orders');
         openAuthModal();
         return;
       }
-
       if (viewName === 'seller' && !adminUnlocked) {
-        const pin = prompt('🔒 Enter Seller Hub Admin PIN:');
+        var pin = prompt('Enter Seller Hub Admin PIN:');
         if (pin !== '3004') {
-          showToast('❌ Invalid Admin PIN');
+          showToast('Invalid Admin PIN');
           return;
         }
         adminUnlocked = true;
         sessionStorage.setItem('gkart_admin_ok', 'true');
       }
-
-      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-      const target = document.getElementById('view-' + viewName);
+      var sections = document.querySelectorAll('.view-section');
+      for (var i = 0; i < sections.length; i++) sections[i].classList.remove('active');
+      var target = document.getElementById('view-' + viewName);
       if (target) target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
 
       if (viewName === 'cart') renderCartView();
       if (viewName === 'checkout') renderFlipkartCheckout();
       if (viewName === 'orders') loadMyOrders();
       if (viewName === 'wishlist') renderWishlistView();
-      if (viewName === 'seller') {
-        renderSellerProductList();
-        loadAdminAllOrders();
-      }
+      if (viewName === 'seller') { renderSellerProductList(); loadAdminAllOrders(); }
     }
 
     function createCardHTML(p) {
-      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
-      const wished = wishlist.includes(p.id);
-      return `
-        <div class="p-card" onclick="openPDP(${p.id})">
-          <button type="button" class="wish-heart ${wished ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})"><i class="fa-solid fa-heart"></i></button>
-          <div class="p-img-wrap"><img src="${p.img}" alt="${p.name}" /></div>
-          <div class="p-brand">${p.brand}</div>
-          <div class="p-title">${p.name}</div>
-          <div class="rating-row">
-            <span class="green-star-pill">${p.rating} ★</span>
-            <span class="assured-tag">G-Assured ✓</span>
-          </div>
-          <div class="p-price-row">
-            <span class="p-price">₹${p.price.toLocaleString('en-IN')}</span>
-            <span class="p-mrp">₹${p.mrp.toLocaleString('en-IN')}</span>
-            <span class="p-off">${disc}% off</span>
-          </div>
-        </div>
-      `;
+      var disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
+      var wished = wishlist.indexOf(p.id) > -1;
+      return '<div class="p-card" onclick="openPDP(' + p.id + ')">' +
+        '<button type="button" class="wish-heart ' + (wished ? 'active' : '') + '" onclick="toggleWishlist(event, ' + p.id + ')"><i class="fa-solid fa-heart"></i></button>' +
+        '<div class="p-img-wrap"><img src="' + p.img + '" alt="' + p.name + '" /></div>' +
+        '<div class="p-brand">' + (p.brand || 'G Kart') + '</div>' +
+        '<div class="p-title">' + p.name + '</div>' +
+        '<div class="rating-row"><span class="green-star-pill">' + p.rating + ' *</span><span class="assured-tag">G-Assured</span></div>' +
+        '<div class="p-price-row"><span class="p-price">Rs.' + p.price.toLocaleString('en-IN') + '</span><span class="p-mrp">Rs.' + p.mrp.toLocaleString('en-IN') + '</span><span class="p-off">' + disc + '% off</span></div>' +
+      '</div>';
     }
 
     function renderHomeStrips() {
-      const dealsEl = document.getElementById('homeDealsGrid');
-      const elecEl = document.getElementById('homeElecGrid');
-      if (dealsEl) dealsEl.innerHTML = allProducts.slice(0, 5).map(createCardHTML).join('');
-      if (elecEl) elecEl.innerHTML = allProducts.filter(p => p.category === 'Mobiles' || p.category === 'Electronics').slice(0, 5).map(createCardHTML).join('');
+      var d = document.getElementById('homeDealsGrid');
+      var e = document.getElementById('homeElecGrid');
+      if (d) d.innerHTML = allProducts.slice(0, 5).map(createCardHTML).join('');
+      if (e) e.innerHTML = allProducts.filter(function(p) { return p.category === 'Mobiles' || p.category === 'Electronics'; }).slice(0, 5).map(createCardHTML).join('');
     }
 
-    // 3. PRODUCT DETAIL PAGE (PDP)
     function openPDP(productId) {
-      const p = allProducts.find(i => Number(i.id) === Number(productId));
+      var p = allProducts.find(function(i) { return Number(i.id) === Number(productId); });
       if (!p) return;
-
-      const disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
-      const galleryImgs = [p.img];
+      var disc = Math.max(1, Math.round(((p.mrp - p.price) / p.mrp) * 100));
+      var imgs = [p.img];
       if (p.extra_images) {
-        p.extra_images.split(',').map(u => u.trim()).filter(Boolean).forEach(u => galleryImgs.push(u));
+        p.extra_images.split(',').forEach(function(u) { if (u.trim()) imgs.push(u.trim()); });
       }
-
-      const highlightsList = (p.desc || '').split('|').map(h => h.trim()).filter(Boolean);
-      const specPairs = [
-        { k: 'Brand', v: p.brand },
-        { k: 'SKU / Model', v: p.sku },
+      var highlights = (p.desc || '').split('|').filter(Boolean);
+      var specs = [
+        { k: 'Brand', v: p.brand || 'G Kart' },
+        { k: 'Model / SKU', v: p.sku || ('GK-' + p.id) },
         { k: 'Category', v: p.category },
-        { k: 'Warranty Summary', v: p.warranty },
-        { k: 'Return Policy', v: p.return_policy }
+        { k: 'Warranty', v: p.warranty || '1 Year Warranty' },
+        { k: 'Return Policy', v: p.return_policy || '7 Days Return & Replacement' }
       ];
-
       if (p.specifications) {
-        p.specifications.split('|').forEach(pair => {
-          const idx = pair.indexOf(':');
-          if (idx > -1) specPairs.push({ k: pair.slice(0, idx).trim(), v: pair.slice(idx + 1).trim() });
+        p.specifications.split('|').forEach(function(pair) {
+          var idx = pair.indexOf(':');
+          if (idx > -1) specs.push({ k: pair.slice(0, idx).trim(), v: pair.slice(idx + 1).trim() });
         });
       }
+      var inStock = p.stock > 0;
 
-      const inStock = p.stock > 0;
-
-      document.getElementById('pdpContent').innerHTML = `
-        <div class="pdp-card">
-          <div class="pdp-left">
-            <div class="pdp-gallery"><img id="pdpMainImg" src="${galleryImgs[0]}" alt="${p.name}" /></div>
-            <div class="pdp-thumbs">
-              ${galleryImgs.map((url, idx) => `
-                <img src="${url}" class="pdp-thumb ${idx === 0 ? 'active' : ''}" onclick="switchPdpImage('${url}', this)" alt="Thumb" />
-              `).join('')}
-            </div>
-            <div class="pdp-cta-row">
-              <button type="button" class="btn-add-cart ${!inStock ? 'btn-disabled' : ''}" ${!inStock ? 'disabled' : ''} onclick="addItemToCart(${p.id}, false)">
-                <i class="fa-solid fa-cart-shopping"></i> ADD TO CART
-              </button>
-              <button type="button" class="btn-buy-now ${!inStock ? 'btn-disabled' : ''}" ${!inStock ? 'disabled' : ''} onclick="buyNowFlipkart(${p.id})">
-                <i class="fa-solid fa-bolt"></i> ${inStock ? 'BUY NOW' : 'OUT OF STOCK'}
-              </button>
-            </div>
-          </div>
-
-          <div class="pdp-right">
-            <div style="font-size:13px; font-weight:700; color:var(--fk-muted); text-transform:uppercase; margin-bottom:4px;">${p.brand}</div>
-            <h1 style="font-size:20px; font-weight:500; margin-bottom:10px;">${p.name}</h1>
-
-            <div class="rating-row">
-              <span class="green-star-pill">${p.rating} ★</span>
-              <span class="assured-tag">G-Assured ✓</span>
-              <span style="font-size:13px; font-weight:700; color:${inStock ? 'var(--fk-green)' : 'var(--fk-red)'};">
-                ${inStock ? `• In Stock (${p.stock} units left)` : '• Currently Out of Stock'}
-              </span>
-            </div>
-
-            <div style="margin:12px 0;">
-              <span style="font-size:28px; font-weight:700;">₹${p.price.toLocaleString('en-IN')}</span>
-              <span class="p-mrp" style="font-size:16px; margin:0 8px;">₹${p.mrp.toLocaleString('en-IN')}</span>
-              <span class="p-off" style="font-size:16px;">${disc}% off</span>
-            </div>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin:14px 0; padding:12px; background:#f8fafc; border:1px solid var(--fk-border); border-radius:4px; font-size:13px;">
-              <div><i class="fa-solid fa-shield-halved" style="color:var(--fk-blue);"></i> <strong>Warranty:</strong> ${p.warranty}</div>
-              <div><i class="fa-solid fa-rotate-left" style="color:var(--fk-green);"></i> <strong>Returns:</strong> ${p.return_policy}</div>
-              <div><i class="fa-solid fa-file-invoice" style="color:var(--fk-orange);"></i> <strong>GST Invoice:</strong> Available</div>
-            </div>
-
-            <div style="margin:14px 0; padding:14px; background:#fff; border:1px solid var(--fk-border); border-radius:4px;">
-              <strong>Check Live Shiprocket Delivery:</strong>
-              <div style="display:flex; gap:10px; margin-top:8px; align-items:center; flex-wrap:wrap;">
-                <input type="text" id="pdpPinInput" value="411035" maxlength="6" style="padding:8px; border:1px solid #ccc; width:130px;" />
-                <button type="button" class="fk-btn-blue" onclick="checkRealShiprocketPincode()">Check</button>
-                <span id="pdpPinStatus" style="font-size:13px; font-weight:700; color:var(--fk-green);">✓ Serviceable in 2–4 Days</span>
-              </div>
-            </div>
-
-            <div style="margin:18px 0;">
-              <strong style="font-size:15px; color:var(--fk-muted); display:block; margin-bottom:8px;">Key Highlights</strong>
-              <ul style="padding-left:20px; font-size:14px; line-height:1.8;">
-                ${highlightsList.map(h => `<li>${h}</li>`).join('')}
-              </ul>
-            </div>
-
-            <div class="specs-box">
-              <div class="specs-header">Specifications</div>
-              ${specPairs.map(sp => `
-                <div class="specs-row">
-                  <div class="specs-key">${sp.k}</div>
-                  <div class="specs-val">${sp.v}</div>
-                </div>
-              `).join('')}
-            </div>
-
-            <div style="border-top:2px solid var(--fk-border); padding-top:18px;">
-              <h3 style="margin-bottom:12px;">Customer Reviews</h3>
-              <form onsubmit="submitProductReview(event, ${p.id})" style="background:#f9fafb; padding:14px; border:1px solid var(--fk-border); border-radius:4px; margin-bottom:16px;">
-                <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
-                  <input type="text" id="revName" placeholder="Your Name" value="${currentUser ? currentUser.name : ''}" required style="padding:9px; border:1px solid #ccc; flex:1;" />
-                  <select id="revRating" style="padding:9px; border:1px solid #ccc;">
-                    <option value="5">5 ★ Excellent</option>
-                    <option value="4">4 ★ Very Good</option>
-                    <option value="3">3 ★ Good</option>
-                  </select>
-                </div>
-                <div style="display:flex; gap:10px;">
-                  <input type="text" id="revComment" placeholder="Write feedback..." required style="flex:1; padding:9px; border:1px solid #ccc;" />
-                  <button type="submit" class="fk-btn-blue" style="padding:9px 22px;">Submit</button>
-                </div>
-              </form>
-              <div id="pdpReviewsList"></div>
-            </div>
-          </div>
-        </div>
-      `;
+      document.getElementById('pdpContent').innerHTML =
+        '<div class="pdp-card">' +
+          '<div class="pdp-left">' +
+            '<div class="pdp-gallery"><img id="pdpMainImg" src="' + imgs[0] + '" alt="" /></div>' +
+            '<div class="pdp-thumbs">' + imgs.map(function(u, i) {
+              return '<img src="' + u + '" class="pdp-thumb ' + (i === 0 ? 'active' : '') + '" onclick="switchPdpImage(\'' + u + '\', this)" />';
+            }).join('') + '</div>' +
+            '<div class="pdp-cta-row">' +
+              '<button type="button" class="btn-add-cart" onclick="addItemToCart(' + p.id + ', false)">ADD TO CART</button>' +
+              '<button type="button" class="btn-buy-now" onclick="addItemToCart(' + p.id + ', true)">BUY NOW</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="pdp-right">' +
+            '<div style="font-size:13px; font-weight:700; color:var(--fk-muted);">' + (p.brand || 'G KART') + '</div>' +
+            '<h1 style="font-size:20px; margin:6px 0 10px 0;">' + p.name + '</h1>' +
+            '<div class="rating-row"><span class="green-star-pill">' + p.rating + ' *</span><span class="assured-tag">G-Assured</span>' +
+              '<span style="font-size:13px; font-weight:700; color:' + (inStock ? 'var(--fk-green)' : 'var(--fk-red)') + ';">' + (inStock ? 'In Stock (' + p.stock + ' left)' : 'Out of Stock') + '</span>' +
+            '</div>' +
+            '<div style="margin:12px 0;"><span style="font-size:28px; font-weight:700;">Rs.' + p.price.toLocaleString('en-IN') + '</span> <span class="p-mrp">Rs.' + p.mrp.toLocaleString('en-IN') + '</span> <span class="p-off">' + disc + '% off</span></div>' +
+            '<div style="padding:12px; background:#f8fafc; border:1px solid var(--fk-border); border-radius:4px; font-size:13px; margin:12px 0;">' +
+              '<div><strong>Warranty:</strong> ' + p.warranty + ' | <strong>Returns:</strong> ' + p.return_policy + '</div>' +
+            '</div>' +
+            '<div style="padding:12px; border:1px solid var(--fk-border); border-radius:4px; margin:12px 0;">' +
+              '<strong>Check Shiprocket Delivery Pincode:</strong>' +
+              '<div style="display:flex; gap:10px; margin-top:8px; align-items:center;">' +
+                '<input type="text" id="pdpPinInput" value="411035" maxlength="6" style="padding:8px; border:1px solid #ccc; width:130px;" />' +
+                '<button type="button" class="fk-btn-blue" onclick="checkRealShiprocketPincode()">Check</button>' +
+                '<span id="pdpPinStatus" style="font-size:13px; font-weight:700; color:var(--fk-green);">Deliverable in 2-4 Days</span>' +
+              '</div>' +
+            '</div>' +
+            '<div style="margin:14px 0;"><strong>Key Highlights:</strong><ul style="padding-left:20px; margin-top:6px; font-size:14px; line-height:1.7;">' +
+              highlights.map(function(h) { return '<li>' + h.trim() + '</li>'; }).join('') +
+            '</ul></div>' +
+            '<div class="specs-box"><div class="specs-header">Specifications</div>' +
+              specs.map(function(s) { return '<div class="specs-row"><div class="specs-key">' + s.k + '</div><div class="specs-val">' + s.v + '</div></div>'; }).join('') +
+            '</div>' +
+            '<div style="border-top:2px solid var(--fk-border); padding-top:16px;">' +
+              '<h3 style="margin-bottom:10px;">Customer Reviews</h3>' +
+              '<form onsubmit="submitProductReview(event, ' + p.id + ')" style="background:#f9fafb; padding:12px; border:1px solid var(--fk-border); margin-bottom:14px;">' +
+                '<div style="display:flex; gap:8px; margin-bottom:8px;">' +
+                  '<input type="text" id="revName" placeholder="Your Name" value="' + (currentUser ? currentUser.name : '') + '" required style="padding:8px; border:1px solid #ccc; flex:1;" />' +
+                  '<select id="revRating" style="padding:8px; border:1px solid #ccc;"><option value="5">5 Star</option><option value="4">4 Star</option><option value="3">3 Star</option></select>' +
+                '</div>' +
+                '<div style="display:flex; gap:8px;">' +
+                  '<input type="text" id="revComment" placeholder="Write review..." required style="flex:1; padding:8px; border:1px solid #ccc;" />' +
+                  '<button type="submit" class="fk-btn-blue">Submit</button>' +
+                '</div>' +
+              '</form>' +
+              '<div id="pdpReviewsList"></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
       navigateTo('pdp');
       loadProductReviews(p.id);
     }
 
-    function switchPdpImage(url, thumbEl) {
+    function switchPdpImage(url, el) {
       document.getElementById('pdpMainImg').src = url;
-      document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
-      thumbEl.classList.add('active');
+      var thumbs = document.querySelectorAll('.pdp-thumb');
+      for (var i = 0; i < thumbs.length; i++) thumbs[i].classList.remove('active');
+      el.classList.add('active');
     }
 
     async function checkRealShiprocketPincode() {
-      const pin = document.getElementById('pdpPinInput').value.trim();
-      const statusEl = document.getElementById('pdpPinStatus');
-      if (pin.length !== 6 || isNaN(pin)) {
-        statusEl.style.color = 'var(--fk-red)';
-        statusEl.textContent = 'Invalid 6-digit Pincode';
-        return;
-      }
-
-      statusEl.style.color = 'var(--fk-blue)';
-      statusEl.textContent = 'Checking courier coverage...';
-
+      var pin = document.getElementById('pdpPinInput').value.trim();
+      var st = document.getElementById('pdpPinStatus');
+      if (pin.length !== 6 || isNaN(pin)) { st.style.color = 'red'; st.textContent = 'Invalid Pincode'; return; }
+      st.textContent = 'Checking Shiprocket...';
       try {
-        const res = await fetch('/.netlify/functions/shiprocket', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'check_pincode', delivery_pincode: pin })
-        });
-        const data = await res.json();
-        if (data.serviceable) {
-          statusEl.style.color = 'var(--fk-green)';
-          statusEl.textContent = `✓ Deliverable via ${data.courier_name} (${data.etd})`;
-        } else {
-          statusEl.style.color = 'var(--fk-green)';
-          statusEl.textContent = `✓ Standard Delivery Available`;
-        }
-      } catch (e) {
-        statusEl.style.color = 'var(--fk-green)';
-        statusEl.textContent = `✓ Standard Delivery Available`;
-      }
+        var r = await fetch('/.netlify/functions/shiprocket', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'check_pincode', delivery_pincode: pin }) });
+        var d = await r.json();
+        st.style.color = 'var(--fk-green)';
+        st.textContent = d.serviceable ? ('Deliverable via ' + d.courier_name + ' (' + d.etd + ')') : 'Standard Delivery Available';
+      } catch (e) { st.textContent = 'Express Delivery Available'; }
     }
 
     async function loadProductReviews(productId) {
-      const box = document.getElementById('pdpReviewsList');
-      if (!supabaseClient) {
-        box.innerHTML = `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet.</p>`;
-        return;
-      }
+      var box = document.getElementById('pdpReviewsList');
+      if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient
-          .from('reviews')
-          .select('*')
-          .eq('product_id', Number(productId))
-          .order('id', { ascending: false });
-
-        if (error || !data || data.length === 0) {
-          box.innerHTML = `<p style="color:var(--fk-muted); font-size:14px;">No reviews yet. Be the first to review!</p>`;
-          return;
-        }
-
-        box.innerHTML = data.map(r => `
-          <div style="border-bottom:1px solid #e5e7eb; padding:12px 0; font-size:14px;">
-            <span class="green-star-pill">${r.rating} ★</span> <strong>${r.customer_name}</strong>
-            <p style="color:#333; margin-top:4px;">${r.comment}</p>
-          </div>
-        `).join('');
+        var res = await supabaseClient.from('reviews').select('*').eq('product_id', Number(productId)).order('id', { ascending: false });
+        if (!res.data || res.data.length === 0) { box.innerHTML = '<p style="font-size:13px; color:#777;">No reviews yet.</p>'; return; }
+        box.innerHTML = res.data.map(function(r) {
+          return '<div style="border-bottom:1px solid #eee; padding:10px 0; font-size:14px;"><span class="green-star-pill">' + r.rating + ' *</span> <strong>' + r.customer_name + '</strong><p style="margin-top:4px;">' + r.comment + '</p></div>';
+        }).join('');
       } catch (e) {}
     }
 
     async function submitProductReview(e, productId) {
       e.preventDefault();
       if (!supabaseClient) return;
-      const { error } = await supabaseClient.from('reviews').insert([{
+      await supabaseClient.from('reviews').insert([{
         product_id: Number(productId),
         customer_name: document.getElementById('revName').value.trim(),
         rating: Number(document.getElementById('revRating').value),
         comment: document.getElementById('revComment').value.trim()
       }]);
-
-      if (error) return alert('Review Error: ' + error.message);
       document.getElementById('revComment').value = '';
-      showToast('✓ Review posted!');
+      showToast('Review submitted!');
       loadProductReviews(productId);
     }
 
-    // 4. CART & 4-STEP CHECKOUT
     function addItemToCart(productId, goCheckout) {
-      const prod = allProducts.find(p => Number(p.id) === Number(productId));
-      if (!prod || prod.stock <= 0) return showToast('Item out of stock');
-
-      const existing = cart.find(i => Number(i.id) === Number(productId));
-      if (existing) existing.qty += 1;
-      else cart.push({ ...prod, qty: 1 });
-
+      var prod = allProducts.find(function(p) { return Number(p.id) === Number(productId); });
+      if (!prod) return;
+      var ex = cart.find(function(i) { return Number(i.id) === Number(productId); });
+      if (ex) ex.qty += 1;
+      else cart.push({ id: prod.id, name: prod.name, brand: prod.brand, price: prod.price, mrp: prod.mrp, img: prod.img, sku: prod.sku, qty: 1 });
       saveState();
-      showToast(`Added ${prod.name} to cart`);
-
-      if (goCheckout) startFlipkartCheckout();
-      else navigateTo('cart');
-    }
-
-    function buyNowFlipkart(productId) {
-      addItemToCart(productId, true);
+      showToast('Added to cart');
+      navigateTo(goCheckout ? 'checkout' : 'cart');
     }
 
     function startFlipkartCheckout() {
-      if (cart.length === 0) return alert('Your cart is empty.');
+      if (cart.length === 0) return alert('Your cart is empty');
       navigateTo('checkout');
     }
 
     function changeQty(id, delta) {
-      const item = cart.find(i => Number(i.id) === Number(id));
+      var item = cart.find(function(i) { return Number(i.id) === Number(id); });
       if (!item) return;
-
       item.qty += delta;
-      if (item.qty <= 0) cart = cart.filter(i => Number(i.id) !== Number(id));
-
+      if (item.qty <= 0) cart = cart.filter(function(i) { return Number(i.id) !== Number(id); });
       saveState();
       renderCartView();
     }
 
     function renderCartView() {
-      const list = document.getElementById('cartItemsList');
-      const count = cart.reduce((s, i) => s + i.qty, 0);
-      document.getElementById('cartPageCount').textContent = count;
-
+      var list = document.getElementById('cartItemsList');
+      document.getElementById('cartPageCount').textContent = cart.reduce(function(s, i) { return s + i.qty; }, 0);
       if (cart.length === 0) {
-        list.innerHTML = `<div style="padding:40px; text-align:center;"><h3>Your Cart is Empty</h3></div>`;
+        list.innerHTML = '<div style="padding:40px; text-align:center;"><h3>Your Cart is Empty</h3></div>';
         document.getElementById('cartPlaceOrderFooter').style.display = 'none';
       } else {
         document.getElementById('cartPlaceOrderFooter').style.display = 'block';
-        list.innerHTML = cart.map(i => `
-          <div class="cart-item-row">
-            <img src="${i.img}" style="width:75px; height:75px; object-fit:contain;" alt="${i.name}" />
-            <div style="flex:1;">
-              <strong>${i.name}</strong>
-              <div style="font-size:12px; color:var(--fk-muted);">${i.brand || 'G Kart'}</div>
-              <div style="margin:6px 0; font-size:17px; font-weight:700;">₹${(i.price * i.qty).toLocaleString('en-IN')}</div>
-              <div style="display:flex; align-items:center; gap:10px;">
-                <button type="button" class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
-                <strong>Qty: ${i.qty}</strong>
-                <button type="button" class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
-              </div>
-            </div>
-          </div>
-        `).join('');
+        list.innerHTML = cart.map(function(i) {
+          return '<div class="cart-item-row"><img src="' + i.img + '" style="width:70px; height:70px; object-fit:contain;" />' +
+            '<div style="flex:1;"><strong>' + i.name + '</strong><div style="margin:6px 0; font-weight:700;">Rs.' + (i.price * i.qty).toLocaleString('en-IN') + '</div>' +
+            '<div style="display:flex; align-items:center; gap:10px;"><button type="button" class="qty-btn" onclick="changeQty(' + i.id + ', -1)">-</button><span>Qty: ' + i.qty + '</span><button type="button" class="qty-btn" onclick="changeQty(' + i.id + ', 1)">+</button></div></div></div>';
+        }).join('');
       }
-
-      const pricing = calculateCartPricing();
-      if (document.getElementById('cartCouponInput')) {
-        document.getElementById('cartCouponInput').value = activeCouponCode || '';
-      }
-
-      const cartStatusEl = document.getElementById('cartCouponStatus');
-      if (cartStatusEl) {
-        cartStatusEl.style.color = pricing.validCoupon ? 'var(--fk-green)' : '#d97706';
-        cartStatusEl.textContent = pricing.couponMessage;
-      }
-
-      document.getElementById('summaryMrp').textContent = '₹' + pricing.mrp.toLocaleString('en-IN');
-      document.getElementById('summaryDisc').textContent = '− ₹' + pricing.productDisc.toLocaleString('en-IN');
-      document.getElementById('summaryCouponBadge').textContent = pricing.validCoupon ? `(${pricing.validCoupon.code})` : '';
-      document.getElementById('summaryCouponAmt').textContent = '− ₹' + pricing.couponDisc.toLocaleString('en-IN');
-      document.getElementById('summaryTotal').textContent = '₹' + pricing.finalPayable.toLocaleString('en-IN');
-
-      const totalSaved = pricing.productDisc + pricing.couponDisc;
-      document.getElementById('summaryTotalSavingsText').textContent = totalSaved > 0
-        ? `You will save ₹${totalSaved.toLocaleString('en-IN')} on this order!`
-        : '';
+      var pr = calculateCartPricing();
+      document.getElementById('cartCouponStatus').textContent = pr.couponMessage;
+      document.getElementById('summaryMrp').textContent = 'Rs.' + pr.mrp.toLocaleString('en-IN');
+      document.getElementById('summaryDisc').textContent = '- Rs.' + pr.productDisc.toLocaleString('en-IN');
+      document.getElementById('summaryCouponBadge').textContent = pr.validCoupon ? ('(' + pr.validCoupon.code + ')') : '';
+      document.getElementById('summaryCouponAmt').textContent = '- Rs.' + pr.couponDisc.toLocaleString('en-IN');
+      document.getElementById('summaryTotal').textContent = 'Rs.' + pr.finalPayable.toLocaleString('en-IN');
     }
 
     function renderFlipkartCheckout() {
-      const step1Header = document.getElementById('step1Header');
-      const step1ChangeBtn = document.getElementById('step1ChangeBtn');
-      const inlineAuth = document.getElementById('checkoutInlineAuth');
-      const loggedInSummary = document.getElementById('checkoutLoggedInSummary');
-
-      const step2Box = document.getElementById('step2Box');
-      const step2Header = document.getElementById('step2Header');
-      const step3Box = document.getElementById('step3Box');
-      const step4Box = document.getElementById('step4Box');
-
+      var s2 = document.getElementById('step2Box'), s3 = document.getElementById('step3Box'), s4 = document.getElementById('step4Box');
       if (!currentUser || !currentUser.email) {
-        step1Header.className = 'step-header active';
-        document.getElementById('step1Title').textContent = 'LOGIN OR SIGNUP';
-        step1ChangeBtn.style.display = 'none';
-        inlineAuth.style.display = 'block';
-        loggedInSummary.style.display = 'none';
-
-        step2Box.className = 'step-box locked';
-        step3Box.className = 'step-box locked';
-        step4Box.className = 'step-box locked';
+        document.getElementById('step1Header').className = 'step-header active';
+        document.getElementById('step1ChangeBtn').style.display = 'none';
+        document.getElementById('checkoutInlineAuth').style.display = 'block';
+        document.getElementById('checkoutLoggedInSummary').style.display = 'none';
+        s2.className = 'step-box locked'; s3.className = 'step-box locked'; s4.className = 'step-box locked';
       } else {
-        step1Header.className = 'step-header done';
-        document.getElementById('step1Title').textContent = 'LOGIN VERIFIED ✓';
-        step1ChangeBtn.style.display = 'block';
-        inlineAuth.style.display = 'none';
-        loggedInSummary.style.display = 'block';
+        document.getElementById('step1Header').className = 'step-header done';
+        document.getElementById('step1ChangeBtn').style.display = 'block';
+        document.getElementById('checkoutInlineAuth').style.display = 'none';
+        document.getElementById('checkoutLoggedInSummary').style.display = 'block';
         document.getElementById('step1UserName').textContent = currentUser.name;
         document.getElementById('step1UserEmail').textContent = currentUser.email;
-
-        if (!document.getElementById('chkName').value) {
-          document.getElementById('chkName').value = currentUser.name;
-        }
-
-        step2Box.className = 'step-box';
-        step2Header.className = 'step-header active';
+        if (!document.getElementById('chkName').value) document.getElementById('chkName').value = currentUser.name;
+        s2.className = 'step-box';
+        document.getElementById('step2Header').className = 'step-header active';
       }
-
-      const pricing = calculateCartPricing();
-      if (document.getElementById('chkCouponInput')) {
-        document.getElementById('chkCouponInput').value = activeCouponCode || '';
-      }
-      if (document.getElementById('removeCouponBtn')) {
-        document.getElementById('removeCouponBtn').style.display = activeCouponCode ? 'inline-block' : 'none';
-      }
-      const chkStatusEl = document.getElementById('chkCouponStatus');
-      if (chkStatusEl) {
-        chkStatusEl.style.color = pricing.validCoupon ? 'var(--fk-green)' : '#d97706';
-        chkStatusEl.textContent = pricing.couponMessage;
-      }
-
-      const summaryEl = document.getElementById('checkoutOrderSummary');
-      summaryEl.innerHTML = cart.map(i => `
-        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee;">
-          <span><strong>${i.name}</strong> (Qty: ${i.qty})</span>
-          <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
-        </div>
-      `).join('') + `
-        <div style="margin-top:12px; padding-top:10px; font-size:14px; text-align:right; line-height:1.8;">
-          <div>Cart Subtotal: <strong>₹${pricing.subtotal.toLocaleString('en-IN')}</strong></div>
-          ${pricing.couponDisc > 0 ? `<div style="color:var(--fk-green); font-weight:700;">Promo Code (${pricing.validCoupon.code}): − ₹${pricing.couponDisc.toLocaleString('en-IN')}</div>` : ''}
-          <div style="font-size:19px; font-weight:800; color:var(--fk-blue); margin-top:4px;">Final Payable Amount: ₹${pricing.finalPayable.toLocaleString('en-IN')}</div>
-        </div>
-      `;
+      var pr = calculateCartPricing();
+      document.getElementById('chkCouponStatus').textContent = pr.couponMessage;
+      document.getElementById('removeCouponBtn').style.display = activeCouponCode ? 'inline-block' : 'none';
+      document.getElementById('checkoutOrderSummary').innerHTML = cart.map(function(i) {
+        return '<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #eee;"><span>' + i.name + ' (x' + i.qty + ')</span><strong>Rs.' + (i.price * i.qty).toLocaleString('en-IN') + '</strong></div>';
+      }).join('') + '<div style="text-align:right; margin-top:10px; font-size:18px; font-weight:800; color:var(--fk-blue);">Final Payable: Rs.' + pr.finalPayable.toLocaleString('en-IN') + '</div>';
     }
 
     function confirmStep2Address() {
-      const name = document.getElementById('chkName').value.trim();
-      const phone = document.getElementById('chkPhone').value.trim();
-      const pin = document.getElementById('chkPincode').value.trim();
-      const addr = document.getElementById('chkAddress').value.trim();
-
-      if (!name || phone.length < 10 || pin.length !== 6 || !addr) {
-        alert('Complete recipient details: 10-digit phone, 6-digit pincode, and street address.');
-        return;
-      }
-
+      var name = document.getElementById('chkName').value.trim();
+      var phone = document.getElementById('chkPhone').value.trim();
+      var pin = document.getElementById('chkPincode').value.trim();
+      var addr = document.getElementById('chkAddress').value.trim();
+      if (!name || phone.length < 10 || pin.length !== 6 || !addr) return alert('Enter valid Name, 10-digit Phone, 6-digit Pincode, and Street Address.');
       document.getElementById('step2Header').className = 'step-header done';
       document.getElementById('step3Box').className = 'step-box';
       document.getElementById('step3Header').className = 'step-header active';
-      document.getElementById('step3Box').scrollIntoView({ behavior: 'smooth' });
     }
 
     function confirmStep3Summary() {
       document.getElementById('step3Header').className = 'step-header done';
       document.getElementById('step4Box').className = 'step-box';
       document.getElementById('step4Header').className = 'step-header active';
-      document.getElementById('step4Box').scrollIntoView({ behavior: 'smooth' });
     }
 
     async function completeFlipkartOrder() {
-      if (!currentUser || !currentUser.email) {
-        alert('Please log in at Step 1 before placing an order.');
-        return;
-      }
+      if (!currentUser || !currentUser.email) return alert('Please log in at Step 1 first.');
       if (cart.length === 0) return alert('Cart is empty.');
+      var name = document.getElementById('chkName').value.trim();
+      var phone = document.getElementById('chkPhone').value.trim();
+      var pincode = document.getElementById('chkPincode').value.trim();
+      var city = document.getElementById('chkCity').value.trim();
+      var state = document.getElementById('chkState').value.trim();
+      var address = document.getElementById('chkAddress').value.trim();
+      var mode = document.querySelector('input[name="payOptionRadio"]:checked').value;
+      var statusMsg = document.getElementById('checkoutStatusMsg');
+      var pr = calculateCartPricing();
+      var total = pr.finalPayable;
+      var cTag = pr.validCoupon ? (' [Coupon ' + pr.validCoupon.code + ']') : '';
 
-      const name = document.getElementById('chkName').value.trim();
-      const phone = document.getElementById('chkPhone').value.trim();
-      const pincode = document.getElementById('chkPincode').value.trim();
-      const city = document.getElementById('chkCity').value.trim();
-      const state = document.getElementById('chkState').value.trim();
-      const address = document.getElementById('chkAddress').value.trim();
-      const selectedMode = document.querySelector('input[name="payOptionRadio"]:checked').value;
-      const statusMsg = document.getElementById('checkoutStatusMsg');
-
-      const pricing = calculateCartPricing();
-      const total_amount = pricing.finalPayable;
-      const couponTag = pricing.validCoupon ? ` [Coupon ${pricing.validCoupon.code}: -₹${pricing.couponDisc}]` : '';
-
-      if (selectedMode === 'RAZORPAY') {
-        statusMsg.style.color = 'var(--fk-blue)';
-        statusMsg.textContent = 'Initializing Razorpay Gateway...';
-
+      if (mode === 'RAZORPAY') {
+        statusMsg.textContent = 'Opening Razorpay...';
         try {
-          const rzpInitRes = await fetch('/.netlify/functions/shiprocket', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'create_razorpay_order', amount: total_amount })
-          });
-          const rzpInitData = await rzpInitRes.json();
-
-          if (!rzpInitData.order_id) {
-            statusMsg.style.color = 'var(--fk-red)';
-            statusMsg.textContent = rzpInitData.error || 'Razorpay initialization failed.';
-            return;
-          }
-
-          const options = {
-            key: rzpInitData.key_id,
-            amount: rzpInitData.amount,
-            currency: 'INR',
-            name: 'G Kart Store',
-            description: 'Order Payment' + couponTag,
-            order_id: rzpInitData.order_id,
-            prefill: { name, email: currentUser.email, contact: phone },
-            theme: { color: '#2874f0' },
-            handler: async function (response) {
-              statusMsg.style.color = 'var(--fk-green)';
-              statusMsg.textContent = 'Payment verified. Registering order...';
-              await finalizeOrderToBackend({
-                name, phone, pincode, city, state, address, total_amount,
-                payment_method: 'Prepaid',
-                payment_label: `Prepaid (Razorpay ID: ${response.razorpay_payment_id})${couponTag}`,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature
-              });
+          var r = await fetch('/.netlify/functions/shiprocket', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'create_razorpay_order', amount: total }) });
+          var d = await r.json();
+          if (!d.order_id) { statusMsg.textContent = d.error || 'Razorpay error'; return; }
+          var rzp = new window.Razorpay({
+            key: d.key_id, amount: d.amount, currency: 'INR', name: 'G Kart Store', order_id: d.order_id,
+            prefill: { name: name, email: currentUser.email, contact: phone },
+            handler: async function(resp) {
+              await finalizeOrderToBackend({ name: name, phone: phone, pincode: pincode, city: city, state: state, address: address, total_amount: total, payment_method: 'Prepaid', payment_label: 'Prepaid (ID: ' + resp.razorpay_payment_id + ')' + cTag, razorpay_payment_id: resp.razorpay_payment_id, razorpay_order_id: resp.razorpay_order_id, razorpay_signature: resp.razorpay_signature });
             }
-          };
-
-          const rzpPopup = new window.Razorpay(options);
-          rzpPopup.open();
-        } catch (err) {
-          statusMsg.style.color = 'var(--fk-red)';
-          statusMsg.textContent = 'Gateway connection error.';
-        }
+          });
+          rzp.open();
+        } catch (e) { statusMsg.textContent = 'Error connecting to payment gateway.'; }
         return;
       }
-
-      statusMsg.textContent = 'Saving COD Order...';
-      await finalizeOrderToBackend({
-        name, phone, pincode, city, state, address, total_amount,
-        payment_method: 'COD',
-        payment_label: `Cash on Delivery (COD)${couponTag}`
-      });
+      statusMsg.textContent = 'Placing COD Order...';
+      await finalizeOrderToBackend({ name: name, phone: phone, pincode: pincode, city: city, state: state, address: address, total_amount: total, payment_method: 'COD', payment_label: 'Cash on Delivery (COD)' + cTag });
     }
 
     async function finalizeOrderToBackend(details) {
-      const statusMsg = document.getElementById('checkoutStatusMsg');
-      const itemNames = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
-
-      let dbOrderId = null;
+      var itemsStr = cart.map(function(i) { return i.name + ' (x' + i.qty + ')'; }).join(', ');
+      var dbId = null;
       if (supabaseClient) {
-        const fullPayload = {
-          user_id: currentUser.id || undefined,
-          customer_name: details.name,
-          customer_email: currentUser.email,
-          customer_phone: details.phone,
-          shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
-          pincode: details.pincode,
-          total_amount: details.total_amount,
-          order_status: `${details.payment_label} • Synced to Shiprocket`,
-          lifecycle_stage: 'Confirmed'
-        };
-
-        let { data: insertedRows, error } = await supabaseClient.from('orders').insert([fullPayload]).select();
-        if (error) {
-          // Fallback if new columns (user_id / lifecycle_stage) are not in Supabase yet
-          const fallbackPayload = {
-            customer_name: details.name,
-            customer_email: currentUser.email,
-            customer_phone: details.phone,
-            shipping_address: `${details.address}, ${details.city}, ${details.state} | Items: ${itemNames}`,
-            pincode: details.pincode,
-            total_amount: details.total_amount,
-            order_status: `${details.payment_label} • Synced to Shiprocket`
-          };
-          const retry = await supabaseClient.from('orders').insert([fallbackPayload]).select();
-          insertedRows = retry.data;
+        var row = { customer_name: details.name, customer_email: currentUser.email, customer_phone: details.phone, shipping_address: details.address + ', ' + details.city + ', ' + details.state + ' | Items: ' + itemsStr, pincode: details.pincode, total_amount: details.total_amount, order_status: details.payment_label + ' - Synced to Shiprocket', lifecycle_stage: 'Confirmed' };
+        var ins = await supabaseClient.from('orders').insert([row]).select();
+        if (ins.error) {
+          delete row.lifecycle_stage;
+          ins = await supabaseClient.from('orders').insert([row]).select();
         }
-        if (insertedRows && insertedRows[0]) dbOrderId = insertedRows[0].id;
+        if (ins.data && ins.data[0]) dbId = ins.data[0].id;
       }
-
       try {
-        await fetch('/.netlify/functions/shiprocket', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'create_order',
-            db_order_id: dbOrderId,
-            customer_name: details.name,
-            customer_email: currentUser.email,
-            customer_phone: details.phone,
-            shipping_address: details.address,
-            city: details.city,
-            state: details.state,
-            pincode: details.pincode,
-            payment_method: details.payment_method,
-            total_amount: details.total_amount,
-            razorpay_payment_id: details.razorpay_payment_id,
-            razorpay_order_id: details.razorpay_order_id,
-            razorpay_signature: details.razorpay_signature,
-            items: cart
-          })
-        });
+        await fetch('/.netlify/functions/shiprocket', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'create_order', db_order_id: dbId, customer_name: details.name, customer_email: currentUser.email, customer_phone: details.phone, shipping_address: details.address, city: details.city, state: details.state, pincode: details.pincode, payment_method: details.payment_method, total_amount: details.total_amount, razorpay_payment_id: details.razorpay_payment_id, razorpay_order_id: details.razorpay_order_id, razorpay_signature: details.razorpay_signature, items: cart }) });
       } catch (e) {}
-
       cart = [];
       activeCouponCode = '';
       localStorage.removeItem('gkart_coupon');
       saveState();
-      statusMsg.textContent = '';
-      await refreshCloudOrderCount();
-      showToast('🎉 Order Confirmed & Sent to Shiprocket!');
+      showToast('Order Confirmed!');
       navigateTo('orders');
     }
 
-    // 5. PRIVATE ORDERS, LIFECYCLE & TAX INVOICE PDF (NO EMBEDDED SCRIPT TAGS)
     async function loadMyOrders() {
-      const box = document.getElementById('ordersListContainer');
-      if (!currentUser || !currentUser.email) {
-        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">Log in to access your private orders.</p>`;
+      var box = document.getElementById('ordersListContainer');
+      if (!currentUser || !currentUser.email || !supabaseClient) {
+        box.innerHTML = '<p>Please log in to view your private orders.</p>';
         return;
       }
-
-      box.innerHTML = `<p style="padding:20px 0; color:var(--fk-blue); font-weight:700;">Retrieving private orders for ${currentUser.email}...</p>`;
-
-      const { data: cloudOrders, error } = await supabaseClient
-        .from('orders')
-        .select('*')
-        .ilike('customer_email', currentUser.email)
-        .order('id', { ascending: false });
-
-      if (error) {
-        box.innerHTML = `<p style="color:var(--fk-red); padding:20px 0;">Order load failed: ${error.message}</p>`;
-        return;
-      }
-
-      cachedUserOrders = cloudOrders || [];
+      box.innerHTML = '<p>Loading private orders...</p>';
+      var res = await supabaseClient.from('orders').select('*').ilike('customer_email', currentUser.email).order('id', { ascending: false });
+      cachedUserOrders = res.data || [];
       document.getElementById('orderCountMenu').textContent = cachedUserOrders.length;
-
       if (cachedUserOrders.length === 0) {
-        box.innerHTML = `<p style="color:var(--fk-muted); padding:20px 0;">No orders found under your account (${currentUser.email}).</p>`;
+        box.innerHTML = '<p>No orders found for ' + currentUser.email + '.</p>';
         return;
       }
-
-      box.innerHTML = cachedUserOrders.map(o => {
-        const stage = o.lifecycle_stage || 'Confirmed';
-        const isPreDelivery = ['Confirmed', 'Packed', 'Shipped'].includes(stage);
-        const isDelivered = stage === 'Delivered';
-
-        let badgeColor = 'var(--fk-green)';
-        if (stage === 'Cancelled') badgeColor = 'var(--fk-red)';
-        if (stage.includes('Return') || stage.includes('Replacement')) badgeColor = 'var(--fk-orange)';
-
-        return `
-          <div style="border:1px solid var(--fk-border); padding:18px; margin-bottom:16px; border-radius:4px; background:#fff;">
-            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px;">
-              <strong>Order #GK-${1000 + Number(o.id)} • Recipient: ${o.customer_name} (${o.customer_phone})</strong>
-              <strong style="font-size:18px; color:var(--fk-blue);">₹${Number(o.total_amount).toLocaleString('en-IN')}</strong>
-            </div>
-            <div style="font-size:13px; color:#444; margin-bottom:6px;">
-              <strong>Destination:</strong> ${o.shipping_address} — <strong>Pincode: ${o.pincode}</strong>
-            </div>
-            <div style="font-size:13px; font-weight:700; color:${badgeColor}; margin-bottom:8px;">
-              Status: <span style="padding:2px 8px; border-radius:3px; background:#f3f4f6;">${stage}</span> • ${o.order_status}
-              ${o.action_reason ? `<div style="color:var(--fk-red); margin-top:4px;">Action Reason: ${o.action_reason}</div>` : ''}
-            </div>
-
-            <div class="track-bar">
-              <div class="track-step ${stage !== 'Cancelled' ? 'done' : ''}"><div class="track-dot"></div>Confirmed</div>
-              <div class="track-step ${['Packed','Shipped','Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Packed</div>
-              <div class="track-step ${['Shipped','Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Shipped</div>
-              <div class="track-step ${['Delivered','Return Requested','Replacement Requested'].includes(stage) ? 'done' : ''}"><div class="track-dot"></div>Delivered</div>
-            </div>
-
-            <div style="margin-top:14px; padding-top:12px; border-top:1px solid #f0f0f0; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <button type="button" class="btn-order-action" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;" onclick="downloadTaxInvoice(${o.id})">
-                <i class="fa-solid fa-file-pdf"></i> Download Tax Invoice (PDF)
-              </button>
-
-              ${isPreDelivery ? `
-                <button type="button" class="btn-order-action" style="background:#fef2f2; color:var(--fk-red); border-color:#fecaca;" onclick="openOrderActionModal(${o.id}, 'Cancel')">
-                  <i class="fa-solid fa-ban"></i> Cancel Order
-                </button>
-                <button type="button" class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe; margin-left:auto;" onclick="markOrderStage(${o.id}, 'Delivered')">
-                  <i class="fa-solid fa-check"></i> Mark Delivered (Test Returns)
-                </button>
-              ` : ''}
-
-              ${isDelivered ? `
-                <button type="button" class="btn-order-action" style="background:#fff7ed; color:#ea580c; border-color:#fed7aa;" onclick="openOrderActionModal(${o.id}, 'Return')">
-                  <i class="fa-solid fa-rotate-left"></i> Return (Refund)
-                </button>
-                <button type="button" class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe;" onclick="openOrderActionModal(${o.id}, 'Replace')">
-                  <i class="fa-solid fa-arrows-rotate"></i> Replace (Exchange)
-                </button>
-              ` : ''}
-            </div>
-          </div>
-        `;
+      box.innerHTML = cachedUserOrders.map(function(o) {
+        var stage = o.lifecycle_stage || 'Confirmed';
+        var isPre = ['Confirmed', 'Packed', 'Shipped'].indexOf(stage) > -1;
+        var isDel = stage === 'Delivered';
+        return '<div style="border:1px solid var(--fk-border); padding:16px; margin-bottom:14px; border-radius:4px; background:#fff;">' +
+          '<div style="display:flex; justify-content:space-between; margin-bottom:6px;"><strong>Order #GK-' + (1000 + Number(o.id)) + ' - ' + o.customer_name + ' (' + o.customer_phone + ')</strong><strong style="color:var(--fk-blue);">Rs.' + Number(o.total_amount).toLocaleString('en-IN') + '</strong></div>' +
+          '<div style="font-size:13px; color:#444; margin-bottom:6px;">' + o.shipping_address + ' - Pincode: ' + o.pincode + '</div>' +
+          '<div style="font-size:13px; font-weight:700; color:var(--fk-green);">Stage: ' + stage + ' | ' + o.order_status + (o.action_reason ? (' | Reason: ' + o.action_reason) : '') + '</div>' +
+          '<div class="track-bar">' +
+            '<div class="track-step ' + (stage !== 'Cancelled' ? 'done' : '') + '"><div class="track-dot"></div>Confirmed</div>' +
+            '<div class="track-step ' + (['Packed','Shipped','Delivered'].indexOf(stage) > -1 ? 'done' : '') + '"><div class="track-dot"></div>Packed</div>' +
+            '<div class="track-step ' + (['Shipped','Delivered'].indexOf(stage) > -1 ? 'done' : '') + '"><div class="track-dot"></div>Shipped</div>' +
+            '<div class="track-step ' + (isDel ? 'done' : '') + '"><div class="track-dot"></div>Delivered</div>' +
+          '</div>' +
+          '<div style="margin-top:12px; padding-top:10px; border-top:1px solid #eee; display:flex; gap:8px; flex-wrap:wrap;">' +
+            '<button type="button" class="btn-order-action" style="background:#f0fdf4; color:#15803d; border-color:#bbf7d0;" onclick="downloadTaxInvoice(' + o.id + ')">Tax Invoice PDF</button>' +
+            (isPre ? '<button type="button" class="btn-order-action" style="background:#fef2f2; color:var(--fk-red); border-color:#fecaca;" onclick="openOrderActionModal(' + o.id + ', \'Cancel\')">Cancel Order</button><button type="button" class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe; margin-left:auto;" onclick="markOrderStage(' + o.id + ', \'Delivered\')">Mark Delivered (Test Return/Replace)</button>' : '') +
+            (isDel ? '<button type="button" class="btn-order-action" style="background:#fff7ed; color:#ea580c; border-color:#fed7aa;" onclick="openOrderActionModal(' + o.id + ', \'Return\')">Return Order</button><button type="button" class="btn-order-action" style="background:#eff6ff; color:var(--fk-blue); border-color:#bfdbfe;" onclick="openOrderActionModal(' + o.id + ', \'Replace\')">Replace Item</button>' : '') +
+          '</div>' +
+        '</div>';
       }).join('');
     }
 
     function downloadTaxInvoice(orderId) {
-      const o = cachedUserOrders.find(x => Number(x.id) === Number(orderId));
+      var o = cachedUserOrders.find(function(x) { return Number(x.id) === Number(orderId); });
       if (!o) return;
-
-      const invNo = `GK-INV-2026-${1000 + Number(o.id)}`;
-      const orderDate = o.created_at ? new Date(o.created_at).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN');
-      const total = Number(o.total_amount);
-      const taxableValue = (total / 1.18).toFixed(2);
-      const gstAmount = (total - Number(taxableValue)).toFixed(2);
-
-      const parts = (o.shipping_address || '').split('| Items:');
-      const cleanAddress = parts[0] || o.shipping_address;
-      const itemsText = parts[1] ? parts[1].trim() : 'G Kart Merchandise';
-
-      const win = window.open('', '_blank', 'width=850,height=700');
-      if (!win) return alert('Please allow popups to download your Tax Invoice PDF.');
-
-      win.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Tax Invoice - ${invNo}</title>
-          <style>
-            body { font-family: Arial, sans-serif; color: #111; padding: 32px; max-width: 800px; margin: 0 auto; }
-            .inv-header { display: flex; justify-content: space-between; border-bottom: 2px solid #2874f0; padding-bottom: 16px; margin-bottom: 20px; }
-            .brand { font-size: 26px; font-weight: 800; color: #2874f0; font-style: italic; }
-            .grid { display: flex; justify-content: space-between; gap: 24px; margin-bottom: 24px; font-size: 13px; line-height: 1.6; }
-            .box { flex: 1; border: 1px solid #d1d5db; padding: 12px; border-radius: 4px; background: #f9fafb; }
-            table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 13px; }
-            th, td { border: 1px solid #d1d5db; padding: 10px; text-align: left; }
-            th { background: #eff6ff; font-weight: 700; }
-            .totals { text-align: right; font-size: 14px; line-height: 1.8; }
-            .footer { margin-top: 40px; border-top: 1px dashed #9ca3af; padding-top: 14px; display: flex; justify-content: space-between; font-size: 12px; color: #555; }
-            @media print { .no-print { display: none; } }
-          </style>
-        </head>
-        <body>
-          <div class="no-print" style="margin-bottom:16px; text-align:right;">
-            <button onclick="window.print()" style="background:#2874f0; color:#fff; border:none; padding:10px 20px; font-weight:700; border-radius:4px; cursor:pointer;">
-              🖨️ Print / Save as PDF
-            </button>
-          </div>
-          <div class="inv-header">
-            <div>
-              <div class="brand">G Kart Official Store</div>
-              <div style="font-size:12px; color:#555;">Tax Invoice / Bill of Supply / Cash Memo</div>
-            </div>
-            <div style="text-align:right; font-size:13px;">
-              <strong>Invoice No:</strong> ${invNo}<br/>
-              <strong>Order ID:</strong> #GK-${1000 + Number(o.id)}<br/>
-              <strong>Invoice Date:</strong> ${orderDate}
-            </div>
-          </div>
-
-          <div class="grid">
-            <div class="box">
-              <strong>Sold By (Authorized Merchant):</strong><br/>
-              G Kart Retail & Logistics<br/>
-              Akurdi, Pimpri-Chinchwad, Pune<br/>
-              Maharashtra - 411035, India<br/>
-              Support: gvivek3004@gmail.com
-            </div>
-            <div class="box">
-              <strong>Billing & Shipping Address:</strong><br/>
-              <strong>${o.customer_name}</strong><br/>
-              ${cleanAddress}<br/>
-              Pincode: <strong>${o.pincode}</strong><br/>
-              Phone: ${o.customer_phone} | Email: ${o.customer_email}
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Description of Goods</th>
-                <th>Taxable Value</th>
-                <th>IGST / CGST+SGST (18%)</th>
-                <th>Net Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>${itemsText}</strong><br/><span style="font-size:11px; color:#555;">${o.order_status}</span></td>
-                <td>₹${Number(taxableValue).toLocaleString('en-IN')}</td>
-                <td>₹${Number(gstAmount).toLocaleString('en-IN')}</td>
-                <td><strong>₹${total.toLocaleString('en-IN')}</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="totals">
-            <div>Taxable Subtotal: ₹${Number(taxableValue).toLocaleString('en-IN')}</div>
-            <div>Total GST Included (18%): ₹${Number(gstAmount).toLocaleString('en-IN')}</div>
-            <div>Shiprocket Courier Charges: FREE (₹0.00)</div>
-            <div style="font-size:18px; font-weight:800; color:#2874f0; margin-top:6px;">
-              Grand Total Paid / Payable: ₹${total.toLocaleString('en-IN')}
-            </div>
-          </div>
-
-          <div class="footer">
-            <div>* This is a computer-generated tax invoice and does not require a physical signature.</div>
-            <div><strong>Authorized Signatory — G Kart Store</strong></div>
-          </div>
-        </body>
-        </html>
-      `);
+      var win = window.open('', '_blank', 'width=800,height=650');
+      if (!win) return alert('Allow popups to print Invoice PDF');
+      win.document.write('<html><head><title>Invoice #GK-' + (1000 + Number(o.id)) + '</title></head><body style="font-family:Arial; padding:30px;">' +
+        '<h2>G Kart Official Tax Invoice</h2><hr/>' +
+        '<p><strong>Order ID:</strong> #GK-' + (1000 + Number(o.id)) + '<br/><strong>Customer:</strong> ' + o.customer_name + ' (' + o.customer_phone + ')<br/><strong>Address:</strong> ' + o.shipping_address + ' - ' + o.pincode + '</p>' +
+        '<p><strong>Status:</strong> ' + o.order_status + '</p>' +
+        '<h3>Total Amount: Rs.' + Number(o.total_amount).toLocaleString('en-IN') + ' (Incl. 18% GST)</h3>' +
+        '<button onclick="window.print()" style="padding:10px 20px; background:#2874f0; color:#fff; border:none; cursor:pointer;">Print / Save PDF</button>' +
+      '</body></html>');
       win.document.close();
-      setTimeout(() => {
-        win.focus();
-        win.print();
-      }, 450);
     }
 
     function openOrderActionModal(orderId, actionType) {
       document.getElementById('actionOrderId').value = orderId;
       document.getElementById('actionType').value = actionType;
-      document.getElementById('actionCommentInput').value = '';
-
-      const titleEl = document.getElementById('actionModalTitle');
-      const subEl = document.getElementById('actionModalSub');
-      const selectEl = document.getElementById('actionReasonSelect');
-
+      document.getElementById('actionModalTitle').textContent = actionType + ' Order #GK-' + (1000 + Number(orderId));
+      var sel = document.getElementById('actionReasonSelect');
       if (actionType === 'Cancel') {
-        titleEl.textContent = `Cancel Order #GK-${1000 + Number(orderId)}`;
-        subEl.textContent = 'Select reason for cancellation prior to parcel delivery:';
-        selectEl.innerHTML = `
-          <option value="Ordered by mistake">Ordered by mistake</option>
-          <option value="Incorrect address entered">Incorrect address entered</option>
-          <option value="Delivery duration too long">Delivery duration too long</option>
-          <option value="Found better pricing">Found better pricing</option>
-        `;
+        sel.innerHTML = '<option value="Ordered by mistake">Ordered by mistake</option><option value="Change delivery address">Change delivery address</option><option value="Delivery taking too long">Delivery taking too long</option>';
       } else if (actionType === 'Return') {
-        titleEl.textContent = `Return Order #GK-${1000 + Number(orderId)}`;
-        subEl.textContent = 'Reverse courier dispatch will trigger after validation:';
-        selectEl.innerHTML = `
-          <option value="Defective or inoperative product">Defective or inoperative product</option>
-          <option value="Physical damage on receipt">Physical damage on receipt</option>
-          <option value="Incorrect item dispatched">Incorrect item dispatched</option>
-          <option value="Accessories missing">Accessories missing</option>
-        `;
-      } else if (actionType === 'Replace') {
-        titleEl.textContent = `Replace Item for Order #GK-${1000 + Number(orderId)}`;
-        subEl.textContent = 'An exchange unit will be queued for shipment:';
-        selectEl.innerHTML = `
-          <option value="Transit damage / cracked unit">Transit damage / cracked unit</option>
-          <option value="Size / Variant mismatch">Size / Variant mismatch</option>
-          <option value="Hardware fault / Non-functional">Hardware fault / Non-functional</option>
-        `;
+        sel.innerHTML = '<option value="Defective item">Defective item</option><option value="Wrong product sent">Wrong product sent</option><option value="Quality not as expected">Quality not as expected</option>';
+      } else {
+        sel.innerHTML = '<option value="Damaged in transit">Damaged in transit</option><option value="Size or color mismatch">Size or color mismatch</option><option value="Item not working">Item not working</option>';
       }
-
       document.getElementById('orderActionModal').classList.add('active');
     }
 
@@ -1964,58 +1154,29 @@
     }
 
     async function submitOrderLifecycleAction() {
-      const orderId = Number(document.getElementById('actionOrderId').value);
-      const actionType = document.getElementById('actionType').value;
-      const reason = document.getElementById('actionReasonSelect').value;
-      const comment = document.getElementById('actionCommentInput').value.trim();
-
-      let newStage = 'Cancelled';
-      if (actionType === 'Return') newStage = 'Return Requested';
-      if (actionType === 'Replace') newStage = 'Replacement Requested';
-
-      const fullReason = `${reason}${comment ? ' | ' + comment : ''}`;
-
-      const { error } = await supabaseClient
-        .from('orders')
-        .update({ lifecycle_stage: newStage, action_reason: fullReason })
-        .eq('id', orderId);
-
-      if (error) {
-        await supabaseClient
-          .from('orders')
-          .update({ order_status: `${newStage} (${fullReason})` })
-          .eq('id', orderId);
-      }
-
+      var id = Number(document.getElementById('actionOrderId').value);
+      var type = document.getElementById('actionType').value;
+      var reason = document.getElementById('actionReasonSelect').value + ' ' + document.getElementById('actionCommentInput').value.trim();
+      var stage = type === 'Cancel' ? 'Cancelled' : (type === 'Return' ? 'Return Requested' : 'Replacement Requested');
+      var res = await supabaseClient.from('orders').update({ lifecycle_stage: stage, action_reason: reason }).eq('id', id);
+      if (res.error) await supabaseClient.from('orders').update({ order_status: stage + ' (' + reason + ')' }).eq('id', id);
       closeOrderActionModal();
-      showToast(`✓ Order updated to ${newStage}`);
+      showToast('Order updated to ' + stage);
       loadMyOrders();
     }
 
-    async function markOrderStage(orderId, newStage) {
-      const { error } = await supabaseClient
-        .from('orders')
-        .update({ lifecycle_stage: newStage })
-        .eq('id', Number(orderId));
-
-      if (error) {
-        await supabaseClient
-          .from('orders')
-          .update({ order_status: newStage })
-          .eq('id', Number(orderId));
-      }
-
-      showToast(`✓ Order moved to ${newStage}`);
+    async function markOrderStage(id, stage) {
+      var res = await supabaseClient.from('orders').update({ lifecycle_stage: stage }).eq('id', Number(id));
+      if (res.error) await supabaseClient.from('orders').update({ order_status: stage }).eq('id', Number(id));
+      showToast('Order stage set to ' + stage);
       if (document.getElementById('view-orders').classList.contains('active')) loadMyOrders();
       if (document.getElementById('view-seller').classList.contains('active')) loadAdminAllOrders();
     }
 
-    // 6. SELLER HUB: FORM, CSV IMPORT & ADMIN DISPATCH
     async function sellerSaveProduct(e) {
       e.preventDefault();
-      const editId = document.getElementById('editProdId').value;
-
-      const prodPayload = {
+      var editId = document.getElementById('editProdId').value;
+      var p = {
         name: document.getElementById('sellName').value.trim(),
         brand: document.getElementById('sellBrand').value.trim(),
         category: document.getElementById('sellCat').value,
@@ -2030,46 +1191,23 @@
         description: document.getElementById('sellDesc').value.trim(),
         specifications: document.getElementById('sellSpecs').value.trim()
       };
-
       if (editId) {
-        let { error } = await supabaseClient.from('products').update(prodPayload).eq('id', Number(editId));
-        if (error) {
-          await supabaseClient.from('products').update({
-            name: prodPayload.name,
-            price: prodPayload.price,
-            category: prodPayload.category,
-            image_url: prodPayload.image_url,
-            description: prodPayload.description
-          }).eq('id', Number(editId));
-        }
-        const idx = allProducts.findIndex(x => Number(x.id) === Number(editId));
-        if (idx > -1) {
-          allProducts[idx] = { ...allProducts[idx], ...prodPayload, img: prodPayload.image_url, desc: prodPayload.description };
-        }
-        showToast('✓ Product updated');
+        var u = await supabaseClient.from('products').update(p).eq('id', Number(editId));
+        if (u.error) await supabaseClient.from('products').update({ name: p.name, price: p.price, category: p.category, image_url: p.image_url, description: p.description }).eq('id', Number(editId));
+        showToast('Product updated!');
       } else {
-        let { error } = await supabaseClient.from('products').insert([prodPayload]);
-        if (error) {
-          await supabaseClient.from('products').insert([{
-            name: prodPayload.name,
-            price: prodPayload.price,
-            category: prodPayload.category,
-            image_url: prodPayload.image_url,
-            description: prodPayload.description
-          }]);
-        }
-        showToast('✓ Product created');
+        var ins = await supabaseClient.from('products').insert([p]);
+        if (ins.error) await supabaseClient.from('products').insert([{ name: p.name, price: p.price, category: p.category, image_url: p.image_url, description: p.description }]);
+        showToast('Product published!');
       }
-
       resetSellerForm();
       await syncSupabaseProducts();
       renderSellerProductList();
     }
 
-    function sellerStartEdit(productId) {
-      const p = allProducts.find(x => Number(x.id) === Number(productId));
+    function sellerStartEdit(id) {
+      var p = allProducts.find(function(x) { return Number(x.id) === Number(id); });
       if (!p) return;
-
       document.getElementById('editProdId').value = p.id;
       document.getElementById('sellName').value = p.name;
       document.getElementById('sellBrand').value = p.brand || 'G Kart';
@@ -2080,195 +1218,93 @@
       document.getElementById('sellSku').value = p.sku || '';
       document.getElementById('sellImg').value = p.img;
       document.getElementById('sellExtraImgs').value = p.extra_images || '';
-      document.getElementById('sellWarranty').value = p.warranty || '1 Year Warranty';
-      document.getElementById('sellReturnPolicy').value = p.return_policy || '7 Days Replacement';
-      document.getElementById('sellDesc').value = p.desc;
+      document.getElementById('sellWarranty').value = p.warranty || '';
+      document.getElementById('sellReturnPolicy').value = p.return_policy || '';
+      document.getElementById('sellDesc').value = p.desc || '';
       document.getElementById('sellSpecs').value = p.specifications || '';
-
-      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit: ${p.name}`;
-      document.getElementById('sellerSubmitBtn').textContent = '💾 Update Product';
+      document.getElementById('sellerFormHeading').textContent = 'Edit Product: ' + p.name;
+      document.getElementById('sellerSubmitBtn').textContent = 'Update Product';
       document.getElementById('cancelEditBtn').style.display = 'inline-block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
 
     function resetSellerForm() {
       document.getElementById('sellerProductForm').reset();
       document.getElementById('editProdId').value = '';
-      document.getElementById('sellerFormHeading').innerHTML = `<i class="fa-solid fa-store"></i> Seller Hub — Add Flipkart Product`;
+      document.getElementById('sellerFormHeading').textContent = 'Seller Hub - Add or Edit Product';
       document.getElementById('sellerSubmitBtn').textContent = '+ Publish Product';
       document.getElementById('cancelEditBtn').style.display = 'none';
     }
 
     function renderSellerProductList() {
-      const listEl = document.getElementById('sellerProductsManageList');
       document.getElementById('sellerTotalCount').textContent = allProducts.length;
-
-      if (allProducts.length === 0) {
-        listEl.innerHTML = `<p style="color:var(--fk-muted); padding:12px 0;">No active listings found.</p>`;
-        return;
-      }
-
-      listEl.innerHTML = allProducts.map(p => `
-        <div class="seller-item-row">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <img src="${p.img}" alt="${p.name}" style="width:54px; height:54px; object-fit:contain; background:#fff; border:1px solid #e5e7eb; padding:4px; border-radius:4px;" />
-            <div>
-              <strong style="font-size:14px; display:block;">${p.name}</strong>
-              <span style="font-size:12px; color:var(--fk-muted);">
-                Brand: <strong>${p.brand}</strong> | Stock: <strong>${p.stock}</strong> | ₹${p.price.toLocaleString('en-IN')} (MRP: ₹${p.mrp.toLocaleString('en-IN')})
-              </span>
-            </div>
-          </div>
-          <div style="display:flex; gap:8px;">
-            <button type="button" class="btn-edit-prod" onclick="sellerStartEdit(${p.id})">
-              <i class="fa-solid fa-pen"></i> Edit
-            </button>
-            <button type="button" class="btn-delete-prod" onclick="sellerDeleteProduct(${p.id})">
-              <i class="fa-solid fa-trash-can"></i> Delete
-            </button>
-          </div>
-        </div>
-      `).join('');
+      document.getElementById('sellerProductsManageList').innerHTML = allProducts.map(function(p) {
+        return '<div class="seller-item-row">' +
+          '<div style="display:flex; align-items:center; gap:12px;"><img src="' + p.img + '" style="width:50px; height:50px; object-fit:contain;" /><div><strong>' + p.name + '</strong><div style="font-size:12px; color:#666;">' + p.brand + ' | Stock: ' + p.stock + ' | Rs.' + p.price + '</div></div></div>' +
+          '<div style="display:flex; gap:8px;"><button type="button" class="btn-edit-prod" onclick="sellerStartEdit(' + p.id + ')">Edit</button><button type="button" class="btn-delete-prod" onclick="sellerDeleteProduct(' + p.id + ')">Delete</button></div>' +
+        '</div>';
+      }).join('');
     }
 
-    async function sellerDeleteProduct(productId) {
-      const target = allProducts.find(p => Number(p.id) === Number(productId));
-      if (!target || !confirm(`Delete "${target.name}"?`)) return;
-
-      allProducts = allProducts.filter(p => Number(p.id) !== Number(productId));
-      if (supabaseClient) {
-        try { await supabaseClient.from('products').delete().eq('id', Number(productId)); } catch (e) {}
-      }
-
+    async function sellerDeleteProduct(id) {
+      if (!confirm('Delete this product?')) return;
+      allProducts = allProducts.filter(function(p) { return Number(p.id) !== Number(id); });
+      if (supabaseClient) { try { await supabaseClient.from('products').delete().eq('id', Number(id)); } catch (e) {} }
       renderHomeStrips();
       renderSellerProductList();
-      showToast('🗑️ Product deleted');
+      showToast('Product deleted');
     }
 
-    // CSV IMPORT PIPELINE
     function downloadSampleCSV() {
-      const csvContent = [
-        'name,brand,category,price,mrp,stock,sku,image_url,warranty,return_policy,description,specifications',
-        '"Boat Airdopes 141 TWS Earbuds","BOAT","Electronics",1299,4490,50,"GK-BOAT-141","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500","1 Year Warranty","7 Days Replacement","42 Hours Playback | Low Latency | IPX4 Water Resistance","In The Box: Earbuds, Case, Cable | Bluetooth: 5.1 | Battery: 42 Hours"',
-        '"LG 32 Inch Smart LED TV","LG","Appliances",13990,21990,15,"GK-LG-32LQ","https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500","1 Year LG Warranty","10 Days Replacement","WebOS Smart TV | Dolby Audio","Screen Size: 32 inch | Resolution: 1366 x 768 | HDMI: 2"'
-      ].join('\n');
-
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
+      var csv = 'name,brand,category,price,mrp,stock,sku,image_url,warranty,return_policy,description,specifications\n' +
+        '"Boat Airdopes 141 Earbuds","BOAT","Electronics",1299,4490,50,"GK-BOAT-141","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500","1 Year Warranty","7 Days Replacement","42 Hours Playback | Low Latency","In The Box: Earbuds, Case | Bluetooth: 5.1"';
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
       a.download = 'gkart_bulk_sample.csv';
       a.click();
     }
 
-    function parseCSVLine(line) {
-      const result = [];
-      let current = '';
-      let insideQuotes = false;
-      for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        if (char === '"') {
-          insideQuotes = !insideQuotes;
-        } else if (char === ',' && !insideQuotes) {
-          result.push(current.trim());
-          current = '';
-        } else {
-          current += char;
-        }
-      }
-      result.push(current.trim());
-      return result;
-    }
-
     async function handleBulkCSVUpload() {
-      const fileInput = document.getElementById('bulkCsvInput');
-      const statusEl = document.getElementById('bulkUploadStatus');
-      if (!fileInput.files || fileInput.files.length === 0) return alert('Select a CSV file first.');
-
-      const text = await fileInput.files[0].text();
-      const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
-      if (lines.length < 2) return alert('No valid data lines found in CSV.');
-
-      const productsToInsert = [];
-      for (let i = 1; i < lines.length; i++) {
-        const cols = parseCSVLine(lines[i]);
+      var fi = document.getElementById('bulkCsvInput');
+      if (!fi.files || !fi.files[0]) return alert('Select a CSV file first');
+      var text = await fi.files[0].text();
+      var lines = text.split(/\r?\n/).filter(Boolean);
+      var rows = [];
+      for (var i = 1; i < lines.length; i++) {
+        var cols = lines[i].split(',').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
         if (cols.length >= 8 && cols[0]) {
-          productsToInsert.push({
-            name: cols[0],
-            brand: cols[1] || 'G Kart',
-            category: cols[2] || 'Electronics',
-            price: Number(cols[3]) || 999,
-            mrp: Number(cols[4]) || 1999,
-            stock: Number(cols[5]) || 10,
-            sku: cols[6] || `GK-BULK-${Date.now()}-${i}`,
-            image_url: cols[7],
-            warranty: cols[8] || '1 Year Manufacturer Warranty',
-            return_policy: cols[9] || '7 Days Return & Replacement',
-            description: cols[10] || '',
-            specifications: cols[11] || ''
-          });
+          rows.push({ name: cols[0], brand: cols[1], category: cols[2], price: Number(cols[3]) || 999, mrp: Number(cols[4]) || 1999, stock: Number(cols[5]) || 10, sku: cols[6], image_url: cols[7], warranty: cols[8] || '1 Year Warranty', return_policy: cols[9] || '7 Days Replacement', description: cols[10] || '', specifications: cols[11] || '' });
         }
       }
-
-      if (productsToInsert.length === 0) return alert('Unable to map product columns.');
-
-      statusEl.textContent = `Uploading ${productsToInsert.length} products...`;
-      let { error } = await supabaseClient.from('products').insert(productsToInsert);
-      if (error) {
-        const basicRows = productsToInsert.map(p => ({
-          name: p.name,
-          price: p.price,
-          category: p.category,
-          image_url: p.image_url,
-          description: p.description
-        }));
-        await supabaseClient.from('products').insert(basicRows);
+      if (rows.length === 0) return alert('No valid rows found');
+      var res = await supabaseClient.from('products').insert(rows);
+      if (res.error) {
+        await supabaseClient.from('products').insert(rows.map(function(r) { return { name: r.name, price: r.price, category: r.category, image_url: r.image_url, description: r.description }; }));
       }
-
-      statusEl.style.color = 'var(--fk-green)';
-      statusEl.textContent = `✓ Uploaded ${productsToInsert.length} products.`;
-      fileInput.value = '';
+      document.getElementById('bulkUploadStatus').textContent = 'Uploaded ' + rows.length + ' products!';
       await syncSupabaseProducts();
       renderSellerProductList();
-      showToast(`Ingested ${productsToInsert.length} products`);
     }
 
     async function loadAdminAllOrders() {
-      const box = document.getElementById('adminOrdersManageList');
+      var box = document.getElementById('adminOrdersManageList');
       if (!supabaseClient) return;
-      const { data, error } = await supabaseClient.from('orders').select('*').order('id', { ascending: false });
-
-      if (error || !data || data.length === 0) {
-        box.innerHTML = `<p style="font-size:13px; color:var(--fk-muted);">No orders available for fulfillment.</p>`;
-        return;
-      }
-
-      box.innerHTML = data.map(o => `
-        <div class="seller-item-row">
-          <div>
-            <strong>Order #GK-${1000 + Number(o.id)} • ${o.customer_name} (${o.customer_email || ''})</strong>
-            <div style="font-size:12px; color:#555;">${o.shipping_address} | Stage: <strong>${o.lifecycle_stage || 'Confirmed'}</strong></div>
-            ${o.action_reason ? `<div style="font-size:12px; color:var(--fk-red); font-weight:700;">Customer Note: ${o.action_reason}</div>` : ''}
-          </div>
-          <div style="display:flex; gap:6px; align-items:center;">
-            <select onchange="markOrderStage(${o.id}, this.value)" style="padding:6px; font-size:12px; font-weight:700;">
-              ${['Confirmed','Packed','Shipped','Delivered','Cancelled','Return Requested','Replacement Requested'].map(st => `
-                <option value="${st}" ${(o.lifecycle_stage \vert{}\vert{} 'Confirmed') === st ? 'selected' : ''}>${st}</option>
-              `).join('')}
-            </select>
-          </div>
-        </div>
-      `).join('');
+      var res = await supabaseClient.from('orders').select('*').order('id', { ascending: false });
+      if (!res.data || res.data.length === 0) { box.innerHTML = '<p>No orders yet.</p>'; return; }
+      box.innerHTML = res.data.map(function(o) {
+        var st = o.lifecycle_stage || 'Confirmed';
+        return '<div class="seller-item-row"><div><strong>#GK-' + (1000 + Number(o.id)) + ' - ' + o.customer_name + '</strong><div style="font-size:12px;">' + o.shipping_address + ' | Stage: ' + st + '</div></div>' +
+          '<select onchange="markOrderStage(' + o.id + ', this.value)" style="padding:6px;"><option value="Confirmed">Confirmed</option><option value="Packed">Packed</option><option value="Shipped">Shipped</option><option value="Delivered">Delivered</option><option value="Cancelled">Cancelled</option></select></div>';
+      }).join('');
     }
 
-    async function restoreDefaultCatalog() {
-      allProducts = [...demoSeedProducts];
+    function restoreDefaultCatalog() {
+      allProducts = demoSeedProducts.slice();
       renderHomeStrips();
       renderSellerProductList();
-      showToast('✓ Demo products restored');
+      showToast('Demo products restored');
     }
 
-    // 7. UTILITIES & CATALOG FILTERS
     function openCategory(cat) {
       document.getElementById('filterCatSelect').value = cat;
       navigateTo('catalog');
@@ -2283,7 +1319,8 @@
 
     function setSort(type, el) {
       currentSort = type;
-      document.querySelectorAll('.sort-tab').forEach(t => t.classList.remove('active'));
+      var tabs = document.querySelectorAll('.sort-tab');
+      for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
       el.classList.add('active');
       applyCatalogFilters();
     }
@@ -2296,34 +1333,33 @@
     }
 
     function applyCatalogFilters() {
-      const cat = document.getElementById('filterCatSelect').value;
-      const maxP = Number(document.getElementById('filterPriceRange').value);
-      const q = document.getElementById('globalSearch').value.toLowerCase().trim();
+      var cat = document.getElementById('filterCatSelect').value;
+      var maxP = Number(document.getElementById('filterPriceRange').value);
+      var q = document.getElementById('globalSearch').value.toLowerCase().trim();
       document.getElementById('priceRangeLabel').textContent = maxP.toLocaleString('en-IN');
-
-      let res = allProducts.filter(p => {
-        const mCat = cat === 'All' || p.category.toLowerCase() === cat.toLowerCase();
-        const mPrice = p.price <= maxP;
-        const mQ = !q || p.name.toLowerCase().includes(q) || (p.brand || '').toLowerCase().includes(q) || (p.desc || '').toLowerCase().includes(q);
-        return mCat && mPrice && mQ;
+      var res = allProducts.filter(function(p) {
+        var mCat = cat === 'All' || p.category.toLowerCase() === cat.toLowerCase();
+        var mP = p.price <= maxP;
+        var mQ = !q || p.name.toLowerCase().indexOf(q) > -1 || (p.brand || '').toLowerCase().indexOf(q) > -1;
+        return mCat && mP && mQ;
       });
-
-      if (currentSort === 'low') res.sort((a,b) => a.price - b.price);
-      if (currentSort === 'high') res.sort((a,b) => b.price - a.price);
-
+      if (currentSort === 'low') res.sort(function(a, b) { return a.price - b.price; });
+      if (currentSort === 'high') res.sort(function(a, b) { return b.price - a.price; });
       document.getElementById('catalogResultsGrid').innerHTML = res.map(createCardHTML).join('');
     }
 
     function toggleWishlist(e, id) {
       e.stopPropagation();
-      const numId = Number(id);
-      wishlist = wishlist.includes(numId) ? wishlist.filter(x => x !== numId) : [...wishlist, numId];
+      var n = Number(id);
+      var idx = wishlist.indexOf(n);
+      if (idx > -1) wishlist.splice(idx, 1);
+      else wishlist.push(n);
       saveState();
       renderHomeStrips();
     }
 
     function renderWishlistView() {
-      const items = allProducts.filter(p => wishlist.includes(p.id));
+      var items = allProducts.filter(function(p) { return wishlist.indexOf(p.id) > -1; });
       document.getElementById('wishlistGrid').innerHTML = items.length ? items.map(createCardHTML).join('') : '<p>Your wishlist is empty.</p>';
     }
 
@@ -2334,11 +1370,10 @@
     }
 
     function updateBadges() {
-      document.getElementById('headerCartCount').textContent = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('headerCartCount').textContent = cart.reduce(function(s, i) { return s + i.qty; }, 0);
       document.getElementById('wishCountMenu').textContent = wishlist.length;
     }
 
-    initAuthSession();
     syncSupabaseProducts();
   </script>
 </body>
